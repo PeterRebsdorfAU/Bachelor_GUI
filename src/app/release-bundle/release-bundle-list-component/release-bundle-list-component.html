@@ -1,4 +1,10 @@
-<p>release-bundle-list-component works!</p>
-<div class="release-bundle-list">
-  <app-release-bundle-item-component *ngFor="let bundle of bundles" [bundle]="bundle"></app-release-bundle-item-component>
+<div *ngIf="bundles && bundles.length > 0; else noBundles" class="release-bundle-list">
+  <app-release-bundle-item-component
+    *ngFor="let bundle of bundles"
+    [bundle]="bundle">
+  </app-release-bundle-item-component>
 </div>
+
+<ng-template #noBundles>
+  <p class="no-bundles-message">Der er ingen release bundle at vise.</p>
+</ng-template>

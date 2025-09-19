@@ -1,0 +1,29 @@
+.release-bundle-item {
+  flex: 0 0 auto;            // gør at kortet ikke strækker sig
+  min-width: 160px;
+  max-width: 200px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.8rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.release-bundle-item:hover {
+  transform: translateY(-3px);
+  background: #e9f0ff;
+}
+
+.release-bundle-item h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.release-bundle-item p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+  color: #333;
+}

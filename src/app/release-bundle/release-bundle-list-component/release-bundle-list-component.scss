@@ -1,0 +1,13 @@
+.release-bundle-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  overflow-x: auto;
+}
+
+.no-bundles-message {
+  font-style: italic;
+  color: #666;
+  padding: 1rem;
+}

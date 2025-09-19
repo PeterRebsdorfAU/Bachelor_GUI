@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  padding: 1rem;
+}
+
+h2 {
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.release-bundle-list-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;          // afstand mellem kortene
+  overflow-x: auto;   // gør listen vandret scroll-bar
+  padding: 0.5rem 0;
+  scrollbar-width: thin;
+}
