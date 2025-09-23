@@ -12,7 +12,6 @@ export class UserService {
 
   setUser(user: UserRole) {
     this.currentUser = user;
-    console.log(`User set to: ${user}`);
     this.router.navigate(['/release-bundles-overview']);
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { ReleaseBundle } from '../release-bundle.model';
 import {NgIf} from '@angular/common';
 
@@ -13,5 +13,11 @@ import {NgIf} from '@angular/common';
 })
 export class ReleaseBundleItemComponent {
   @Input() bundle!: ReleaseBundle;
+
+  @Output() bundleSelected = new EventEmitter<ReleaseBundle>();
+
+  onClick() {
+    this.bundleSelected.emit(this.bundle);
+  }
 
 }

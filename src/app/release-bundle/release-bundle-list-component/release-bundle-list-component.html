@@ -1,8 +1,10 @@
 <div *ngIf="bundles && bundles.length > 0; else noBundles" class="release-bundle-list">
   <app-release-bundle-item-component
     *ngFor="let bundle of bundles"
-    [bundle]="bundle">
+    [bundle]="bundle"
+    (bundleSelected)="onBundleSelected($event)">
   </app-release-bundle-item-component>
+
 </div>
 
 <ng-template #noBundles>

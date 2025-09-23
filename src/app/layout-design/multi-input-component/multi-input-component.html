@@ -1,0 +1,14 @@
+<p>multi-input-component works!</p>
+<div class="multi-input">
+  <div class="input-row">
+    <input [(ngModel)]="currentValue" placeholder="{{placeholder}}" />
+    <button type="button" (click)="addValue()">Add</button>
+  </div>
+
+  <ul class="value-list">
+    <li *ngFor="let value of values; let i = index">
+      {{ value }}
+      <button type="button" (click)="removeValue(i)">x</button>
+    </li>
+  </ul>
+</div>

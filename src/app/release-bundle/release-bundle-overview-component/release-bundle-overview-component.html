@@ -1,11 +1,23 @@
 <app-navbar></app-navbar>
 
-<h2>Planned Releases</h2>
-<div class="release-bundle-list-container">
-  <app-release-bundle-list-component [bundles]="plannedBundles"></app-release-bundle-list-component>
+<div class="overview-header">
+  <h1>Release Bundles Overview</h1>
+  <button (click)="onCreateNewReleaseBundle()">Create a new Release Bundle</button>
 </div>
 
-<h2>Released</h2>
+<h3>Planned Releases</h3>
 <div class="release-bundle-list-container">
-  <app-release-bundle-list-component [bundles]="releasedBundles"></app-release-bundle-list-component>
+  <app-release-bundle-list-component
+    [bundles]="plannedBundles"
+    (bundleSelected)="onBundleSelected($event)">
+  </app-release-bundle-list-component>
 </div>
+
+<h3>Released</h3>
+<div class="release-bundle-list-container">
+  <app-release-bundle-list-component
+    [bundles]="releasedBundles"
+    (bundleSelected)="onBundleSelected($event)">
+  </app-release-bundle-list-component>
+</div>
+<router-outlet></router-outlet>

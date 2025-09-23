@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { ReleaseBundle } from '../release-bundle.model';
 import { ReleaseBundleItemComponent } from '../release-bundle-item-component/release-bundle-item-component';
 import {NgForOf, NgIf} from '@angular/common';
@@ -12,6 +12,9 @@ import {NgForOf, NgIf} from '@angular/common';
 })
 export class ReleaseBundleListComponent {
   @Input() bundles: ReleaseBundle[] = [];
+  @Output() bundleSelected = new EventEmitter<ReleaseBundle>();
 
-
+  onBundleSelected(bundle: ReleaseBundle) {
+    this.bundleSelected.emit(bundle);
+  }
 }

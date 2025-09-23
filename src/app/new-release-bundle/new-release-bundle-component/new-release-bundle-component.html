@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+
+<h2>Create {{ form.get('name')?.value }} </h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>
+    Release Date:
+    <input type="date" formControlName="releaseDate" />
+  </label>
+
+  <h3>Customers</h3>
+  <app-multi-input-component
+    placeholder="Enter customer"
+    [(values)]="customers">
+  </app-multi-input-component>
+
+  <h3>Systems</h3>
+  <app-multi-input-component
+    placeholder="Enter system"
+    [(values)]="systems">
+  </app-multi-input-component>
+
+  <button type="submit" [disabled]="form.invalid">Create Bundle</button>
+</form>
