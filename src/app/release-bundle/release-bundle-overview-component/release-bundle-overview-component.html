@@ -2,7 +2,7 @@
 
 <div class="overview-header">
   <h1>Release Bundles Overview</h1>
-  <button (click)="onCreateNewReleaseBundle()">Create a new Release Bundle</button>
+  <button *ngIf="userRole === UserRole.ReleaseManager" (click)="onCreateNewReleaseBundle()">Create a new Release Bundle</button>
 </div>
 
 <h3>Planned Releases</h3>

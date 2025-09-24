@@ -5,19 +5,25 @@ import {Navbar} from '../../layout-design/navbar/navbar';
 import {ReleaseBundleService} from '../release-bundle.service'
 import {ReleaseBundleEnum} from '../release-bundle.enum';
 import {RouterOutlet} from '@angular/router';
+import { UserRole } from '../../user-role.enum';
+import { UserService } from '../../user-service/user';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-release-bundle-overview-component',
   standalone: true,
-  imports: [ReleaseBundleListComponent, Navbar, RouterOutlet],
+  imports: [ReleaseBundleListComponent, Navbar, RouterOutlet, NgIf],
   templateUrl: './release-bundle-overview-component.html',
   styleUrl: './release-bundle-overview-component.scss'
 })
 export class ReleaseBundleOverviewComponent implements OnInit {
   plannedBundles: ReleaseBundle[] = [];
   releasedBundles: ReleaseBundle[] = [];
+  userRole: UserRole;
 
-  constructor(private releaseBundleService: ReleaseBundleService) {}
+  constructor(private releaseBundleService: ReleaseBundleService, private userService: UserService) {
+    this.userRole = userService.getUser() || UserRole.Guest;
+  }
 
   ngOnInit(): void {
     this.releaseBundleService.getReleaseBundles().subscribe({
@@ -48,4 +54,5 @@ export class ReleaseBundleOverviewComponent implements OnInit {
     this.releaseBundleService.navigateToCreateReleaseBundle(name);
   }
 
+  protected readonly UserRole = UserRole;
 }

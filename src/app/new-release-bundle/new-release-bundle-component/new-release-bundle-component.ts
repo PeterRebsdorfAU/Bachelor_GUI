@@ -49,7 +49,6 @@ export class NewReleaseBundleComponent {
 
       this.releaseBundleService.createReleaseBundle(bundle).subscribe({
         next: (created) => {
-          console.log('Created bundle:', created);
           this.router.navigate(['/release-bundles-overview']);
         },
         error: (err) => {
