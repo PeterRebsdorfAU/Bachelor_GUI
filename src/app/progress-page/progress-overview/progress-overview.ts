@@ -47,4 +47,8 @@ export class ProgressOverviewComponent {
   }
 
   protected readonly UserRole = UserRole;
+
+  onClickScopePage() {
+    this.progressService.navigateToScopePage(this.bundleId);
+  }
 }

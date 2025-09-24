@@ -28,22 +28,11 @@ export class ReleaseBundleService {
     this.router.navigate(['/progress-overview', bundleId]);
   }
 
-
   navigateToCreateReleaseBundle(name: string): void {
     this.router.navigate(
       ['/release-bundles-overview/new'],
       { queryParams: {name } }
     );
-  }
-
-  // release-bundle.service.ts
-  createReleaseBundle(bundle: {
-    name: string;
-    releaseDate: string;
-    customers: string[];
-    systems: string[];
-  }): Observable<ReleaseBundle> {
-    return this.http.post<ReleaseBundle>(this.apiUrl, bundle);
   }
 
 }

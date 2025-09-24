@@ -3,6 +3,7 @@ import { LoginComponent } from './login/login';
 import { ReleaseBundleOverviewComponent } from './release-bundle/release-bundle-overview-component/release-bundle-overview-component';
 import { ProgressOverviewComponent } from './progress-page/progress-overview/progress-overview';
 import { NewReleaseBundleComponent } from './new-release-bundle/new-release-bundle-component/new-release-bundle-component';
+import {ScopePageOverviewComponent} from './scope-page/scope-page-overview-component/scope-page-overview-component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
     ]
   },
   { path: 'progress-overview/:bundleId', component: ProgressOverviewComponent },
+  { path: 'scope-page/:bundleId', component: ScopePageOverviewComponent},
   { path: '**', redirectTo: '' } // fallback til login
 ];
