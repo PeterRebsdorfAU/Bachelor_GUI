@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="overview-header">
+  <h1>Progress for Release Bundle: {{ bundleName }} </h1>
+  <div *ngIf="userRole !== UserRole.Guest" class="button-group">
+    <button class="btn">Scope Page</button>
+    <button class="btn">Watchlist</button>
+  </div>
+</div>
+
+<div *ngIf="loading">Henter checklisten...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<ul *ngIf="!loading && !error">
+  <li *ngFor="let step of checklist">
+    {{ step }}
+  </li>
+</ul>

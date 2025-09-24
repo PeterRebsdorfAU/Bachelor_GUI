@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login';
 import { ReleaseBundleOverviewComponent } from './release-bundle/release-bundle-overview-component/release-bundle-overview-component';
-import { ProgressOverviewComponent } from './progress-overview/progress-overview';
+import { ProgressOverviewComponent } from './progress-page/progress-overview/progress-overview';
 import { NewReleaseBundleComponent } from './new-release-bundle/new-release-bundle-component/new-release-bundle-component';
 
 export const routes: Routes = [
