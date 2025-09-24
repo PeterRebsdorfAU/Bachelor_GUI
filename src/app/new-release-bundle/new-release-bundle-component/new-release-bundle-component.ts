@@ -5,7 +5,7 @@ import {ReactiveFormsModule, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Navbar } from '../../layout-design/navbar/navbar';
 import { MultiInputComponent } from '../../layout-design/multi-input-component/multi-input-component';
-import {ReleaseBundleService} from '../../release-bundle/release-bundle.service';
+import {CreateNewReleaseBundleService} from '../create-new-release-bundle.service';
 
 @Component({
   selector: 'app-new-release-bundle-component',
@@ -18,11 +18,9 @@ export class NewReleaseBundleComponent {
   customers: string[] = [];
   systems: string[] = [];
   private fb = inject(FormBuilder);
-  releaseBundleService = inject(ReleaseBundleService);
+  createNewReleaseBundleService = inject(CreateNewReleaseBundleService);
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -47,9 +45,9 @@ export class NewReleaseBundleComponent {
         systems: this.systems
       };
 
-      this.releaseBundleService.createReleaseBundle(bundle).subscribe({
+      this.createNewReleaseBundleService.createReleaseBundle(bundle).subscribe({
         next: (created) => {
-          this.router.navigate(['/release-bundles-overview']);
+          this.createNewReleaseBundleService.navigateToBundleReleaseOverview();
         },
         error: (err) => {
           console.error('Failed to create bundle:', err);

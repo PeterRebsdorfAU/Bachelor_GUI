@@ -1,0 +1,14 @@
+<app-navbar ></app-navbar>
+<h2>Scope for Bundle {{ bundleId }}</h2>
+
+<ul>
+  <li *ngFor="let system of systems">
+    {{ system }}
+    <button (click)="deleteSystem(system)">Delete</button>
+  </li>
+</ul>
+
+<div>
+  <input [(ngModel)]="newSystem" placeholder="New system" />
+  <button (click)="addSystem()">Add</button>
+</div>
