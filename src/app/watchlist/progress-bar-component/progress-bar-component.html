@@ -1,0 +1,7 @@
+<div class="progress-bar">
+  <div *ngFor="let step of steps" class="step"
+       [class.active]="step === currentStep"
+    [class.completed]="isCompleted(step)">
+    <span>{{ step }}</span>
+</div>
+</div>

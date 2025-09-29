@@ -1,0 +1,41 @@
+.progress-bar {
+  display: flex;
+  align-items: center;
+
+  .step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    font-size: 0.85rem;
+    color: #999;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #e1d8f7; // lys baggrundslinje
+      z-index: -1;
+    }
+
+    span {
+      background: #fff;
+      padding: 0 6px;
+      position: relative;
+    }
+
+    &.completed {
+      color: #4b2aad;
+
+      &::before {
+        background: #4b2aad; // lilla linje
+      }
+    }
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+}

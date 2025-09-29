@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<div class="watchlist">
+  <h1>Release Bundle CSL 2025.5 Watchlist</h1>
+  <p class="intro">This is an overview of the systems.
+    Here you can see the release bundles, and where they are in the process.</p>
+  <app-bundle-progress-component [bundle]="bundle"></app-bundle-progress-component>
+  <div class="systems">
+  <app-system-progress-component *ngFor="let sys of systems" [system]="sys"> </app-system-progress-component> </div>
+  <app-planned-bundle-release-component [plannedBundle]="plannedBundle"> </app-planned-bundle-release-component>
+  <app-delivery-progress-component *ngIf="delivery" [delivery]="delivery"></app-delivery-progress-component>
+</div>

@@ -51,4 +51,8 @@ export class ProgressOverviewComponent {
   onClickScopePage() {
     this.progressService.navigateToScopePage(this.bundleId);
   }
+
+  onClickWatchListPage() {
+    this.progressService.navigateToWatchlistPage();
+  }
 }

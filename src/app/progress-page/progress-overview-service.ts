@@ -19,4 +19,8 @@ export class ProgressOverviewService {
   navigateToScopePage(bundleId: number) {
     this.router.navigate(['/scope-page', bundleId]);
   }
+
+  navigateToWatchlistPage() {
+    this.router.navigate(['/watchlist']);
+  }
 }

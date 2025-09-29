@@ -1,0 +1,17 @@
+.planned-bundle,
+.delivery-progress {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+
+  .label {
+    width: 200px;     // venstre kolonne fast bredde
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .bar {
+    flex: 1;          // progressbaren udfylder midten
+    margin-left: 1rem;
+  }
+}
