@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ScopePageService {
-  private apiUrl = 'https://localhost:7009/api/Scope';
+  private apiUrl = 'https://localhost:5130/api/Scope';
 
   constructor(private http: HttpClient) {}
 

@@ -4,6 +4,7 @@ import { ReleaseBundleOverviewComponent } from './release-bundle/release-bundle-
 import { ProgressOverviewComponent } from './progress-page/progress-overview/progress-overview';
 import { NewReleaseBundleComponent } from './new-release-bundle/new-release-bundle-component/new-release-bundle-component';
 import {ScopePageOverviewComponent} from './scope-page/scope-page-overview-component/scope-page-overview-component';
+import {WatchlistOverviewComponent} from './watchlist/watchlist-overview-component/watchlist-overview-component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
   },
   { path: 'progress-overview/:bundleId', component: ProgressOverviewComponent },
   { path: 'scope-page/:bundleId', component: ScopePageOverviewComponent},
+  { path: 'watchlist', component: WatchlistOverviewComponent },
   { path: '**', redirectTo: '' } // fallback til login
 ];
