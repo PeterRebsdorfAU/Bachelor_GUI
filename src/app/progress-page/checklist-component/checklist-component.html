@@ -1,0 +1,12 @@
+<div class="checklist">
+  <h3>Awaiting: Initialize delivery creation</h3>
+  <p class="role">Role: Release Manager</p>
+  <p class="instructions">
+    Initialize the delivery creation. This is done by checking the boxes below
+  </p>
+  <ul>
+    <li *ngFor="let step of checklist">
+      <input type="checkbox" /> {{ step }}
+    </li>
+  </ul>
+</div>

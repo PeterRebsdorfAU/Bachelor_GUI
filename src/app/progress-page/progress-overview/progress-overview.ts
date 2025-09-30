@@ -6,11 +6,14 @@ import { ChecklistResponse } from '../progress-overview.model';
 import { NgFor, NgIf } from '@angular/common';
 import {UserRole} from '../../user-role.enum';
 import {UserService} from '../../user-service/user';
+import {ProgressHeaderComponent} from '../progress-header-component/progress-header-component';
+import {ChecklistComponent} from '../checklist-component/checklist-component';
+import {ActionButtonsComponent} from '../action-buttons-component/action-buttons-component';
 
 @Component({
   selector: 'app-progress-overview',
   standalone: true,
-  imports: [Navbar, NgIf, NgFor],
+  imports: [Navbar, NgIf, ProgressHeaderComponent, ChecklistComponent, ActionButtonsComponent],
   templateUrl: './progress-overview.html',
   styleUrls: ['./progress-overview.scss']
 })

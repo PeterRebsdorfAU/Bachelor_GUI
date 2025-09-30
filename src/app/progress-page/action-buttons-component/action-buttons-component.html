@@ -1,0 +1,4 @@
+<div class="button-group" *ngIf="userRole !== UserRole.Guest">
+  <button (click)="onClickScopePage()" class="btn">Scope page</button>
+  <button (click)="onClickWatchListPage()" class="btn">Delivery watchlist</button>
+</div>

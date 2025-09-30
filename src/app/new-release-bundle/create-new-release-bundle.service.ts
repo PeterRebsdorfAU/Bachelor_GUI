@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class CreateNewReleaseBundleService {
-  private apiUrl = 'https://localhost:5130/api/ReleaseBundles';
+  private apiUrl = 'https://localhost:7009/api/ReleaseBundles';
 
   constructor(private http: HttpClient, private router: Router) {}
 
