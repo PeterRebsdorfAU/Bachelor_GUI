@@ -1,4 +1,11 @@
 <div class="button-group" *ngIf="userRole !== UserRole.Guest">
-  <button (click)="onClickScopePage()" class="btn">Scope page</button>
-  <button (click)="onClickWatchListPage()" class="btn">Delivery watchlist</button>
+  <button mat-raised-button color="primary" (click)="onClickScopePage()">
+    <mat-icon>search</mat-icon>
+    Scope page
+  </button>
+
+  <button mat-raised-button color="accent" (click)="onClickWatchListPage()">
+    <mat-icon>list</mat-icon>
+    Delivery watchlist
+  </button>
 </div>

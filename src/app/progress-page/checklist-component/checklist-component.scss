@@ -1,0 +1,15 @@
+.checklist-container {
+  display: flex;
+  justify-content: center;   // horisontalt i midten
+  align-items: flex-start;   // øverst (brug center for lodret midte)
+  min-height: 80vh;          // giver plads til at centrere
+}
+
+.checklist {
+  max-width: 400px;          // styrer hvor bred selve boksen må være
+  text-align: left;          // så teksten ikke bliver centreret
+}
+
+.narrow-checklist {
+  width: 100%;
+}
