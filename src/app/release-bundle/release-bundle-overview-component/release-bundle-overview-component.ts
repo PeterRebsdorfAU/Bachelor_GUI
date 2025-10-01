@@ -7,12 +7,11 @@ import {ReleaseBundleEnum} from '../release-bundle.enum';
 import {RouterOutlet} from '@angular/router';
 import { UserRole } from '../../user-role.enum';
 import { UserService } from '../../user-service/user';
-import {NgIf} from '@angular/common';
-import {MatButton} from '@angular/material/button';
-import {MatToolbar} from '@angular/material/toolbar';
-import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import { MatFabButton } from '@angular/material/button';
+import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {MatDivider} from '@angular/material/divider';
+import { MatDivider } from '@angular/material/divider';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-release-bundle-overview-component',
@@ -26,7 +25,9 @@ import {MatDivider} from '@angular/material/divider';
     MatCardTitle,
     MatIconModule,
     MatDivider,
-    MatCardContent
+    MatCardContent,
+    MatFabButton,
+    NgIf
   ],
   templateUrl: './release-bundle-overview-component.html',
   styleUrl: './release-bundle-overview-component.scss'
@@ -35,6 +36,8 @@ export class ReleaseBundleOverviewComponent implements OnInit {
   plannedBundles: ReleaseBundle[] = [];
   releasedBundles: ReleaseBundle[] = [];
   userRole: UserRole;
+  protected readonly UserRole = UserRole;
+
 
   constructor(private releaseBundleService: ReleaseBundleService, private userService: UserService) {
     this.userRole = userService.getUser() || UserRole.Guest;
@@ -62,12 +65,6 @@ export class ReleaseBundleOverviewComponent implements OnInit {
   }
 
   onCreateNewReleaseBundle() {
-    const name = prompt('Enter name for new release bundle:');
-    if (!name) {
-      return;
-    }
-    this.releaseBundleService.navigateToCreateReleaseBundle(name);
+    this.releaseBundleService.navigateToCreateReleaseBundle();
   }
-
-  protected readonly UserRole = UserRole;
 }

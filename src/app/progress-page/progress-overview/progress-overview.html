@@ -14,6 +14,7 @@
   </app-checklist-component>
 
   <app-action-buttons-component
+    *ngIf="userRole !== UserRole.Guest"
     [bundleId]="bundleId"
     [userRole]="userRole">
   </app-action-buttons-component>

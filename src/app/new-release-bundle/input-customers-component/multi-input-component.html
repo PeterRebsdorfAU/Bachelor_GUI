@@ -1,0 +1,21 @@
+<div class="multi-input">
+  <div class="input-row">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>{{ placeholder }}</mat-label>
+      <input matInput [(ngModel)]="currentValue" />
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" type="button" (click)="addValue()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <mat-chip-listbox>
+    <mat-chip *ngFor="let value of values; let i = index" removable (removed)="removeValue(i)">
+      {{ value }}
+      <button mat-icon-button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+  </mat-chip-listbox>
+</div>

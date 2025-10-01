@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { SystemModel } from '../system-model';
+import { SystemEntry } from '../../models/system-entry';
 
 @Component({
   selector: 'app-system-add-form',
@@ -23,7 +23,7 @@ import { SystemModel } from '../system-model';
 })
 export class SystemAddFormComponent {
   @Input() bundleName = '';
-  @Output() addSystem = new EventEmitter<SystemModel>();
+  @Output() addSystem = new EventEmitter<SystemEntry>();
 
   newSystem = '';
   newVersion = '';

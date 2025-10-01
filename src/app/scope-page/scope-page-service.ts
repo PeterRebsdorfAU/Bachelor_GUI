@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BundleScope, SystemEntry } from './scope-model';
+import { BundleScope } from './scope-model';
+import { environment } from '../../environments/environment.development';
+import { SystemEntry } from '../models/system-entry';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScopePageService {
-  private apiUrl = 'https://localhost:7009/api/Scope';
+  private apiUrl = environment.apiUrl + '/Scope';
 
   constructor(private http: HttpClient) {}
 

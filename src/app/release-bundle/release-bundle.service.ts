@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import { ReleaseBundle } from './release-bundle.model';
 import {Router} from '@angular/router';
+import { environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReleaseBundleService {
   // Her skriver du dit rigtige backend API endpoint senere
-  private apiUrl = 'https://localhost:7009/api/ReleaseBundles';
+  private apiUrl = environment.apiUrl + '/ReleaseBundles';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -28,10 +29,9 @@ export class ReleaseBundleService {
     this.router.navigate(['/progress-overview', bundleId]);
   }
 
-  navigateToCreateReleaseBundle(name: string): void {
+  navigateToCreateReleaseBundle(): void {
     this.router.navigate(
-      ['/release-bundles-overview/new'],
-      { queryParams: {name } }
+      ['/release-bundles-overview/new']
     );
   }
 

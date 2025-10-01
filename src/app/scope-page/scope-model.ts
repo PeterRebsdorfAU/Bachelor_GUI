@@ -1,7 +1,4 @@
-export interface SystemEntry {
-  name: string;
-  version?: string;
-}
+import {SystemEntry} from '../models/system-entry';
 
 export interface BundleScope {
   bundleId: number;

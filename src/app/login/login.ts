@@ -8,7 +8,7 @@ import { UserRole } from '../user-role.enum';
   styleUrls: ['./login.scss']
 })
 export class LoginComponent {
-  UserRole = UserRole; // gør enum tilgængelig i HTML
+  UserRole = UserRole;
 
   constructor(private userService: UserService) {}
 

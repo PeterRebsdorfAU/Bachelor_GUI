@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ChecklistResponse } from './progress-overview.model';
 import {Router} from '@angular/router';
+import { environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgressOverviewService {
 
-  private apiUrl = 'https://localhost:7009/api/Checklist';
+  private apiUrl = environment.apiUrl + '/Checklist';
   constructor(private http: HttpClient, private router: Router) {}
 
   getChecklist(bundleId: number): Observable<ChecklistResponse> {
