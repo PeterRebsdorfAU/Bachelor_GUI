@@ -3,9 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ScopePageService } from '../scope-page-service';
 import { Navbar } from '../../layout-design/navbar/navbar';
-import { BundleScope, SystemEntry } from '../scope-model';
+import { BundleScope } from '../scope-model';
 import { SystemAddFormComponent } from '../system-add-form-component/system-add-form-component';
 import { SystemListComponent } from '../system-list-component/system-list-component';
+import { SystemEntry } from '../../models/system-entry';
 
 @Component({
   selector: 'app-scope-page-overview-component',

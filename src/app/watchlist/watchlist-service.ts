@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { WatchlistResponse } from './watchlist-model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WatchlistService {
-  private apiUrl = 'https://localhost:7009/api/Watchlist';
+  private apiUrl = environment.apiUrl + '/Watchlist';
 
   constructor(private http: HttpClient) {}
 

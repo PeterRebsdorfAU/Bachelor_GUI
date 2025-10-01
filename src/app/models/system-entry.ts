@@ -1,4 +1,4 @@
-export interface SystemModel {
+export interface SystemEntry {
   name: string;
   version?: string;
 }

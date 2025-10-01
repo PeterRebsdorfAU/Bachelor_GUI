@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { SystemModel } from '../system-model';
-import {SystemEntry} from '../scope-model';
+import { SystemEntry } from '../../models/system-entry';
 
 @Component({
   selector: 'app-system-list',
@@ -14,6 +13,6 @@ import {SystemEntry} from '../scope-model';
   styleUrl: './system-list-component.scss'
 })
 export class SystemListComponent {
-  @Input() systems: SystemModel[] = [];
+  @Input() systems: SystemEntry[] = [];
   @Output() deleteSystem = new EventEmitter<SystemEntry>();
 }

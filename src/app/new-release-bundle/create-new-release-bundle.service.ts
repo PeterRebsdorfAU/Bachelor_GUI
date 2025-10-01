@@ -1,29 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
-import {ReleaseBundle} from '../release-bundle/release-bundle.model';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { ReleaseBundle } from '../models/release-bundle';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateNewReleaseBundleService {
-  private apiUrl = 'https://localhost:7009/api/ReleaseBundles';
+  private apiUrl = environment.apiUrl + '/ReleaseBundles';
 
   constructor(private http: HttpClient, private router: Router) {}
 
   navigateToBundleReleaseOverview(): void {
-    console.log('Navigating to overview...');
     this.router.navigate(['/release-bundles-overview']);
   }
 
-  // release-bundle.service.ts
-  createReleaseBundle(bundle: {
-    name: string;
-    releaseDate: string;
-    customers: string[];
-    systems: string[];
-  }): Observable<ReleaseBundle> {
+  createReleaseBundle(bundle: ReleaseBundle): Observable<ReleaseBundle> {
     return this.http.post<ReleaseBundle>(this.apiUrl, bundle);
   }
 }

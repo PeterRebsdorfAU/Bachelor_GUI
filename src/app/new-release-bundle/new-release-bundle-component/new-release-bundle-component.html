@@ -1,24 +1,30 @@
 <app-navbar></app-navbar>
 
-<h2>Create {{ form.get('name')?.value }} </h2>
+<h3>Create new planned release bundle</h3>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <label>
-    Release Date:
-    <input type="date" formControlName="releaseDate" />
-  </label>
+<form class="add-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- Name -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Bundle Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter bundle name" />
+  </mat-form-field>
 
-  <h3>Customers</h3>
+  <!-- Customers -->
+  <h4>Customers</h4>
   <app-multi-input-component
     placeholder="Enter customer"
     [(values)]="customers">
   </app-multi-input-component>
 
-  <h3>Systems</h3>
-  <app-multi-input-component
-    placeholder="Enter system"
-    [(values)]="systems">
-  </app-multi-input-component>
+  <!-- Systems -->
+  <h4>Systems</h4>
+  <app-system-input [(systems)]="systems"></app-system-input>
 
-  <button type="submit" [disabled]="form.invalid">Create Bundle</button>
+  <!-- Submit button -->
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      <mat-icon>add</mat-icon>
+      Create Bundle
+    </button>
+  </div>
 </form>

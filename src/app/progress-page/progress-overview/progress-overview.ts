@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Navbar } from '../../layout-design/navbar/navbar';
 import { ProgressOverviewService } from '../progress-overview-service';
 import { ChecklistResponse } from '../progress-overview.model';
-import { NgFor, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import {UserRole} from '../../user-role.enum';
 import {UserService} from '../../user-service/user';
 import {ProgressHeaderComponent} from '../progress-header-component/progress-header-component';

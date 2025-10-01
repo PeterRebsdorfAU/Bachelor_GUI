@@ -1,4 +1,16 @@
-<app-navbar ></app-navbar>
+<app-navbar></app-navbar>
+
+<button
+  *ngIf="userRole === UserRole.ReleaseManager"
+  mat-fab
+  color="accent"
+  class="fab-button"
+  (click)="onCreateNewReleaseBundle()">
+  <mat-icon>add</mat-icon>
+</button>
+
+
+
 <mat-card class="release-section">
   <mat-card-header>
     <mat-card-title>
