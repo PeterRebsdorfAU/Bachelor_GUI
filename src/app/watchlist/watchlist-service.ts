@@ -1,40 +1,17 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { WatchlistResponse } from './watchlist-model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class WatchlistService {
-  getBundle() {
-    return {
-      steps: ['IBD', 'TRE', 'TCE', 'WPE', 'FIN'],
-      current: 'TRE' };
-  }
+  private apiUrl = 'https://localhost:7009/api/Watchlist';
 
-  getSystems() {
-    return [ {
-      name: 'Task system',
-      steps: ['RP', 'TRE', 'TCE', 'WPE', 'R'],
-      current: 'R', arc: 'ARC 1.3.6.1234'
-    }, {
-      name: 'Broker system',
-      steps: ['RP', 'TRE', 'TCE', 'WPE', 'R'],
-      current: 'WPE', arc: 'ARC 24.5.2.633'
-    }, {
-      name: 'Patient system',
-      steps: ['RP', 'TRE', 'TCE', 'WPE', 'R'],
-      current: 'TRE', arc: 'ARC 2.35.32.11'
-    } ];
-  }
+  constructor(private http: HttpClient) {}
 
-  getPlannedBundle() {
-    return {
-      steps: ['Bundle planned', 'Bundle ready to fill', 'Bundle finished'],
-      current: 'Bundle planned'
-    };
-  }
-
-  getDelivery() {
-    return {
-      steps: ['Delivery planned', 'Delivery delivered', 'Delivery confirmed', 'Delivery finished'],
-      current: 'Delivery planned' };
+  getWatchlist(bundleId: number): Observable<WatchlistResponse> {
+    return this.http.get<WatchlistResponse>(`${this.apiUrl}/${bundleId}`);
   }
 }

@@ -1,23 +1,38 @@
-<app-navbar></app-navbar>
+<app-navbar ></app-navbar>
+<mat-card class="release-section">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>schedule</mat-icon>
+      Planned Releases
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="release-bundle-list-container">
+      <app-release-bundle-list-component
+        [bundles]="plannedBundles"
+        (bundleSelected)="onBundleSelected($event)">
+      </app-release-bundle-list-component>
+    </div>
+  </mat-card-content>
+</mat-card>
 
-<div class="overview-header">
-  <h1>Release Bundles Overview</h1>
-  <button *ngIf="userRole === UserRole.ReleaseManager" (click)="onCreateNewReleaseBundle()">Create a new Release Bundle</button>
-</div>
+<mat-card class="release-section">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>done_all</mat-icon>
+      Released
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="release-bundle-list-container">
+      <app-release-bundle-list-component
+        [bundles]="releasedBundles"
+        (bundleSelected)="onBundleSelected($event)">
+      </app-release-bundle-list-component>
+    </div>
+  </mat-card-content>
+</mat-card>
 
-<h3>Planned Releases</h3>
-<div class="release-bundle-list-container">
-  <app-release-bundle-list-component
-    [bundles]="plannedBundles"
-    (bundleSelected)="onBundleSelected($event)">
-  </app-release-bundle-list-component>
-</div>
-
-<h3>Released</h3>
-<div class="release-bundle-list-container">
-  <app-release-bundle-list-component
-    [bundles]="releasedBundles"
-    (bundleSelected)="onBundleSelected($event)">
-  </app-release-bundle-list-component>
-</div>
 <router-outlet></router-outlet>

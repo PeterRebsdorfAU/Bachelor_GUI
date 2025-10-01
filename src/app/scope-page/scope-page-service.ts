@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BundleScope, SystemEntry } from './scope-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScopePageService {
-  private apiUrl = 'https://localhost:5130/api/Scope';
+  private apiUrl = 'https://localhost:7009/api/Scope';
 
   constructor(private http: HttpClient) {}
 
-  getSystems(bundleId: number): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/${bundleId}`);
+  getScope(bundleId: number): Observable<BundleScope> {
+    return this.http.get<BundleScope>(`${this.apiUrl}/${bundleId}`);
   }
 
-  addSystem(bundleId: number, system: string): Observable<string[]> {
-    return this.http.post<string[]>(`${this.apiUrl}/${bundleId}`, system);
+  addSystem(bundleId: number, system: SystemEntry): Observable<BundleScope> {
+    return this.http.post<BundleScope>(`${this.apiUrl}/${bundleId}`, system, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
-  deleteSystem(bundleId: number, system: string): Observable<string[]> {
-    return this.http.delete<string[]>(`${this.apiUrl}/${bundleId}/${system}`);
+  deleteSystem(bundleId: number, systemName: string): Observable<BundleScope> {
+    return this.http.delete<BundleScope>(`${this.apiUrl}/${bundleId}/${systemName}`);
   }
 }

@@ -1,0 +1,17 @@
+<h3>Create new planned release in {{ bundleName }}</h3>
+
+<form class="add-form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>System</mat-label>
+    <input matInput [(ngModel)]="newSystem" name="system" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Version</mat-label>
+    <input matInput [(ngModel)]="newVersion" name="version" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    <mat-icon>add</mat-icon> Add
+  </button>
+</form>
