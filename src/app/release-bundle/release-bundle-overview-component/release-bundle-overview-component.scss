@@ -1,14 +1,3 @@
-:host {
-  display: block;
-  padding: 1rem;
-}
-
-h2 {
-  margin: 1rem 0 0.5rem 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-
 .release-bundle-list-container {
   display: flex;
   flex-direction: row;
@@ -18,8 +7,11 @@ h2 {
   scrollbar-width: thin;
 }
 
-.overview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.release-bundle-list-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.release-bundle-list-container::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.3);
+  border-radius: 3px;
 }

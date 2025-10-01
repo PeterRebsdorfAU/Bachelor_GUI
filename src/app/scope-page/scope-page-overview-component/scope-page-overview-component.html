@@ -1,14 +1,21 @@
-<app-navbar ></app-navbar>
-<h2>Scope for Bundle {{ bundleId }}</h2>
+<app-navbar></app-navbar>
 
-<ul>
-  <li *ngFor="let system of systems">
-    {{ system }}
-    <button (click)="deleteSystem(system)">Delete</button>
-  </li>
-</ul>
+<div class="page-container" *ngIf="scope">
+  <h2>{{ scope.bundleName }} Scope</h2>
+  <p>
+    See which systems are included in the release bundle.<br>
+    You can add or delete systems from the bundle.
+  </p>
 
-<div>
-  <input [(ngModel)]="newSystem" placeholder="New system" />
-  <button (click)="addSystem()">Add</button>
+  <!-- System list -->
+  <app-system-list
+    [systems]="scope.systems"
+    (deleteSystem)="onDeleteSystem($event)">
+  </app-system-list>
+
+  <!-- Add new system -->
+  <app-system-add-form
+    [bundleName]="scope.bundleName"
+    (addSystem)="onAddSystem($event)">
+  </app-system-add-form>
 </div>

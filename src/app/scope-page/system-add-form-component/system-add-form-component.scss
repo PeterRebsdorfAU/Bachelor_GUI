@@ -1,0 +1,9 @@
+.add-form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  mat-form-field {
+    flex: 1;
+  }
+}

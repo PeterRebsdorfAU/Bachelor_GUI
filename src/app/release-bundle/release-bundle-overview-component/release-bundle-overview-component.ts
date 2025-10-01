@@ -8,11 +8,26 @@ import {RouterOutlet} from '@angular/router';
 import { UserRole } from '../../user-role.enum';
 import { UserService } from '../../user-service/user';
 import {NgIf} from '@angular/common';
+import {MatButton} from '@angular/material/button';
+import {MatToolbar} from '@angular/material/toolbar';
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import {MatDivider} from '@angular/material/divider';
 
 @Component({
   selector: 'app-release-bundle-overview-component',
   standalone: true,
-  imports: [ReleaseBundleListComponent, Navbar, RouterOutlet, NgIf],
+  imports: [
+    ReleaseBundleListComponent,
+    Navbar,
+    RouterOutlet,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatIconModule,
+    MatDivider,
+    MatCardContent
+  ],
   templateUrl: './release-bundle-overview-component.html',
   styleUrl: './release-bundle-overview-component.scss'
 })

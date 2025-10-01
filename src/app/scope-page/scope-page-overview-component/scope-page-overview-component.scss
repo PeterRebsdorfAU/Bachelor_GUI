@@ -1,0 +1,12 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.add-form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
