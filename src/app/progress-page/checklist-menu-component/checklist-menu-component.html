@@ -1,0 +1,6 @@
+<!-- checklist-menu-component.html -->
+<ul class="menu-list">
+  <li *ngFor="let item of items" (click)="selectItem(item)">
+    {{ item.text }}
+  </li>
+</ul>

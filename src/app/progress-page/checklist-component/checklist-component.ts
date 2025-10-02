@@ -1,15 +1,20 @@
 import { Component, Input } from '@angular/core';
-import {NgFor} from '@angular/common';
-import {MatListModule} from '@angular/material/list';
+import { NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ChecklistSection, ChecklistItem } from '../../models/progress-overview.model';
 
 @Component({
   selector: 'app-checklist-component',
   standalone: true,
-  imports: [NgFor, MatListModule],
+  imports: [NgFor, MatCheckboxModule, FormsModule, NgIf],
   templateUrl: './checklist-component.html',
   styleUrl: './checklist-component.scss'
 })
 export class ChecklistComponent {
-  @Input() checklist: string[] = [];
+  @Input() item!: ChecklistItem;
 
+  toggleItem(item: ChecklistItem) {
+    item.isChecked = !item.isChecked;
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ChecklistResponse } from './progress-overview.model';
+import { ChecklistResponse } from '../models/progress-overview.model';
 import {Router} from '@angular/router';
 import { environment} from '../../environments/environment.development';
 
@@ -9,11 +9,10 @@ import { environment} from '../../environments/environment.development';
   providedIn: 'root'
 })
 export class ProgressOverviewService {
-
   private apiUrl = environment.apiUrl + '/Checklist';
   constructor(private http: HttpClient, private router: Router) {}
 
-  getChecklist(bundleId: number): Observable<ChecklistResponse> {
+  getAllChecklists(bundleId: number): Observable<ChecklistResponse> {
     return this.http.get<ChecklistResponse>(`${this.apiUrl}/${bundleId}`);
   }
 
