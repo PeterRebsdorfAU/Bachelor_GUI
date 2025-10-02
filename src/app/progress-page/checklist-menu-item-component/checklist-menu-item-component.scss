@@ -1,0 +1,14 @@
+.menu-item {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.menu-item.active {
+  font-weight: bold;
+  background-color: #e0e0e0;
+}

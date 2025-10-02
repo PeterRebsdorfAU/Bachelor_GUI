@@ -1,15 +1,12 @@
-<div class="checklist-container">
-  <div class="checklist">
-    <h3>Awaiting: Initialize delivery creation</h3>
-    <p class="role">Role: Release Manager</p>
-    <p class="instructions">
-      Initialize the delivery creation. This is done by checking the boxes below
-    </p>
+<!-- checklist-component.html -->
+<div class="checklist-container" *ngIf="item">
+  <h3>{{ item.text }}</h3>
 
-    <mat-selection-list class="narrow-checklist">
-      <mat-list-option *ngFor="let step of checklist">
-        {{ step }}
-      </mat-list-option>
-    </mat-selection-list>
-  </div>
+  <ul>
+    <li *ngFor="let sub of item.subItems">
+      <mat-checkbox [(ngModel)]="sub.isChecked">
+        {{ sub.text }}
+      </mat-checkbox>
+    </li>
+  </ul>
 </div>
