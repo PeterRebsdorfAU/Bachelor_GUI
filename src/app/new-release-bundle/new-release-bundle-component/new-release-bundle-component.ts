@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Navbar } from '../../layout-design/navbar/navbar';
-import { MultiInputComponent } from '../input-customers-component/multi-input-component';
-import {CreateNewReleaseBundleService} from '../create-new-release-bundle.service';
+import { InputCustomersComponent } from '../input-customers-component/input-customers-component';
+import {NewReleaseBundleService} from '../new-release-bundle.service';
 import {ReleaseBundle} from '../../models/release-bundle';
 import {SystemEntry} from '../../models/system-entry';
 import {SystemInputComponent} from '../system-input-component/system-input-component';
@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     ReactiveFormsModule,
     Navbar,
-    MultiInputComponent,
+    InputCustomersComponent,
     SystemInputComponent,
     MatFormFieldModule,
     MatLabel,
@@ -37,7 +37,7 @@ export class NewReleaseBundleComponent {
   customers: string[] = [];
   systems: SystemEntry[] = [];
   private fb = inject(FormBuilder);
-  createNewReleaseBundleService = inject(CreateNewReleaseBundleService);
+  createNewReleaseBundleService = inject(NewReleaseBundleService);
 
   constructor(private route: ActivatedRoute) {}
 

@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateNewReleaseBundleService {
+export class NewReleaseBundleService {
   private apiUrl = environment.apiUrl + '/ReleaseBundles';
 
   constructor(private http: HttpClient, private router: Router) {}

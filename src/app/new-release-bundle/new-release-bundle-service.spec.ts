@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CreateNewReleaseBundleService } from './create-new-release-bundle.service';
+import { NewReleaseBundleService } from './new-release-bundle.service';
 
 describe('NewReleaseBundleService', () => {
-  let service: CreateNewReleaseBundleService;
+  let service: NewReleaseBundleService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CreateNewReleaseBundleService);
+    service = TestBed.inject(NewReleaseBundleService);
   });
 
   it('should be created', () => {

@@ -23,10 +23,10 @@ import {MatInput} from '@angular/material/input';
     MatChip,
     MatInput
   ],
-  templateUrl: './multi-input-component.html',
-  styleUrl: './multi-input-component.scss'
+  templateUrl: './input-customers-component.html',
+  styleUrl: './input-customers-component.scss'
 })
-export class MultiInputComponent {
+export class InputCustomersComponent {
   @Input() placeholder = 'Add item';
   @Input() values: string[] = [];
   @Output() valuesChange = new EventEmitter<string[]>();
