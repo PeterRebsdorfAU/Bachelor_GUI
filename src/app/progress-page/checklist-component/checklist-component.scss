@@ -1,15 +1,38 @@
 .checklist-container {
   display: flex;
-  justify-content: center;   // horisontalt i midten
-  align-items: flex-start;   // øverst (brug center for lodret midte)
-  min-height: 80vh;          // giver plads til at centrere
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  text-align: center;
 }
 
 .checklist {
-  max-width: 400px;          // styrer hvor bred selve boksen må være
-  text-align: left;          // så teksten ikke bliver centreret
+  max-width: 400px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.narrow-checklist {
+.checklist-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #555555;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+mat-checkbox {
   width: 100%;
 }

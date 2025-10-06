@@ -1,24 +1,25 @@
 <app-navbar></app-navbar>
 
 <div class="progress-layout">
-  <!-- Venstre menu -->
-  <app-checklist-menu-component
-    *ngIf="!loading && !error"
-    [items]="checklist.length ? checklist[0].items : []"
-    (itemSelected)="onMenuSelect($event)">
-  </app-checklist-menu-component>
-
-  <!-- Midten med valgte item -->
   <div class="progress-container">
     <app-progress-header-component [bundleName]="bundleName"></app-progress-header-component>
 
     <div *ngIf="loading">Henter checklisten...</div>
     <div *ngIf="error">{{ error }}</div>
 
-    <app-checklist-component
-      *ngIf="!loading && !error && selectedItem"
-      [item]="selectedItem">
-    </app-checklist-component>
+    <div class="checklist-layout" *ngIf="!loading && !error">
+      <app-checklist-menu-component
+        *ngIf="!loading && !error"
+        [sections]="checklist"
+        (itemSelected)="onMenuSelect($event)">
+      </app-checklist-menu-component>
+
+      <app-checklist-component
+        class="checklist-details"
+        *ngIf="selectedItem"
+        [item]="selectedItem">
+      </app-checklist-component>
+    </div>
 
     <app-action-buttons-component
       *ngIf="userRole !== UserRole.Guest"
