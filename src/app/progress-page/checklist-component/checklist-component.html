@@ -1,12 +1,13 @@
-<!-- checklist-component.html -->
 <div class="checklist-container" *ngIf="item">
-  <h3>{{ item.text }}</h3>
+  <div class="checklist">
+    <h3 class="checklist-title">{{ item.text }}</h3>
 
-  <ul>
-    <li *ngFor="let sub of item.subItems">
-      <mat-checkbox [(ngModel)]="sub.isChecked">
-        {{ sub.text }}
-      </mat-checkbox>
-    </li>
-  </ul>
+    <ul>
+      <li *ngFor="let sub of item.subItems">
+        <mat-checkbox [(ngModel)]="sub.isChecked">
+          {{ sub.text }}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </div>
 </div>
