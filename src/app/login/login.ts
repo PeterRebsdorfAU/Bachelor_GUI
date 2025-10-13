@@ -4,6 +4,7 @@ import { UserRole } from '../user-role.enum';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.html',
   styleUrls: ['./login.scss']
 })
