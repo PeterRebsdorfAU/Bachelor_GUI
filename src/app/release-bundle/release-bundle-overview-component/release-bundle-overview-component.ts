@@ -6,7 +6,7 @@ import {ReleaseBundleService} from '../release-bundle.service'
 import {ReleaseBundleEnum} from '../release-bundle.enum';
 import {RouterOutlet} from '@angular/router';
 import { UserRole } from '../../user-role.enum';
-import { UserService } from '../../user-service/user';
+import { LoginService } from '../../login/login-service';
 import { MatFabButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,8 +39,8 @@ export class ReleaseBundleOverviewComponent implements OnInit {
   protected readonly UserRole = UserRole;
 
 
-  constructor(private releaseBundleService: ReleaseBundleService, private userService: UserService) {
-    this.userRole = userService.getUser() || UserRole.Guest;
+  constructor(private releaseBundleService: ReleaseBundleService, private loginService: LoginService) {
+    this.userRole = loginService.getUser() || UserRole.Guest;
   }
 
   ngOnInit(): void {

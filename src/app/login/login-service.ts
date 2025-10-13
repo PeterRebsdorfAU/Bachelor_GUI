@@ -5,7 +5,7 @@ import { UserRole } from '../user-role.enum';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class LoginService {
   private currentUser: UserRole | null = null;
 
   constructor(private router: Router) {}

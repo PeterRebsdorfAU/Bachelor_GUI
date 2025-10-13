@@ -12,5 +12,5 @@ export interface ChecklistSection {
 export interface ChecklistItem {
   text: string;
   isChecked: boolean;
-  subItems: ChecklistItem[]; // <-- recursion
+  subItems: ChecklistItem[];
 }

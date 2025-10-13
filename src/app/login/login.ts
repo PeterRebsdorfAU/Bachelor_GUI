@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../user-service/user';
+import { LoginService } from './login-service';
 import { UserRole } from '../user-role.enum';
 
 @Component({
@@ -10,9 +10,9 @@ import { UserRole } from '../user-role.enum';
 export class LoginComponent {
   UserRole = UserRole;
 
-  constructor(private userService: UserService) {}
+  constructor(private loginService: LoginService) {}
 
   chooseUser(user: UserRole) {
-    this.userService.setUser(user);
+    this.loginService.setUser(user);
   }
 }

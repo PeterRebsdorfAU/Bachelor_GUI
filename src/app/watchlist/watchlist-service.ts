@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { WatchlistResponse } from './watchlist-model';
+import { WatchlistResponse } from '../models/watchlist-model';
 import { environment } from '../../environments/environment';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { UserService } from '../../user-service/user';
+import { LoginService } from '../../login/login-service';
 import { Location} from '@angular/common';
 
 @Component({
@@ -11,10 +11,10 @@ import { Location} from '@angular/common';
   styleUrl: './navbar.scss'
 })
 export class Navbar {
-  constructor(private userService: UserService, private location: Location) {}
+  constructor(private loginService: LoginService, private location: Location) {}
 
   logout() {
-    this.userService.logout();
+    this.loginService.logout();
   }
 
   goBack() {

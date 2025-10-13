@@ -6,7 +6,7 @@ import { DeliveryProgressComponent } from '../delivery-progress-component/delive
 import { BundleProgressComponent } from '../bundle-progress-component/bundle-progress-component';
 import { Navbar } from '../../layout-design/navbar/navbar';
 import { NgFor, NgIf } from '@angular/common';
-import { WatchlistResponse } from '../watchlist-model';
+import { WatchlistResponse } from '../../models/watchlist-model';
 
 @Component({
   selector: 'app-watchlist-overview',

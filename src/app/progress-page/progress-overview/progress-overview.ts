@@ -6,7 +6,7 @@ import { ProgressOverviewService } from '../progress-overview-service';
 import { ChecklistResponse, ChecklistSection, ChecklistItem } from '../../models/progress-overview.model';
 import { NgIf } from '@angular/common';
 import { UserRole } from '../../user-role.enum';
-import { UserService } from '../../user-service/user';
+import { LoginService } from '../../login/login-service';
 import { ProgressHeaderComponent } from '../progress-header-component/progress-header-component';
 import { ChecklistComponent } from '../checklist-component/checklist-component';
 import { ActionButtonsComponent } from '../action-buttons-component/action-buttons-component';
@@ -34,15 +34,16 @@ export class ProgressOverviewComponent {
   loading = true;
   error: string | null = null;
   userRole: UserRole;
+  protected readonly UserRole = UserRole;
 
   constructor(
     private route: ActivatedRoute,
     private progressService: ProgressOverviewService,
-    private userService: UserService
+    private loginService: LoginService
   ) {
     this.bundleId = Number(this.route.snapshot.paramMap.get('bundleId'));
     this.loadChecklist();
-    this.userRole = userService.getUser() || UserRole.Guest;
+    this.userRole = loginService.getUser() || UserRole.Guest;
   }
 
   loadChecklist() {
@@ -67,6 +68,4 @@ export class ProgressOverviewComponent {
   onMenuSelect(item: ChecklistItem) {
     this.selectedItem = item;
   }
-
-  protected readonly UserRole = UserRole;
 }
