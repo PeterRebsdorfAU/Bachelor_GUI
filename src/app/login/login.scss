@@ -1,10 +1,10 @@
 .user-selection-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;     // centrerer horisontalt
-  justify-content: center; // centrerer vertikalt
-  height: 100vh;           // fyld hele viewport-højden
-  text-align: center;      // centrerer teksten i h2
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
 }
 
 .user-selection-container {
@@ -12,5 +12,5 @@
   flex-direction: column;
   gap: 10px;
   max-width: 300px;
-  width: 100%;             // så knapperne fylder max-bredden
+  width: 100%;
 }
