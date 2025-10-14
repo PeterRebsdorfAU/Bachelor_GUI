@@ -1,4 +1,4 @@
-import { ReleaseBundleEnum } from './release-bundle.enum';
+import { ReleaseBundleEnum } from '../release-bundle/release-bundle.enum';
 
 export interface ReleaseBundle {
   id: number;

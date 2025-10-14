@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ReleaseBundle} from '../release-bundle.model'
+import {ReleaseBundle} from '../../models/release-bundle.model'
 import {ReleaseBundleListComponent} from '../release-bundle-list-component/release-bundle-list-component';
 import {Navbar} from '../../layout-design/navbar/navbar';
 import {ReleaseBundleService} from '../release-bundle.service'

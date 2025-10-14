@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BundleScope } from './scope-model';
+import { BundleScope } from '../models/scope-model';
 import { environment } from '../../environments/environment.development';
 import { SystemEntry } from '../models/system-entry';
 

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { ReleaseBundle } from '../release-bundle.model';
+import { ReleaseBundle } from '../../models/release-bundle.model';
 import { ReleaseBundleItemComponent } from '../release-bundle-item-component/release-bundle-item-component';
 import {NgForOf, NgIf} from '@angular/common';
 

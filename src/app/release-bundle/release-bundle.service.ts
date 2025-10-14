@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
-import { ReleaseBundle } from './release-bundle.model';
+import { ReleaseBundle } from '../models/release-bundle.model';
 import {Router} from '@angular/router';
 import { environment} from '../../environments/environment.development';
 
