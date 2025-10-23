@@ -24,6 +24,7 @@ export class ScopePageService {
   }
 
   deleteSystem(bundleId: number, systemName: string): Observable<BundleScope> {
-    return this.http.delete<BundleScope>(`${this.apiUrl}/${bundleId}/${systemName}`);
+    const url = `${environment.apiUrl}/DeletePlannedRelease?plannedReleaseName=${encodeURIComponent(systemName)}`;
+    return this.http.delete<BundleScope>(url);
   }
 }

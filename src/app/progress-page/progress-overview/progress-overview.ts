@@ -1,4 +1,3 @@
-// progress-overview.component.ts
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Navbar } from '../../layout-design/navbar/navbar';
@@ -11,6 +10,7 @@ import { ProgressHeaderComponent } from '../progress-header-component/progress-h
 import { ChecklistComponent } from '../checklist-component/checklist-component';
 import { ActionButtonsComponent } from '../action-buttons-component/action-buttons-component';
 import { ChecklistMenuComponent } from '../checklist-menu-component/checklist-menu-component';
+import { EmailJSComponent } from '../../emailJS/email-js-component/email-js-component';
 
 @Component({
   selector: 'app-progress-overview',
@@ -21,7 +21,8 @@ import { ChecklistMenuComponent } from '../checklist-menu-component/checklist-me
     ProgressHeaderComponent,
     ChecklistComponent,
     ActionButtonsComponent,
-    ChecklistMenuComponent
+    ChecklistMenuComponent,
+    EmailJSComponent
   ],
   templateUrl: './progress-overview.html',
   styleUrls: ['./progress-overview.scss']
@@ -53,7 +54,6 @@ export class ProgressOverviewComponent {
         this.checklist = data.sections;
         this.loading = false;
 
-        // default vælg første punkt
         if (this.checklist.length > 0 && this.checklist[0].items.length > 0) {
           this.selectedItem = this.checklist[0].items[0];
         }

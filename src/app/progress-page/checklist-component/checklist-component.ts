@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ChecklistSection, ChecklistItem } from '../../models/progress-overview.model';
+import { ChecklistItem } from '../../models/progress-overview.model';
 
 @Component({
   selector: 'app-checklist-component',
@@ -14,7 +14,4 @@ import { ChecklistSection, ChecklistItem } from '../../models/progress-overview.
 export class ChecklistComponent {
   @Input() item!: ChecklistItem;
 
-  toggleItem(item: ChecklistItem) {
-    item.isChecked = !item.isChecked;
-  }
 }
