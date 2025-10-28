@@ -3,3 +3,8 @@ export enum ReleaseBundleEnum {
   Released = 'RELEASED',
   InProgress = 'IN_PROGRESS',
 }
+
+export enum ReleaseBundleEnum {
+  Active = 'ACTIVE',
+  Retired = 'RETIRED',
+}

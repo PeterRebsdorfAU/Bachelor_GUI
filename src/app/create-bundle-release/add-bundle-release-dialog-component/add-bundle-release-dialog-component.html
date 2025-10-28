@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Create New Bundle</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Bundle Name</mat-label>
+    <input matInput formControlName="bundleName" placeholder="Enter bundle name" />
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Create
+    </button>
+  </div>
+</form>

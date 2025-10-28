@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable, tap} from 'rxjs';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment.development';
 import { ReleaseBundle } from '../models/release-bundle.model';
-import {Router} from '@angular/router';
-import { environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReleaseBundleService {
-  // Her skriver du dit rigtige backend API endpoint senere
-  private apiUrl = environment.apiUrl + '/ReleaseBundles';
+
+  // Nyt endpoint
+  private apiUrl = environment.apiUrl + '/GetBundles';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -19,20 +20,23 @@ export class ReleaseBundleService {
     return this.http.get<ReleaseBundle[]>(this.apiUrl);
   }
 
-  // Hent et bundle ud fra ID
-  getReleaseBundleById(id: number): Observable<ReleaseBundle> {
-    return this.http.get<ReleaseBundle>(`${this.apiUrl}/${id}`);
+  // Filtrer aktive bundles (retired = false)
+  getActiveBundles(bundles: ReleaseBundle[]): ReleaseBundle[] {
+    return bundles.filter(b => !b.retired);
   }
 
-  // Naviger til progress overview for et bundle
+  // Filtrer retired bundles (retired = true)
+  getRetiredBundles(bundles: ReleaseBundle[]): ReleaseBundle[] {
+    return bundles.filter(b => b.retired);
+  }
+
   navigateToProgressOverview(bundleId: number): void {
     this.router.navigate(['/progress-overview', bundleId]);
   }
 
-  navigateToCreateReleaseBundle(): void {
-    this.router.navigate(
-      ['/release-bundles-overview/new']
-    );
+  navigateToCreateReleaseBundle(bundleID: number, bundleName: string): void {
+    this.router.navigate(['/release-bundles-overview/new'], {
+      queryParams: { bundleID, bundleName }
+    });
   }
-
 }
