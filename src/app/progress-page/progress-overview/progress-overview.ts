@@ -10,7 +10,6 @@ import { ProgressHeaderComponent } from '../progress-header-component/progress-h
 import { ChecklistComponent } from '../checklist-component/checklist-component';
 import { ActionButtonsComponent } from '../action-buttons-component/action-buttons-component';
 import { ChecklistMenuComponent } from '../checklist-menu-component/checklist-menu-component';
-import { EmailJSComponent } from '../../emailJS/email-js-component/email-js-component';
 
 @Component({
   selector: 'app-progress-overview',
@@ -21,8 +20,7 @@ import { EmailJSComponent } from '../../emailJS/email-js-component/email-js-comp
     ProgressHeaderComponent,
     ChecklistComponent,
     ActionButtonsComponent,
-    ChecklistMenuComponent,
-    EmailJSComponent
+    ChecklistMenuComponent
   ],
   templateUrl: './progress-overview.html',
   styleUrls: ['./progress-overview.scss']

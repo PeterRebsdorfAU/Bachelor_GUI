@@ -1,7 +1,13 @@
-<div class="system-row">
-  <span class="system-name">{{ system.name }}</span>
-  <div class="system-bar">
-    <app-progress-bar [steps]="system.steps" [currentStep]="system.current"></app-progress-bar>
+<div class="system-row" *ngIf="systemRelease">
+  <div class="left">
+    <div class="system-name">{{ systemRelease.systemName }}</div>
   </div>
-  <span class="arc">{{ system.arc }}</span>
+
+  <div class="center">
+    <app-progress-bar [steps]="systemSteps" [currentStep]="current" [small]="true"></app-progress-bar>
+  </div>
+
+  <div class="right">
+    <div class="arc" *ngIf="arcText">ARC {{ arcText }}</div>
+  </div>
 </div>

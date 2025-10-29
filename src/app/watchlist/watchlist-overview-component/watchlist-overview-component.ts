@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { WatchlistService } from '../watchlist-service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Navbar } from '../../layout-design/navbar/navbar';
+import { BundleProgressComponent } from '../bundle-progress-component/bundle-progress-component';
 import { SystemProgressComponent } from '../system-progress-component/system-progress-component';
 import { PlannedBundleReleaseComponent } from '../planned-bundle-release-component/planned-bundle-release-component';
-import { DeliveryProgressComponent } from '../delivery-progress-component/delivery-progress-component';
-import { BundleProgressComponent } from '../bundle-progress-component/bundle-progress-component';
-import { Navbar } from '../../layout-design/navbar/navbar';
 import { NgFor, NgIf } from '@angular/common';
-import { WatchlistResponse } from '../../models/watchlist-model';
 
 @Component({
   selector: 'app-watchlist-overview',
   standalone: true,
   imports: [
+    Navbar,
+    BundleProgressComponent,
     SystemProgressComponent,
     PlannedBundleReleaseComponent,
-    DeliveryProgressComponent,
-    BundleProgressComponent,
-    Navbar,
     NgIf,
     NgFor
   ],
@@ -24,16 +22,29 @@ import { WatchlistResponse } from '../../models/watchlist-model';
   styleUrls: ['./watchlist-overview-component.scss']
 })
 export class WatchlistOverviewComponent implements OnInit {
-  watchlist?: WatchlistResponse;
+  data: any | undefined;
 
-  constructor(private watchlistService: WatchlistService) {}
+  constructor(
+    private watchlistService: WatchlistService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.watchlistService.getWatchlist(1).subscribe({
-      next: data => {
-        this.watchlist = data;
-      },
-      error: err => console.error('Failed to load watchlist', err)
+    this.route.queryParams.subscribe(params => {
+      const id = +params['bundleReleaseID'];
+      if (!id) {
+        console.error('No bundleReleaseID provided');
+        return;
+      }
+
+      this.watchlistService.getBundleReleaseMonitoring(id).subscribe({
+        next: response => {
+          this.data = response;
+          console.log('New API data received:', response);
+        },
+        error: err => console.error('Failed to load bundle release monitoring', err)
+      });
     });
   }
 }

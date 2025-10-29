@@ -1,41 +1,60 @@
+:host { display:block; }
+
+/* wrapper */
 .progress-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  position: relative;
+  margin: 12px 0 22px;
+  padding: 0 6px;
+}
 
-  .step {
-    flex: 1;
-    text-align: center;
+/* ----- STEP LABELS ------ */
+.step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  font-size: 12px;
+  color: #777;
+  font-weight: 400;
+  padding-top: 0;
+
+  /* label */
+  span {
     position: relative;
-    font-size: 0.85rem;
-    color: #999;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: #e1d8f7; // lys baggrundslinje
-      z-index: -1;
-    }
-
-    span {
-      background: #fff;
-      padding: 0 6px;
-      position: relative;
-    }
-
-    &.completed {
-      color: #4b2aad;
-
-      &::before {
-        background: #4b2aad; // lilla linje
-      }
-    }
-
-    &.active {
-      font-weight: bold;
-    }
+    z-index: 2;
+    background: #fff;
+    padding: 0 6px;
+    top: -10px; /* moves text above line */
   }
+
+  /* background line behind label (inactive) */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 6px; /* where the line should appear */
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #e7e0f7; // light purple line
+    z-index: 1;
+    border-radius: 2px;
+  }
+
+  /* completed segment line */
+  &.completed::before {
+    background: linear-gradient(90deg, #6b2fb0, #a46bff);
+  }
+
+  /* active label (current step) */
+  &.active span {
+    color: #4b2aad;
+    font-weight: 600;
+  }
+}
+
+/* SMALL VARIANT */
+.progress-bar.small {
+  .step span { font-size: 11px; top: -8px; }
+  .step::before { top: 4px; height: 3px; }
 }

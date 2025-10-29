@@ -1,17 +1,15 @@
-.planned-bundle,
-.delivery-progress {
-  display: flex;
-  align-items: center;
-  margin: 1rem 0;
-
-  .label {
-    width: 200px;     // venstre kolonne fast bredde
-    font-weight: bold;
-    flex-shrink: 0;
-  }
-
-  .bar {
-    flex: 1;          // progressbaren udfylder midten
-    margin-left: 1rem;
-  }
+.planned-bundle {
+  padding: 26px 20px;
+  margin-top: 8px;
 }
+
+.label-row .label {
+  font-weight:600;
+  color:#333;
+  margin-bottom:10px;
+  display:block;
+  text-align:center;
+  font-size:13px;
+}
+
+.bar-wrapper { padding-top:6px; }

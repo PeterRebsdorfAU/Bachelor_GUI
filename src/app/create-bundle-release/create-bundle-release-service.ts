@@ -10,15 +10,9 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root'
 })
 export class CreateBundleReleaseService {
-
   private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
-
-  /** GET: Hent alle bundles */
-  getBundles(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/GetBundles`);
-  }
 
   /** POST: Opret et nyt bundle */
   addBundle(bundleName: string): Observable<any> {

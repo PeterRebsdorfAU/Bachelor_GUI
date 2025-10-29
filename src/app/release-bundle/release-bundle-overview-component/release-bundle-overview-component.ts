@@ -3,7 +3,7 @@ import { ReleaseBundle } from '../../models/release-bundle.model';
 import { ReleaseBundleListComponent } from '../release-bundle-list-component/release-bundle-list-component';
 import { Navbar } from '../../layout-design/navbar/navbar';
 import { ReleaseBundleService } from '../release-bundle.service';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 import { UserRole } from '../../user-role.enum';
 import { LoginService } from '../../login/login-service';
 import { MatFabButton } from '@angular/material/button';
@@ -13,11 +13,7 @@ import { MatDivider } from '@angular/material/divider';
 import { NgIf } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBundleReleaseService } from '../../create-bundle-release/create-bundle-release-service'
-import { AddBundleReleaseComponent } from '../../create-bundle-release/add-bundle-release-component/add-bundle-release-component';
-import { Router } from '@angular/router';
-import {
-  AddBundleReleaseDialogComponent
-} from '../../create-bundle-release/add-bundle-release-dialog-component/add-bundle-release-dialog-component';
+import { AddBundleReleaseDialogComponent } from '../../create-bundle-release/add-bundle-release-dialog-component/add-bundle-release-dialog-component';
 
 @Component({
   selector: 'app-release-bundle-overview-component',
@@ -40,8 +36,8 @@ import {
 })
 export class ReleaseBundleOverviewComponent implements OnInit {
 
-  plannedBundles: ReleaseBundle[] = [];   // = Active
-  releasedBundles: ReleaseBundle[] = [];  // = Retired
+  plannedBundles: ReleaseBundle[] = [];
+  releasedBundles: ReleaseBundle[] = [];
 
   userRole: UserRole;
   protected readonly UserRole = UserRole;
@@ -61,7 +57,6 @@ export class ReleaseBundleOverviewComponent implements OnInit {
       next: (bundles: ReleaseBundle[]) => {
         this.plannedBundles = this.releaseBundleService.getActiveBundles(bundles);
         this.releasedBundles = this.releaseBundleService.getRetiredBundles(bundles);
-        console.log(this.releaseBundleService.getActiveBundles((bundles)));
       },
       error: () => {
         this.plannedBundles = [];
@@ -71,7 +66,7 @@ export class ReleaseBundleOverviewComponent implements OnInit {
   }
 
   onBundleSelected(bundle: ReleaseBundle) {
-    this.releaseBundleService.navigateToProgressOverview(bundle.bundleID);
+    this.router.navigate(['/progress-overview', bundle.bundleID]);
   }
 
   onCreateNewReleaseBundle() {
@@ -82,13 +77,14 @@ export class ReleaseBundleOverviewComponent implements OnInit {
     dialogRef.afterClosed().subscribe((bundleName: string | undefined) => {
       if (!bundleName) return;
 
-      this.bundleService.addBundle(bundleName).subscribe((res: any)=> {
+      this.bundleService.addBundle(bundleName).subscribe((res: any) => {
         const bundleID = res.bundleID;
         const name = res.bundleName;
 
-        this.releaseBundleService.navigateToCreateReleaseBundle(bundleID, name);
+        this.router.navigate(['/release-bundles-overview/new'], {
+          queryParams: { bundleID, bundleName: name }
+        });
       });
     });
   }
-
 }
