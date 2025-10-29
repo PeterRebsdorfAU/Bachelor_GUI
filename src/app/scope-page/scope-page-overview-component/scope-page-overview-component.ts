@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ScopePageService } from '../scope-page-service';
 import { Navbar } from '../../layout-design/navbar/navbar';
-import { BundleScope } from '../../models/scope-model';
-import { SystemAddFormComponent } from '../system-add-form-component/system-add-form-component';
-import { SystemListComponent } from '../system-list-component/system-list-component';
-import { SystemEntry } from '../../models/system-entry';
+import { BundleScope } from '../../models/bundle-scope';
+import {SystemListComponent} from '../system-list-component/system-list-component';
+import {SystemAddFormComponent} from '../system-add-form-component/system-add-form-component';
+import {PlannedRelease} from '../../models/planned-release';
 
 @Component({
   selector: 'app-scope-page-overview-component',
@@ -14,14 +14,14 @@ import { SystemEntry } from '../../models/system-entry';
   imports: [
     CommonModule,
     Navbar,
-    SystemAddFormComponent,
-    SystemListComponent
+    SystemListComponent,
+    SystemAddFormComponent
   ],
   templateUrl: './scope-page-overview-component.html',
   styleUrl: './scope-page-overview-component.scss'
 })
 export class ScopePageOverviewComponent implements OnInit {
-  bundleId!: number;
+  bundleName!: string;
   scope?: BundleScope;
 
   constructor(
@@ -30,22 +30,22 @@ export class ScopePageOverviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bundleId = Number(this.route.snapshot.paramMap.get('bundleId'));
+    this.bundleName = 'testRelease'; // String(this.route.snapshot.paramMap.get('bundleName'));
     this.loadScope();
   }
 
   private loadScope() {
-    this.scopeService.getScope(this.bundleId)
+    this.scopeService.getScope(this.bundleName)
       .subscribe(s => this.scope = s);
   }
 
-  onAddSystem(system: SystemEntry) {
-    this.scopeService.addSystem(this.bundleId, system)
-      .subscribe(updated => this.scope = updated);
+  onAddSystem(systemName: string, version: string) {
+    this.scopeService.addSystemToBundle(this.bundleName, systemName, version)
+      .subscribe(scope => this.scope = scope);
   }
 
-  onDeleteSystem(system: SystemEntry) {
-    this.scopeService.deleteSystem(this.bundleId, system.name)
-      .subscribe(updated => this.scope = updated);
+  onDeleteSystem(plannedReleaseName: string) {
+    this.scopeService.removeSystemFromBundle(this.bundleName, plannedReleaseName)
+      .subscribe(scope => this.scope = scope);
   }
 }

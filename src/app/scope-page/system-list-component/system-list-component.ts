@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { SystemEntry } from '../../models/system-entry';
+import { PlannedRelease } from '../../models/planned-release';
 
 @Component({
   selector: 'app-system-list',
@@ -13,6 +13,6 @@ import { SystemEntry } from '../../models/system-entry';
   styleUrl: './system-list-component.scss'
 })
 export class SystemListComponent {
-  @Input() systems: SystemEntry[] = [];
-  @Output() deleteSystem = new EventEmitter<SystemEntry>();
+  @Input() systems: PlannedRelease[] = [];
+  @Output() deleteSystem = new EventEmitter<string>();
 }

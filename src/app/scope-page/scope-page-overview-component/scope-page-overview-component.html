@@ -9,13 +9,13 @@
 
   <!-- System list -->
   <app-system-list
-    [systems]="scope.systems"
+    [systems]="scope.plannedReleases"
     (deleteSystem)="onDeleteSystem($event)">
   </app-system-list>
 
   <!-- Add new system -->
   <app-system-add-form
     [bundleName]="scope.bundleName"
-    (addSystem)="onAddSystem($event)">
+    (addSystem)="onAddSystem($event.systemName, $event.version)">
   </app-system-add-form>
 </div>

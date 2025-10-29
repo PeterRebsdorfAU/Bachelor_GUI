@@ -1,15 +1,21 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let system of systems">
+  <mat-expansion-panel *ngFor="let release of systems">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <strong class="system-name">{{ system.name }}</strong>
-        <span class="system-version" *ngIf="system.version">v{{ system.version }}</span>
+        <strong class="system-name">{{ release.system }}</strong>
+        <span class="system-version">
+          ({{ release.name }})
+        </span>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
+    <p>
+      <strong>Planned Release:</strong> {{ release.name }} <br>
+      <strong>Version:</strong> {{ release.version || 'N/A' }}
+    </p>
 
-    <button mat-stroked-button color="warn" (click)="deleteSystem.emit(system)">
-      <mat-icon>delete</mat-icon> Delete
+    <button mat-stroked-button color="warn" (click)="deleteSystem.emit(release.name)">
+      <mat-icon>delete</mat-icon> Remove
     </button>
   </mat-expansion-panel>
 </mat-accordion>
