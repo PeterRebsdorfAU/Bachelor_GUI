@@ -39,7 +39,7 @@ export class AddBundleReleaseComponent implements OnInit {
 
     const releaseName = this.form.value.bundleReleaseName!;
 
-    this.bundleService.addBundleRelease(this.bundleName, releaseName).subscribe({
+    this.bundleService.addBundleRelease(this.bundleID, releaseName).subscribe({
       next: () => {
         this.router.navigate(['/release-bundles-overview']);
       },

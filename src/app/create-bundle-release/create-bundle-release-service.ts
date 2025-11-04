@@ -20,9 +20,9 @@ export class CreateBundleReleaseService {
   }
 
   /** POST: Opret et nyt bundle release */
-  addBundleRelease(bundleName: string, bundleReleaseName: string): Observable<any> {
+  addBundleRelease(bundleID: number, bundleReleaseName: string): Observable<any> {
     return this.http.post<any>(
-      `${this.baseUrl}/AddBundleRelease?bundleName=${bundleName}&bundleReleaseName=${bundleReleaseName}`,
+      `${this.baseUrl}/AddBundleRelease?bundleId=${bundleID}&bundleReleaseName=${bundleReleaseName}`,
       {}
     );
   }

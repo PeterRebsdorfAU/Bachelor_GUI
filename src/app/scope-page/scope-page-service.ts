@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, map } from 'rxjs';
 import { BundleScope } from '../models/bundle-scope';
 import { PlannedRelease } from '../models/planned-release';
 import { environment } from '../../environments/environment.development';
-import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,50 +13,52 @@ export class ScopePageService {
 
   constructor(private http: HttpClient) {}
 
-  getScope(bundleName: string): Observable<BundleScope> {
+  /** Henter scope for et bundle via ID */
+  getScope(bundleId: number): Observable<BundleScope> {
     return this.http.get<PlannedRelease[]>(
-      `${this.apiUrl}/GetPlannedReleases?bundleReleaseName=${bundleName}`
+      `${this.apiUrl}/GetPlannedReleases?bundleReleaseID=${bundleId}`
     ).pipe(
-      switchMap((releases) => {
-        const scope: BundleScope = {
-          bundleName,
-          plannedReleases: releases
-        };
-        return [scope];
-      })
+      map((releases) => ({
+        bundleId,
+        plannedReleases: releases
+      }))
     );
   }
 
 
-  addSystemToBundle(bundleName: string, systemName: string, version: string): Observable<BundleScope> {
+  /** Tilføjer system til bundleRelease via ID, uden error-fallback */
+  addSystemToBundle(bundleId: number, systemName: string, version: string): Observable<BundleScope> {
     const plannedReleaseName = `${systemName} ${version}`;
 
-    return this.http.post(`${this.apiUrl}/System/InsertSystem?systemName=${encodeURIComponent(systemName)}`, {})
-      .pipe(
-        switchMap(() => this.http.post(
-          `${this.apiUrl}/AddPlannedRelease?systemName=${encodeURIComponent(systemName)}&plannedReleaseName=${encodeURIComponent(plannedReleaseName)}`,
-          {}
-        )),
-        switchMap(() => this.http.post(
-          `${this.apiUrl}/AddPlannedReleaseInBundleRelease?bundleReleaseName=${encodeURIComponent(bundleName)}&plannedReleaseName=${encodeURIComponent(plannedReleaseName)}`,
-          {}
-        )),
-        switchMap(() => this.getScope(bundleName)),
-        catchError(error => {
-          console.error(" Error adding system:", error);
-          return throwError(() => error);
-        })
-      );
-  }
-
-
-
-removeSystemFromBundle(bundleName: string, plannedReleaseName: string): Observable<BundleScope> {
-    return this.http.delete(
-      `${this.apiUrl}/DeletePlannedRelease?plannedReleaseName=${encodeURIComponent(plannedReleaseName)}`
+    return this.http.post(
+      `${this.apiUrl}/System/InsertSystem?systemName=${encodeURIComponent(systemName)}`,
+      {}
     ).pipe(
-      switchMap(() => this.getScope(bundleName))
+      // 1: Opret planned release
+      switchMap((system: any) =>
+        this.http.post(
+          `${this.apiUrl}/AddPlannedRelease?systemId=${system.systemID}&plannedReleaseName=${encodeURIComponent(plannedReleaseName)}`,
+          {}
+        )
+      ),
+      // 2: Tilføj planned release til bundle
+      switchMap((planned: any) =>
+        this.http.post(
+          `${this.apiUrl}/AddPlannedReleaseInBundleRelease?bundleReleaseId=${bundleId}&plannedReleaseId=${planned.plannedReleaseID}`,
+          {}
+        )
+      ),
+      // 3: Returnér opdateret scope
+      switchMap(() => this.getScope(bundleId))
     );
   }
 
+  /** Fjerner PlannedRelease via ID */
+  removeSystemFromBundle(bundleId: number, plannedReleaseId: number): Observable<BundleScope> {
+    return this.http.delete(
+      `${this.apiUrl}/DeletePlannedRelease?plannedReleaseId=${plannedReleaseId}`
+    ).pipe(
+      switchMap(() => this.getScope(bundleId))
+    );
+  }
 }

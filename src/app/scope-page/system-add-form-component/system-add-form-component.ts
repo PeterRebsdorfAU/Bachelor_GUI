@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './system-add-form-component.scss'
 })
 export class SystemAddFormComponent {
-  @Input() bundleName!: string;
+  @Input() bundleName!: number;
   @Output() addSystem = new EventEmitter<{ systemName: string; version: string }>();
 
   systemName = '';

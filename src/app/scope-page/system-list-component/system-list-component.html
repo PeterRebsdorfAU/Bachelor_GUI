@@ -9,31 +9,44 @@
         <mat-panel-title class="system-title-wrapper">
           <div class="system-info">
             <strong class="system-name">{{ release.system }}</strong>
-            <span class="system-version">v{{ release.name }}</span>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <div class="panel-content">
         <div class="release-details">
+
+          <!-- Planned Release (system navn) -->
           <div class="detail-row">
             <mat-icon class="detail-icon">event</mat-icon>
             <div class="detail-content">
               <span class="detail-label">Planned Release</span>
-              <span class="detail-value">{{ release.name }}</span>
+              <span class="detail-value">{{ release.system }}</span>
             </div>
           </div>
 
+          <!-- Version (release navn) -->
           <div class="detail-row">
             <mat-icon class="detail-icon">code</mat-icon>
             <div class="detail-content">
               <span class="detail-label">Version</span>
-              <span class="detail-value">{{ release.version || 'N/A' }}</span>
+              <span class="system-version">{{ release.name }}</span>
+            </div>
+          </div>
+
+          <!-- Release Candidate -->
+          <div class="detail-row">
+            <mat-icon class="detail-icon">rocket_launch</mat-icon>
+            <div class="detail-content">
+              <span class="detail-label">Release Candidate</span>
+              <span class="detail-value">
+          {{ release.releaseCandidate || 'None' }}
+        </span>
             </div>
           </div>
         </div>
-        <app-system-delete-form
-          [plannedReleaseName]="release.name"
+      <app-system-delete-form
+          [plannedReleaseId]="bundleId"
           (delete)="deleteSystem.emit($event)">
         </app-system-delete-form>
 

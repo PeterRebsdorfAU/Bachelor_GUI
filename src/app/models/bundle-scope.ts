@@ -1,6 +1,6 @@
 import { PlannedRelease } from './planned-release';
 
 export interface BundleScope {
-  bundleName: string;
+  bundleId: number;
   plannedReleases: PlannedRelease[];
 }
