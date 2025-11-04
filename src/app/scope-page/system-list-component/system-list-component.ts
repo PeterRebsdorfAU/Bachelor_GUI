@@ -15,5 +15,6 @@ import {SystemDeleteFormComponent} from '../system-delete-form-component/system-
 })
 export class SystemListComponent {
   @Input() systems: PlannedRelease[] = [];
+  @Input() bundleId: number | undefined;
   @Output() deleteSystem = new EventEmitter<number>();
 }

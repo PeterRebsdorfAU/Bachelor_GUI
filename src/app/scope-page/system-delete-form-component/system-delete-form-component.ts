@@ -11,10 +11,10 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './system-delete-form-component.scss'
 })
 export class SystemDeleteFormComponent {
-  @Input() plannedReleaseName!: number;
+  @Input() plannedReleaseId!: number | undefined;
   @Output() delete = new EventEmitter<number>();
 
   onDelete() {
-    this.delete.emit(this.plannedReleaseName);
+    this.delete.emit(this.plannedReleaseId);
   }
 }

@@ -10,6 +10,7 @@
   <!-- System list -->
   <app-system-list
     [systems]="scope.plannedReleases"
+    [bundleId]="scope.bundleId"
     (deleteSystem)="onDeleteSystem($event)">
   </app-system-list>
 

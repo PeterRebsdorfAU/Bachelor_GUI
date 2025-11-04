@@ -16,7 +16,7 @@ export class ScopePageService {
   /** Henter scope for et bundle via ID */
   getScope(bundleId: number): Observable<BundleScope> {
     return this.http.get<PlannedRelease[]>(
-      `${this.apiUrl}/GetPlannedReleases?bundleReleaseId=${bundleId}`
+      `${this.apiUrl}/GetPlannedReleases?bundleReleaseID=${bundleId}`
     ).pipe(
       map((releases) => ({
         bundleId,
@@ -24,6 +24,7 @@ export class ScopePageService {
       }))
     );
   }
+
 
   /** Tilføjer system til bundleRelease via ID, uden error-fallback */
   addSystemToBundle(bundleId: number, systemName: string, version: string): Observable<BundleScope> {
