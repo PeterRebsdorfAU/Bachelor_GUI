@@ -8,8 +8,8 @@
       <mat-expansion-panel-header class="system-header">
         <mat-panel-title class="system-title-wrapper">
           <div class="system-info">
-            <strong class="system-name">{{ release.system }}</strong>
-            <span class="system-version">v{{ release.name }}</span>
+            <strong class="system-name">{{ release.systemID }}</strong>
+            <span class="system-version">v{{ release.plannedReleaseName }}</span>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -20,7 +20,7 @@
             <mat-icon class="detail-icon">event</mat-icon>
             <div class="detail-content">
               <span class="detail-label">Planned Release</span>
-              <span class="detail-value">{{ release.name }}</span>
+              <span class="detail-value">{{ release.plannedReleaseName }}</span>
             </div>
           </div>
 
@@ -28,12 +28,11 @@
             <mat-icon class="detail-icon">code</mat-icon>
             <div class="detail-content">
               <span class="detail-label">Version</span>
-              <span class="detail-value">{{ release.version || 'N/A' }}</span>
             </div>
           </div>
         </div>
         <app-system-delete-form
-          [plannedReleaseName]="release.name"
+          [plannedReleaseName]="release.plannedReleaseID"
           (delete)="deleteSystem.emit($event)">
         </app-system-delete-form>
 

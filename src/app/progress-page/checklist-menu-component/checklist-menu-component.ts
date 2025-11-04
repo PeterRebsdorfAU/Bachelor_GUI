@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Checklist } from '../../models/checklist.model';
 import {MatListItem, MatNavList} from '@angular/material/list';
 import {MatIcon} from '@angular/material/icon';
 import {NgFor, NgIf} from '@angular/common';
+import {Checklist} from '../../models/checklist.model';
 
 @Component({
   selector: 'app-checklist-menu-component',
@@ -11,7 +11,8 @@ import {NgFor, NgIf} from '@angular/common';
     MatIcon,
     MatNavList,
     MatListItem,
-    NgFor
+    NgFor,
+    NgIf
   ],
   styleUrls: ['./checklist-menu-component.scss']
 })

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ChecklistResponse } from '../models/progress-overview.model';
-import {Router} from '@angular/router';
-import { environment} from '../../environments/environment.development';
-import {Checklist} from '../models/checklist.model';
+import { ChecklistResponse } from '../models/checklist.model';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,9 @@ export class ProgressOverviewService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getAllChecklists(bundleId: number): Observable<Checklist[]> {
-    return this.http.get<Checklist[]>(`${this.apiUrl}/bundleRelease/${bundleId}`);
+  // Returner ChecklistResponse (hele payload)
+  getChecklists(bundleId: number): Observable<ChecklistResponse> {
+    return this.http.get<ChecklistResponse>(`${this.apiUrl}/bundleRelease/${bundleId}/complete`);
   }
 
   navigateToScopePage(bundleId: number) {

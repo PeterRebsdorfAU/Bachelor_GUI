@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Navbar } from '../../layout-design/navbar/navbar';
 import { ProgressOverviewService } from '../progress-overview-service';
-import { ChecklistResponse, ChecklistSection, ChecklistItem } from '../../models/progress-overview.model';
 import { NgIf } from '@angular/common';
 import { UserRole } from '../../user-role.enum';
 import { LoginService } from '../../login/login-service';
@@ -10,7 +9,7 @@ import { ProgressHeaderComponent } from '../progress-header-component/progress-h
 import { ChecklistComponent } from '../checklist-component/checklist-component';
 import { ActionButtonsComponent } from '../action-buttons-component/action-buttons-component';
 import { ChecklistMenuComponent } from '../checklist-menu-component/checklist-menu-component';
-import {Checklist} from '../../models/checklist.model';
+import {Checklist, ChecklistResponse} from '../../models/checklist.model';
 
 @Component({
   selector: 'app-progress-overview',
@@ -25,7 +24,8 @@ import {Checklist} from '../../models/checklist.model';
   ],
   templateUrl: './progress-overview.html',
   styleUrls: ['./progress-overview.scss']
-})export class ProgressOverviewComponent {
+})
+export class ProgressOverviewComponent {
   bundleId: number;
   bundleName = '';
   checklist: Checklist[] = [];
@@ -46,14 +46,15 @@ import {Checklist} from '../../models/checklist.model';
   }
 
   loadChecklist() {
-    this.progressService.getAllChecklists(this.bundleId).subscribe({
-      next: (data: Checklist[]) => {
-        this.checklist = data.sort((a, b) => a.order - b.order);
+    this.progressService.getChecklists(this.bundleId).subscribe({
+      next: (data: ChecklistResponse) => {
+        // tag checklists fra response
+        this.checklist = data.checklists?.sort((a: { order: number; }, b: { order: number; }) => a.order - b.order) || [];
         this.loading = false;
 
         if (this.checklist.length > 0) {
           this.selectedChecklist = this.checklist[0];
-          this.bundleName = `Bundle Release ${this.bundleId}`; // Midlertidigt navn
+          this.bundleName = `Bundle Release ${data.bundleReleaseID}`; // bruger det rigtige id
         }
       },
       error: () => {
@@ -67,4 +68,3 @@ import {Checklist} from '../../models/checklist.model';
     this.selectedChecklist = item;
   }
 }
-

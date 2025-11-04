@@ -1,10 +1,47 @@
 <div class="checklist-container" *ngIf="item">
   <mat-card>
-    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-title class="title-row">
+      <div>
+        <div class="checklist-name">{{ item.name }}</div>
+        <div class="checklist-subtitle">Checklist {{ item.order }}</div>
+      </div>
+      <div class="progress-summary">
+        <div class="progress-number">{{ checklistProgressPercentage() }}%</div>
+      </div>
+    </mat-card-title>
+
     <mat-card-content>
-      <p><strong>ID:</strong> {{ item.checklistID }}</p>
-      <p><strong>Order:</strong> {{ item.order }}</p>
-      <p><strong>Bundle Release ID:</strong> {{ item.bundleReleaseID }}</p>
+      <div class="checklist-overview">
+        <p><strong>Sub-checklists:</strong> {{ item.completedSubChecklists }}/{{ item.totalSubChecklists }}</p>
+        <p><strong>Completed:</strong> {{ item.isCompleted ? 'Yes' : 'No' }}</p>
+      </div>
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let sub of item.subChecklists">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ sub.name }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ sub.completedItems }}/{{ sub.totalItems }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <!-- Progress bar for sub -->
+          <div class="sub-progress">
+            <mat-progress-bar mode="determinate" [value]="subChecklistPercentage(sub)"></mat-progress-bar>
+          </div>
+
+          <div class="items-list">
+            <div *ngFor="let it of sub.items" class="item-row">
+              <mat-checkbox [(ngModel)]="it.isCompleted" (change)="toggleItem(sub, it)">
+                {{ it.description }}
+              </mat-checkbox>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
     </mat-card-content>
   </mat-card>
 </div>

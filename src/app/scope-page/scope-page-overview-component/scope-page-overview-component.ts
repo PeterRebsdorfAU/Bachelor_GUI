@@ -22,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './scope-page-overview-component.scss'
 })
 export class ScopePageOverviewComponent implements OnInit {
-  bundleName!: string;
+  bundleId!: number;
   scope?: BundleScope;
 
   constructor(
@@ -32,12 +32,12 @@ export class ScopePageOverviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bundleName = 'testRelease'; // String(this.route.snapshot.paramMap.get('bundleName'));
+    this.bundleId = Number(this.route.snapshot.paramMap.get('bundleId'));
     this.loadScope();
   }
 
   private loadScope() {
-    this.scopeService.getScope(this.bundleName)
+    this.scopeService.getScope(this.bundleId)
       .subscribe(s => this.scope = s);
   }
 
@@ -49,16 +49,12 @@ export class ScopePageOverviewComponent implements OnInit {
   }
 
   onAddSystem(event: { systemName: string; version: string }) {
-    this.scopeService.addSystemToBundle(this.bundleName, event.systemName, event.version)
-      .subscribe({
-        next: (updatedScope) => this.scope = updatedScope,
-        error: () => this.showErrorMessage("Failed to add system. Try again.")
-      });
+    this.scopeService.addSystemToBundle(this.bundleId, event.systemName, event.version)
+      .subscribe(updatedScope => this.scope = updatedScope);
   }
 
-
-  onDeleteSystem(plannedReleaseName: string) {
-    this.scopeService.removeSystemFromBundle(this.bundleName, plannedReleaseName)
+  onDeleteSystem(plannedReleaseId: number) {
+    this.scopeService.removeSystemFromBundle(this.bundleId, plannedReleaseId)
       .subscribe(scope => this.scope = scope);
   }
 }

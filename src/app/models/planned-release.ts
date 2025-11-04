@@ -1,5 +1,7 @@
 export interface PlannedRelease {
-  name: string;        // ex: "System1 v1"
-  system: string;      // ex: "System1"
-  version: string|null;
+  plannedReleaseID: number;
+  systemID: number;
+  plannedReleaseName: string;
+  releaseCandidate: string | null;
+  status: number;
 }

@@ -11,8 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './system-delete-form-component.scss'
 })
 export class SystemDeleteFormComponent {
-  @Input() plannedReleaseName!: string;
-  @Output() delete = new EventEmitter<string>();
+  @Input() plannedReleaseName!: number;
+  @Output() delete = new EventEmitter<number>();
 
   onDelete() {
     this.delete.emit(this.plannedReleaseName);
