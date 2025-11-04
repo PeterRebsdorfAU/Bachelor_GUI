@@ -1,14 +1,24 @@
 import { Component, Input } from '@angular/core';
-import {ProgressBarComponent} from '../progress-bar-component/progress-bar-component';
+import { ProgressBarComponent } from '../progress-bar-component/progress-bar-component';
+import {DatePipe, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-bundle-progress-component',
-  imports: [
-    ProgressBarComponent
-  ],
+  standalone: true,
+  imports: [ProgressBarComponent, ProgressBarComponent, DatePipe, NgIf],
   templateUrl: './bundle-progress-component.html',
-  styleUrl: './bundle-progress-component.scss'
+  styleUrls: ['./bundle-progress-component.scss']
 })
 export class BundleProgressComponent {
-  @Input() bundle: any;
+  // expects the API object (bundleReleaseMonitoring) for the bundle
+  @Input() bundleRelease: any;
+
+  readonly bundleSteps = ['IBD','TRE','TCE','WPE','FIN'];
+
+  get current(): number {
+    if (!this.bundleRelease) return 0;
+    // use calculatedStatus if present, otherwise status
+    const s = (this.bundleRelease.calculatedStatus ?? this.bundleRelease.status);
+    return isFinite(s) ? s : 0;
+  }
 }

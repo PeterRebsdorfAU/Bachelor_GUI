@@ -1,4 +1,14 @@
-<div class="bundle-progress">
-  <span>CSL 2025.5</span>
-  <app-progress-bar [steps]="bundle.steps" [currentStep]="bundle.current"></app-progress-bar>
+<div class="bundle-progress" *ngIf="bundleRelease">
+
+  <div class="date">
+    Created: {{ bundleRelease.dateCreated | date:'mediumDate' }}
+  </div>
+
+  <div class="bundle-row">
+    <div class="bundle-name">{{ bundleRelease.bundleReleaseName }}</div>
+
+    <div class="bundle-bar">
+      <app-progress-bar [steps]="bundleSteps" [currentStep]="current"></app-progress-bar>
+    </div>
+  </div>
 </div>

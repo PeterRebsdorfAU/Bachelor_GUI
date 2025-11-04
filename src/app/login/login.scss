@@ -1,16 +1,223 @@
-.user-selection-wrapper {
+.login-wrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  animation: gradientShift 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.login-container {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+  animation: slideUp 0.6s ease-out;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+    max-width: 100%;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.main-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: white;
+}
+
+.main-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #667eea;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #616161;
+  font-weight: 400;
+}
+
+.user-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.role-card {
+  display: flex !important;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  text-align: center;
+  padding: 2rem 1.5rem !important;
+  height: auto !important;
+  min-height: 160px;
+  border-radius: 16px !important;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+
+    &::before {
+      opacity: 0.1;
+    }
+
+    .role-icon {
+      transform: scale(1.15);
+    }
+  }
+
+  &:active {
+    transform: translateY(-4px) scale(1);
+  }
 }
 
-.user-selection-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 300px;
-  width: 100%;
+.role-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.role-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  z-index: 1;
+  color: #1a1a1a;
+}
+
+.role-description {
+  font-size: 0.85rem;
+  color: #666;
+  z-index: 1;
+  font-weight: 400;
+}
+
+// Individual role colors
+.guest-role {
+  &::before {
+    background: linear-gradient(135deg, #78909c 0%, #546e7a 100%);
+  }
+
+  .role-icon {
+    color: #546e7a;
+  }
+
+  &:hover {
+    border-color: #78909c;
+  }
+}
+
+.developer-role {
+  &::before {
+    background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
+  }
+
+  .role-icon {
+    color: #1e88e5;
+  }
+
+  &:hover {
+    border-color: #42a5f5;
+  }
+}
+
+.release-role {
+  &::before {
+    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+  }
+
+  .role-icon {
+    color: #43a047;
+  }
+
+  &:hover {
+    border-color: #66bb6a;
+  }
+}
+
+.test-role {
+  &::before {
+    background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+  }
+
+  .role-icon {
+    color: #fb8c00;
+  }
+
+  &:hover {
+    border-color: #ffa726;
+  }
 }

@@ -1,4 +1,3 @@
-// progress-overview.component.ts
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Navbar } from '../../layout-design/navbar/navbar';
@@ -11,6 +10,7 @@ import { ProgressHeaderComponent } from '../progress-header-component/progress-h
 import { ChecklistComponent } from '../checklist-component/checklist-component';
 import { ActionButtonsComponent } from '../action-buttons-component/action-buttons-component';
 import { ChecklistMenuComponent } from '../checklist-menu-component/checklist-menu-component';
+import {Checklist} from '../../models/checklist.model';
 
 @Component({
   selector: 'app-progress-overview',
@@ -25,12 +25,11 @@ import { ChecklistMenuComponent } from '../checklist-menu-component/checklist-me
   ],
   templateUrl: './progress-overview.html',
   styleUrls: ['./progress-overview.scss']
-})
-export class ProgressOverviewComponent {
+})export class ProgressOverviewComponent {
   bundleId: number;
   bundleName = '';
-  checklist: ChecklistSection[] = [];
-  selectedItem: ChecklistItem | null = null;
+  checklist: Checklist[] = [];
+  selectedChecklist: Checklist | null = null;
   loading = true;
   error: string | null = null;
   userRole: UserRole;
@@ -48,14 +47,13 @@ export class ProgressOverviewComponent {
 
   loadChecklist() {
     this.progressService.getAllChecklists(this.bundleId).subscribe({
-      next: (data: ChecklistResponse) => {
-        this.bundleName = data.name;
-        this.checklist = data.sections;
+      next: (data: Checklist[]) => {
+        this.checklist = data.sort((a, b) => a.order - b.order);
         this.loading = false;
 
-        // default vælg første punkt
-        if (this.checklist.length > 0 && this.checklist[0].items.length > 0) {
-          this.selectedItem = this.checklist[0].items[0];
+        if (this.checklist.length > 0) {
+          this.selectedChecklist = this.checklist[0];
+          this.bundleName = `Bundle Release ${this.bundleId}`; // Midlertidigt navn
         }
       },
       error: () => {
@@ -65,7 +63,8 @@ export class ProgressOverviewComponent {
     });
   }
 
-  onMenuSelect(item: ChecklistItem) {
-    this.selectedItem = item;
+  onMenuSelect(item: Checklist) {
+    this.selectedChecklist = item;
   }
 }
+

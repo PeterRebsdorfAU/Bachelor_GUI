@@ -5,7 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { SystemEntry } from '../../models/system-entry';
 
 @Component({
   selector: 'app-system-add-form',
@@ -22,20 +21,21 @@ import { SystemEntry } from '../../models/system-entry';
   styleUrl: './system-add-form-component.scss'
 })
 export class SystemAddFormComponent {
-  @Input() bundleName = '';
-  @Output() addSystem = new EventEmitter<SystemEntry>();
+  @Input() bundleName!: string;
+  @Output() addSystem = new EventEmitter<{ systemName: string; version: string }>();
 
-  newSystem = '';
-  newVersion = '';
+  systemName = '';
+  version = 'v1';
 
   onSubmit() {
-    if (this.newSystem.trim()) {
-      this.addSystem.emit({
-        name: this.newSystem,
-        version: this.newVersion
-      });
-      this.newSystem = '';
-      this.newVersion = '';
-    }
+    const name = this.systemName.trim();
+    if (!name) return;
+
+    this.addSystem.emit({
+      systemName: name,
+      version: this.version
+    });
+
+    this.systemName = '';
   }
 }

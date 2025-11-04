@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SystemInputComponent } from './system-input-component';
+import { EmailJSComponent } from './email-js-component';
 
-describe('SystemInputComponent', () => {
-  let component: SystemInputComponent;
-  let fixture: ComponentFixture<SystemInputComponent>;
+describe('EmailJSComponent', () => {
+  let component: EmailJSComponent;
+  let fixture: ComponentFixture<EmailJSComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SystemInputComponent]
+      imports: [EmailJSComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SystemInputComponent);
+    fixture = TestBed.createComponent(EmailJSComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

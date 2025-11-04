@@ -1,0 +1,14 @@
+.delete-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.delete-button {
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(244, 67, 54, 0.08);
+  }
+}

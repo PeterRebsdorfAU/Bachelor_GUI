@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="page-container" *ngIf="scope">
-  <h2>{{ scope.bundleName }} Scope</h2>
+  <h2>{{ scope.bundleName }} scope</h2>
   <p>
     See which systems are included in the release bundle.<br>
     You can add or delete systems from the bundle.
@@ -9,7 +9,7 @@
 
   <!-- System list -->
   <app-system-list
-    [systems]="scope.systems"
+    [systems]="scope.plannedReleases"
     (deleteSystem)="onDeleteSystem($event)">
   </app-system-list>
 

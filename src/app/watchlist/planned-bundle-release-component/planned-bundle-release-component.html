@@ -1,9 +1,9 @@
-<div class="planned-bundle">
-  <span class="label">Planned bundle release</span>
-  <div class="bar">
-    <app-progress-bar
-      [steps]="plannedBundle.steps"
-      [currentStep]="plannedBundle.current">
-    </app-progress-bar>
+<div class="planned-bundle" *ngIf="plannedReleases && plannedReleases.length >= 0">
+  <div class="label-row">
+    <span class="label">Planned bundle release</span>
+  </div>
+
+  <div class="bar-wrapper">
+    <app-progress-bar [steps]="plannedSteps" [currentStep]="current"></app-progress-bar>
   </div>
 </div>

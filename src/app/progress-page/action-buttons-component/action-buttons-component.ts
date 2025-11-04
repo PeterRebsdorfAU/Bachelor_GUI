@@ -24,6 +24,6 @@ export class ActionButtonsComponent {
   }
 
   onClickWatchListPage() {
-    this.progressService.navigateToWatchlistPage();
+    this.progressService.navigateToWatchlistPage(this.bundleId);
   }
 }

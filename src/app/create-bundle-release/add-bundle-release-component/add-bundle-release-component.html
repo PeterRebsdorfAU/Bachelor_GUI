@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="page">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Create Release for "{{ bundleName }}"</h2>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Release Name</mat-label>
+      <input matInput formControlName="bundleReleaseName" placeholder="Enter release name" />
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">
+        Create Release
+      </button>
+    </div>
+  </form>
+</div>

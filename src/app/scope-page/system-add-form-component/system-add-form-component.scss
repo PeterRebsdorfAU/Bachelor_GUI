@@ -1,9 +1,124 @@
+.add-system-container {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 25px rgba(30, 58, 138, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.header-icon {
+  color: white;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.form-title {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
 .add-form {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-  mat-form-field {
-    flex: 1;
+.form-fields {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.form-field {
+  flex: 1;
+
+  // Style the Material form field for white background
+  ::ng-deep {
+    .mat-form-field-wrapper {
+      background-color: white;
+      border-radius: 4px;
+    }
+
+    .mat-form-field-outline {
+      color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .mat-form-field-outline-thick {
+      color: #1e3a8a !important;
+    }
+
+    .mat-form-field-label,
+    .mat-form-field-label.mat-form-field-empty {
+      color: rgba(0, 0, 0, 0.6) !important;
+    }
+
+    .mat-input-element {
+      color: #1a1a1a !important;
+      caret-color: #1e3a8a !important;
+    }
+
+    .mat-input-element::placeholder {
+      color: rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .mat-icon {
+      color: rgba(0, 0, 0, 0.54) !important;
+    }
+
+    .mat-form-field-ripple {
+      background-color: #1e3a8a !important;
+    }
+  }
+}
+
+.submit-button {
+  align-self: flex-end;
+  padding: 0 2rem !important;
+  height: 48px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: white !important;
+  color: #1e3a8a !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+
+  &:hover:not([disabled]) {
+    background-color: #f5f5f5 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  mat-icon {
+    margin-right: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    align-self: stretch;
   }
 }

@@ -1,29 +1,64 @@
 .release-bundle-item {
-  flex: 0 0 auto;            // gør at kortet ikke strækker sig
-  min-width: 160px;
-  max-width: 200px;
-  background: #f5f5f5;
+  flex: 0 0 auto;
+  min-width: 220px;
+  max-width: 260px;
+  background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 0.8rem;
-  text-align: center;
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
   cursor: pointer;
-}
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
 
-.release-bundle-item:hover {
-  transform: translateY(-3px);
-  background: #e9f0ff;
-}
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-.release-bundle-item h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
 
-.release-bundle-item p {
-  margin: 0.2rem 0;
-  font-size: 0.9rem;
-  color: #333;
+    &::before {
+      opacity: 1;
+    }
+
+    h4 {
+      color: #667eea;
+    }
+  }
+
+  &:active {
+    transform: translateY(-4px);
+  }
+
+  h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: color 0.3s ease;
+  }
+
+  p {
+    margin: 0.25rem 0;
+    font-size: 0.85rem;
+    color: #6c757d;
+
+    &:first-of-type {
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #e9ecef;
+    }
+  }
 }

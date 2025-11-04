@@ -1,9 +1,49 @@
-<div class="user-selection-wrapper">
-  <h2>Here you can choose the user fitting to you</h2>
-  <div class="user-selection-container">
-    <button type="button" (click)="chooseUser(UserRole.Guest)">Guest user</button>
-    <button type="button" (click)="chooseUser(UserRole.Coder)">Developer</button>
-    <button type="button" (click)="chooseUser(UserRole.ReleaseManager)">Release manager</button>
-    <button type="button" (click)="chooseUser(UserRole.TestManager)">Test manager</button>
+<div class="login-wrapper">
+  <div class="login-container">
+    <div class="header-section">
+      <div class="icon-wrapper">
+        <mat-icon class="main-icon">person_outline</mat-icon>
+      </div>
+      <h1 class="main-title">Welcome</h1>
+      <p class="subtitle">Select your role to continue</p>
+    </div>
+
+    <div class="user-selection-grid">
+      <button
+        mat-raised-button
+        class="role-card guest-role"
+        (click)="chooseUser(UserRole.Guest)">
+        <mat-icon class="role-icon">visibility</mat-icon>
+        <span class="role-title">Guest User</span> <br>
+        <span class="role-description">View-only access</span>
+      </button>
+
+      <button
+        mat-raised-button
+        class="role-card developer-role"
+        (click)="chooseUser(UserRole.Coder)">
+        <mat-icon class="role-icon">code</mat-icon>
+        <span class="role-title">Developer</span> <br>
+        <span class="role-description">Code & build systems</span>
+      </button>
+
+      <button
+        mat-raised-button
+        class="role-card release-role"
+        (click)="chooseUser(UserRole.ReleaseManager)">
+        <mat-icon class="role-icon">rocket_launch</mat-icon>
+        <span class="role-title">Release Manager</span> <br>
+        <span class="role-description">Manage deployments</span>
+      </button>
+
+      <button
+        mat-raised-button
+        class="role-card test-role"
+        (click)="chooseUser(UserRole.TestManager)">
+        <mat-icon class="role-icon">bug_report</mat-icon>
+        <span class="role-title">Test Manager</span> <br>
+        <span class="role-description">Quality assurance</span>
+      </button>
+    </div>
   </div>
 </div>

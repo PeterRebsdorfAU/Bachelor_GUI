@@ -1,4 +1,4 @@
-import {SystemEntry} from './system-entry';
+import { SystemEntry } from './system-entry';
 
 export interface BundleScope {
   bundleId: number;

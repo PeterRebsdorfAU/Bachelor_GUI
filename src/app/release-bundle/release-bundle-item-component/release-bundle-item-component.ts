@@ -1,13 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { ReleaseBundle } from '../../models/release-bundle.model';
-import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-release-bundle-item-component',
   standalone: true,
-  imports: [
-    NgIf
-  ],
+  imports: [],
   templateUrl: './release-bundle-item-component.html',
   styleUrl: './release-bundle-item-component.scss'
 })

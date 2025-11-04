@@ -1,17 +1,42 @@
-<h3>Create new planned release in {{ bundleName }}</h3>
+<div class="add-system-container">
+  <div class="form-header">
+    <mat-icon class="header-icon">add_circle_outline</mat-icon>
+    <h3 class="form-title">Add System to Bundle</h3>
+  </div>
 
-<form class="add-form" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline">
-    <mat-label>System</mat-label>
-    <input matInput [(ngModel)]="newSystem" name="system" />
-  </mat-form-field>
+  <form class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-fields">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>System Name</mat-label>
+        <input
+          matInput
+          [(ngModel)]="systemName"
+          name="systemName"
+          placeholder="Enter system name"
+          required />
+        <mat-icon matPrefix>computer</mat-icon>
+      </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Version</mat-label>
-    <input matInput [(ngModel)]="newVersion" name="version" />
-  </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Version</mat-label>
+        <input
+          matInput
+          [(ngModel)]="version"
+          name="version"
+          placeholder="e.g., 1.0.0"
+          required />
+        <mat-icon matPrefix>tag</mat-icon>
+      </mat-form-field>
+    </div>
 
-  <button mat-raised-button color="primary" type="submit">
-    <mat-icon>add</mat-icon> Add
-  </button>
-</form>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="submit-button"
+      [disabled]="!systemName || !version">
+      <mat-icon>add</mat-icon>
+      Add System
+    </button>
+  </form>
+</div>

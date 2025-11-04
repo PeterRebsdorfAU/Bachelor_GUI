@@ -1,15 +1,26 @@
 import { Component, Input } from '@angular/core';
-import {ProgressBarComponent} from '../progress-bar-component/progress-bar-component';
+import { ProgressBarComponent } from '../progress-bar-component/progress-bar-component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-system-progress-component',
   standalone: true,
-  imports: [
-    ProgressBarComponent
-  ],
+  imports: [ProgressBarComponent, NgIf],
   templateUrl: './system-progress-component.html',
-  styleUrl: './system-progress-component.scss'
+  styleUrls: ['./system-progress-component.scss']
 })
 export class SystemProgressComponent {
-  @Input() system: any;
+  // Input is each plannedRelease object from API
+  @Input() systemRelease: any;
+
+  readonly systemSteps = ['RP','TRE','TCE','WPE','R'];
+
+  get current(): number {
+    if (!this.systemRelease) return 0;
+    return (this.systemRelease.status ?? 0);
+  }
+
+  get arcText(): string {
+    return this.systemRelease?.releaseCandidate ?? '';
+  }
 }

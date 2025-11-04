@@ -1,24 +1,26 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgClass, NgFor, NgIf } from '@angular/common';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
+import { Checklist } from '../../models/checklist.model';
+import {MatListItem, MatNavList} from '@angular/material/list';
+import {MatIcon} from '@angular/material/icon';
+import {NgFor, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-checklist-menu-component',
-  standalone: true,
-  imports: [NgFor, NgIf, NgClass, MatListModule, MatIconModule],
   templateUrl: './checklist-menu-component.html',
-  styleUrl: './checklist-menu-component.scss'
+  imports: [
+    MatIcon,
+    MatNavList,
+    MatListItem,
+    NgFor
+  ],
+  styleUrls: ['./checklist-menu-component.scss']
 })
 export class ChecklistMenuComponent {
-  @Input() sections: any[] = [];
-  @Output() itemSelected = new EventEmitter<any>();
+  @Input() checklists: Checklist[] = [];
+  @Input() selectedItem: Checklist | null = null;
+  @Output() itemSelected = new EventEmitter<Checklist>();
 
-  selectItem(item: any) {
+  selectItem(item: Checklist) {
     this.itemSelected.emit(item);
-  }
-
-  allSubItemsChecked(item: any): boolean {
-    return !!item.isChecked;
   }
 }
