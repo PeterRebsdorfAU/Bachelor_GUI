@@ -1,15 +1,51 @@
 .planned-bundle {
-  padding: 26px 20px;
-  margin-top: 8px;
+  padding: 2rem;
+  margin-top: 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.label-row .label {
-  font-weight:600;
-  color:#333;
-  margin-bottom:10px;
-  display:block;
-  text-align:center;
-  font-size:13px;
+.label-row {
+  margin-bottom: 1.5rem;
+  text-align: center;
+
+  .label {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #667eea;
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
 }
 
-.bar-wrapper { padding-top:6px; }
+.bar-wrapper {
+  padding: 1rem 0;
+}
+
+// Alternative layout (side-by-side)
+.delivery-progress {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 1rem 0;
+
+  .label {
+    flex: 0 0 220px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+  }
+
+  .bar {
+    flex: 1;
+    min-width: 0;
+  }
+}

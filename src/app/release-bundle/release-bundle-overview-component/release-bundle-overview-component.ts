@@ -71,7 +71,8 @@ export class ReleaseBundleOverviewComponent implements OnInit {
 
   onCreateNewReleaseBundle() {
     const dialogRef = this.dialog.open(AddBundleReleaseDialogComponent, {
-      width: '400px'
+      height: '250px',
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe((bundleName: string | undefined) => {

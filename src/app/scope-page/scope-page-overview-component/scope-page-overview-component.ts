@@ -7,6 +7,7 @@ import { BundleScope } from '../../models/bundle-scope';
 import {SystemListComponent} from '../system-list-component/system-list-component';
 import {SystemAddFormComponent} from '../system-add-form-component/system-add-form-component';
 import {PlannedRelease} from '../../models/planned-release';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-scope-page-overview-component',
@@ -26,7 +27,8 @@ export class ScopePageOverviewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private scopeService: ScopePageService
+    private scopeService: ScopePageService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -39,10 +41,21 @@ export class ScopePageOverviewComponent implements OnInit {
       .subscribe(s => this.scope = s);
   }
 
-  onAddSystem(systemName: string, version: string) {
-    this.scopeService.addSystemToBundle(this.bundleName, systemName, version)
-      .subscribe(scope => this.scope = scope);
+  showErrorMessage(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 4000,
+      panelClass: ['snackbar-error']
+    });
   }
+
+  onAddSystem(event: { systemName: string; version: string }) {
+    this.scopeService.addSystemToBundle(this.bundleName, event.systemName, event.version)
+      .subscribe({
+        next: (updatedScope) => this.scope = updatedScope,
+        error: () => this.showErrorMessage("Failed to add system. Try again.")
+      });
+  }
+
 
   onDeleteSystem(plannedReleaseName: string) {
     this.scopeService.removeSystemFromBundle(this.bundleName, plannedReleaseName)

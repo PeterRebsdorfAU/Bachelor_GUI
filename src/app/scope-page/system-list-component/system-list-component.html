@@ -1,21 +1,49 @@
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let release of systems">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <strong class="system-name">{{ release.system }}</strong>
-        <span class="system-version">
-          ({{ release.name }})
-        </span>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+<div class="system-list-container">
+  <mat-accordion class="systems-accordion">
+    <mat-expansion-panel
+      *ngFor="let release of systems; let i = index"
+      class="system-panel"
+      [class.panel-animated]="true">
 
-    <p>
-      <strong>Planned Release:</strong> {{ release.name }} <br>
-      <strong>Version:</strong> {{ release.version || 'N/A' }}
-    </p>
+      <mat-expansion-panel-header class="system-header">
+        <mat-panel-title class="system-title-wrapper">
+          <div class="system-info">
+            <strong class="system-name">{{ release.system }}</strong>
+            <span class="system-version">v{{ release.name }}</span>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <button mat-stroked-button color="warn" (click)="deleteSystem.emit(release.name)">
-      <mat-icon>delete</mat-icon> Remove
-    </button>
-  </mat-expansion-panel>
-</mat-accordion>
+      <div class="panel-content">
+        <div class="release-details">
+          <div class="detail-row">
+            <mat-icon class="detail-icon">event</mat-icon>
+            <div class="detail-content">
+              <span class="detail-label">Planned Release</span>
+              <span class="detail-value">{{ release.name }}</span>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <mat-icon class="detail-icon">code</mat-icon>
+            <div class="detail-content">
+              <span class="detail-label">Version</span>
+              <span class="detail-value">{{ release.version || 'N/A' }}</span>
+            </div>
+          </div>
+        </div>
+        <app-system-delete-form
+          [plannedReleaseName]="release.name"
+          (delete)="deleteSystem.emit($event)">
+        </app-system-delete-form>
+
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div *ngIf="!systems || systems.length === 0" class="empty-state">
+    <mat-icon class="empty-icon">inventory_2</mat-icon>
+    <p class="empty-text">No systems added yet</p>
+    <p class="empty-subtext">Add your first system to the bundle below</p>
+  </div>
+</div>

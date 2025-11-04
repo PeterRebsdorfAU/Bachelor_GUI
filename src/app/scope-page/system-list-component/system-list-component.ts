@@ -4,11 +4,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PlannedRelease } from '../../models/planned-release';
+import {SystemDeleteFormComponent} from '../system-delete-form-component/system-delete-form-component';
 
 @Component({
   selector: 'app-system-list',
   standalone: true,
-  imports: [CommonModule, MatExpansionModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatExpansionModule, MatButtonModule, MatIconModule, SystemDeleteFormComponent],
   templateUrl: './system-list-component.html',
   styleUrl: './system-list-component.scss'
 })

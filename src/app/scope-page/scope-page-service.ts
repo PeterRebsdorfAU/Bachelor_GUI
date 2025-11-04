@@ -4,6 +4,7 @@ import { Observable, switchMap } from 'rxjs';
 import { BundleScope } from '../models/bundle-scope';
 import { PlannedRelease } from '../models/planned-release';
 import { environment } from '../../environments/environment.development';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,9 @@ export class ScopePageService {
     );
   }
 
+
   addSystemToBundle(bundleName: string, systemName: string, version: string): Observable<BundleScope> {
-    const plannedReleaseName = `${systemName} ${version}`; // fx "System2 v1"
+    const plannedReleaseName = `${systemName} ${version}`;
 
     return this.http.post(`${this.apiUrl}/System/InsertSystem?systemName=${encodeURIComponent(systemName)}`, {})
       .pipe(
@@ -40,12 +42,17 @@ export class ScopePageService {
           `${this.apiUrl}/AddPlannedReleaseInBundleRelease?bundleReleaseName=${encodeURIComponent(bundleName)}&plannedReleaseName=${encodeURIComponent(plannedReleaseName)}`,
           {}
         )),
-        switchMap(() => this.getScope(bundleName))
+        switchMap(() => this.getScope(bundleName)),
+        catchError(error => {
+          console.error(" Error adding system:", error);
+          return throwError(() => error);
+        })
       );
   }
 
 
-  removeSystemFromBundle(bundleName: string, plannedReleaseName: string): Observable<BundleScope> {
+
+removeSystemFromBundle(bundleName: string, plannedReleaseName: string): Observable<BundleScope> {
     return this.http.delete(
       `${this.apiUrl}/DeletePlannedRelease?plannedReleaseName=${encodeURIComponent(plannedReleaseName)}`
     ).pipe(
