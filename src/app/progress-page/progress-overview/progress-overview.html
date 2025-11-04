@@ -8,15 +8,15 @@
 
     <div class="checklist-layout" *ngIf="!loading && !error">
       <app-checklist-menu-component
-        *ngIf="!loading && !error"
-        [sections]="checklist"
+        [checklists]="checklist"
+        [selectedItem]="selectedChecklist"
         (itemSelected)="onMenuSelect($event)">
       </app-checklist-menu-component>
 
       <app-checklist-component
         class="checklist-details"
-        *ngIf="selectedItem"
-        [item]="selectedItem">
+        *ngIf="selectedChecklist"
+        [item]="selectedChecklist">
       </app-checklist-component>
     </div>
 

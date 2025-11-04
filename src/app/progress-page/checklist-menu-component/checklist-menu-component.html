@@ -1,20 +1,11 @@
 <mat-nav-list class="menu-list">
+  <a mat-list-item
+     *ngFor="let item of checklists"
+     (click)="selectItem(item)"
+     [class.selected]="item === selectedItem">
 
-  <div *ngFor="let section of sections" class="section-block">
+    <mat-icon matListIcon>checklist</mat-icon>
+    <span>{{ item.name }}</span>
 
-    <h3 class="section-title">{{ section.title }}</h3>
-
-    <a mat-list-item
-       *ngFor="let item of section.items"
-       (click)="selectItem(item)"
-       [ngClass]="{
-         'menu-item-checked': allSubItemsChecked(item),
-         'menu-item-unchecked': !allSubItemsChecked(item)
-       }">
-      <mat-icon class="status-icon" *ngIf="allSubItemsChecked(item)">check_circle</mat-icon>
-      <mat-icon class="status-icon" *ngIf="!allSubItemsChecked(item)">cancel</mat-icon>
-      <span class="item-text">{{ item.text }}</span>
-    </a>
-
-  </div>
+  </a>
 </mat-nav-list>

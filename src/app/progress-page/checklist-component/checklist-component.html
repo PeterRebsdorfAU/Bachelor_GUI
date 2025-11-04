@@ -1,13 +1,10 @@
 <div class="checklist-container" *ngIf="item">
-  <div class="checklist">
-    <h3 class="checklist-title">{{ item.text }}</h3>
-
-    <ul>
-      <li *ngFor="let sub of item.subItems">
-        <mat-checkbox [(ngModel)]="sub.isChecked">
-          {{ sub.text }}
-        </mat-checkbox>
-      </li>
-    </ul>
-  </div>
+  <mat-card>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-content>
+      <p><strong>ID:</strong> {{ item.checklistID }}</p>
+      <p><strong>Order:</strong> {{ item.order }}</p>
+      <p><strong>Bundle Release ID:</strong> {{ item.bundleReleaseID }}</p>
+    </mat-card-content>
+  </mat-card>
 </div>
