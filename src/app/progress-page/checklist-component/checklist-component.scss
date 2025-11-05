@@ -1,12 +1,12 @@
 .checklist-container {
   display: flex;
-  justify-content: flex-start; // Align to start instead of center
+  justify-content: flex-start;
   align-items: flex-start;
-  min-height: auto; // Remove fixed height
+  min-height: auto;
 
   mat-card {
     width: 100%;
-    max-width: 100%; // Use full available width
+    max-width: 100%;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
@@ -16,26 +16,33 @@
       font-weight: 700;
       color: #667eea;
       margin-bottom: 1.5rem;
-      text-align: left; // Align left instead of center
+      text-align: center;
       word-wrap: break-word;
       overflow-wrap: break-word;
     }
 
     mat-card-content {
-      p {
+      .checklist-overview {
         display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin: 0.75rem 0;
-        padding: 0.75rem;
-        background: #f8f9fa;
-        border-radius: 8px;
-        font-size: 0.95rem;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
 
-        strong {
-          color: #667eea;
-          min-width: 140px;
-          font-weight: 600;
+        p {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin: 0;
+          padding: 0.75rem;
+          background: #f8f9fa;
+          border-radius: 8px;
+          font-size: 0.95rem;
+
+          strong {
+            color: #667eea;
+            font-weight: 600;
+          }
         }
       }
     }

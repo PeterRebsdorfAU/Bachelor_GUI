@@ -17,7 +17,11 @@
       </div>
 
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let sub of item.subChecklists">
+        <mat-expansion-panel
+          *ngFor="let sub of item.subChecklists"
+          [expanded]="isPanelExpanded(sub)"
+          (opened)="onPanelToggle(sub, true)"
+          (closed)="onPanelToggle(sub, false)">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{ sub.name }}
@@ -34,7 +38,10 @@
 
           <div class="items-list">
             <div *ngFor="let it of sub.items" class="item-row">
-              <mat-checkbox [(ngModel)]="it.isCompleted" (change)="toggleItem(sub, it)">
+              <mat-checkbox
+                [(ngModel)]="it.isCompleted"
+                (change)="toggleItem(sub, it)"
+                [disabled]="!canToggle()">
                 {{ it.description }}
               </mat-checkbox>
             </div>

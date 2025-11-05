@@ -18,6 +18,10 @@ export class ProgressOverviewService {
     return this.http.get<ChecklistResponse>(`${this.apiUrl}/bundleRelease/${bundleId}/complete`);
   }
 
+  toggleChecklistItem(itemId: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/item/${itemId}/toggle`, {});
+  }
+
   navigateToScopePage(bundleId: number) {
     this.router.navigate(['/scope-page', bundleId]);
   }

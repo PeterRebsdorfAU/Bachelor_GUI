@@ -52,41 +52,41 @@
 .form-field {
   flex: 1;
 
-  // Style the Material form field for white background
+  // Style the Material form field for transparent/white theme
   ::ng-deep {
     .mat-form-field-wrapper {
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.1);
       border-radius: 4px;
     }
 
     .mat-form-field-outline {
-      color: rgba(0, 0, 0, 0.12) !important;
+      color: rgba(255, 255, 255, 0.3) !important;
     }
 
     .mat-form-field-outline-thick {
-      color: #1e3a8a !important;
+      color: rgba(255, 255, 255, 0.8) !important;
     }
 
     .mat-form-field-label,
     .mat-form-field-label.mat-form-field-empty {
-      color: rgba(0, 0, 0, 0.6) !important;
+      color: rgba(255, 255, 255, 0.7) !important;
     }
 
     .mat-input-element {
-      color: #1a1a1a !important;
-      caret-color: #1e3a8a !important;
+      color: white !important;
+      caret-color: white !important;
     }
 
     .mat-input-element::placeholder {
-      color: rgba(0, 0, 0, 0.4) !important;
+      color: rgba(255, 255, 255, 0.5) !important;
     }
 
     .mat-icon {
-      color: rgba(0, 0, 0, 0.54) !important;
+      color: rgba(255, 255, 255, 0.7) !important;
     }
 
     .mat-form-field-ripple {
-      background-color: #1e3a8a !important;
+      background-color: white !important;
     }
   }
 }

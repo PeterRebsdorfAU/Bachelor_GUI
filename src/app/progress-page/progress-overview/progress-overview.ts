@@ -45,6 +45,23 @@ export class ProgressOverviewComponent {
     this.userRole = loginService.getUser() || UserRole.Guest;
   }
 
+  onChecklistUpdated() {
+    const currentId = this.selectedChecklist?.checklistID;
+
+    this.progressService.getChecklists(this.bundleId).subscribe({
+      next: (data: ChecklistResponse) => {
+        this.checklist = data.checklists?.sort((a, b) => a.order - b.order) || [];
+
+        if (currentId) {
+          const found = this.checklist.find(c => c.checklistID === currentId);
+          this.selectedChecklist = found || this.checklist[0];
+        } else {
+          this.selectedChecklist = this.checklist[0];
+        }
+      }
+    });
+  }
+
   loadChecklist() {
     this.progressService.getChecklists(this.bundleId).subscribe({
       next: (data: ChecklistResponse) => {

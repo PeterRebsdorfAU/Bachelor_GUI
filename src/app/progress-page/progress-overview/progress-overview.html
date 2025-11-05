@@ -16,7 +16,8 @@
       <app-checklist-component
         class="checklist-details"
         *ngIf="selectedChecklist"
-        [item]="selectedChecklist">
+        [item]="selectedChecklist"
+        (checklistUpdated)="onChecklistUpdated()">
       </app-checklist-component>
     </div>
 
