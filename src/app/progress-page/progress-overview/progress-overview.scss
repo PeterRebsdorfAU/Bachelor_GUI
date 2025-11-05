@@ -10,6 +10,7 @@
   flex-direction: column;
   gap: 2rem;
   position: relative;
+  padding-top: 8rem; // Add space for the buttons at the top
 }
 
 .checklist-layout {
@@ -18,14 +19,14 @@
   gap: 2rem;
   align-items: flex-start;
   width: 100%;
-  min-height: 400px; // Reduced from 500px
+  min-height: 400px;
 }
 
 .checklist-details {
   flex: 1;
-  background: transparent; // Remove the gray background
+  background: transparent;
   border-radius: 0;
   padding: 0;
   box-shadow: none;
-  min-height: auto; // Remove fixed height
+  min-height: auto;
 }

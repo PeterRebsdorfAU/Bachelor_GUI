@@ -29,7 +29,7 @@
 }
 
 a.mat-list-item {
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
   margin: 4px 0;
   padding: 1rem 1.25rem;
@@ -38,6 +38,7 @@ a.mat-list-item {
   gap: 0.75rem;
   border: 2px solid transparent;
   position: relative;
+  overflow: hidden;
 
   &::before {
     content: '';
@@ -49,22 +50,54 @@ a.mat-list-item {
     height: 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 0 2px 2px 0;
-    transition: height 0.3s ease;
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.15), transparent);
+    transition: left 0.5s ease;
   }
 
   &:hover {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-    transform: translateX(4px);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    transform: translateX(8px) scale(1.02);
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 
     &::before {
-      height: 60%;
+      height: 70%;
+    }
+
+    &::after {
+      left: 100%;
+    }
+
+    mat-icon {
+      transform: scale(1.1) rotate(5deg);
+      color: #667eea;
+    }
+
+    span {
+      color: #667eea;
+    }
+
+    .menu-badge {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: scale(1.05);
     }
   }
 
   &.selected {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
     border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
 
     &::before {
       height: 80%;
@@ -77,17 +110,35 @@ a.mat-list-item {
 
     mat-icon {
       color: #667eea;
+      transform: scale(1.05);
+    }
+
+    .menu-badge {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: 600;
     }
   }
 
   mat-icon {
     color: #6c757d;
-    transition: color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   span {
     font-size: 0.95rem;
     color: #1a1a1a;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .menu-badge {
+    margin-left: auto;
+    padding: 0.25rem 0.5rem;
+    background: #e9ecef;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #6c757d;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

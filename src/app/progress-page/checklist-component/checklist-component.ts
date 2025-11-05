@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Checklist, SubChecklist, ChecklistItem } from '../../models/checklist.model';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -6,6 +6,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
+import { ProgressOverviewService } from '../progress-overview-service';
+import { LoginService } from '../../login/login-service';
+import { UserRole } from '../../user-role.enum';
 
 @Component({
   selector: 'app-checklist-component',
@@ -23,44 +26,80 @@ import { FormsModule } from '@angular/forms';
 })
 export class ChecklistComponent {
   @Input() item!: Checklist;
+  @Output() checklistUpdated = new EventEmitter<Checklist>();
 
-  // Returner antal completed items i en subchecklist
-  completedItemsCount(sub: SubChecklist): number {
-    return sub.items.filter(i => !!i.isCompleted).length;
+  // Track expanded panels by subChecklist ID
+  expandedPanels = new Set<number>();
+
+  userRole: UserRole | null;
+  readonly UserRole = UserRole;
+
+  constructor(
+    private progressService: ProgressOverviewService,
+    private loginService: LoginService
+  ) {
+    this.userRole = this.loginService.getUser();
   }
 
-  // Returner procent (0-100) for en subchecklist
+  completedItemsCount(sub: SubChecklist): number {
+    return sub.items.filter(i => i.isCompleted).length;
+  }
+
   subChecklistPercentage(sub: SubChecklist): number {
     if (!sub.totalItems || sub.totalItems === 0) return 0;
     return Math.round((this.completedItemsCount(sub) / sub.totalItems) * 100);
   }
 
-  // Toggle checkbox - kun UI (ingen API kald)
-  toggleItem(sub: SubChecklist, item: ChecklistItem) {
-    item.isCompleted = !item.isCompleted;
-    // opdater completedItems felt for sub (lokalt)
-    sub.completedItems = this.completedItemsCount(sub);
-
-    // auto-mark sub as completed når alle items checked
-    sub.isCompleted = sub.completedItems >= sub.totalItems;
-
-    // opdatér checklist-level completedSubChecklists
-    this.syncChecklistSubCompletion();
+  onPanelToggle(sub: SubChecklist, isExpanded: boolean) {
+    if (isExpanded) {
+      this.expandedPanels.add(sub.subChecklistID);
+    } else {
+      this.expandedPanels.delete(sub.subChecklistID);
+    }
   }
 
-  // Efter toggle: synk tallene på checklist niveau
+  isPanelExpanded(sub: SubChecklist): boolean {
+    return this.expandedPanels.has(sub.subChecklistID);
+  }
+
+  canToggle(): boolean {
+    return this.userRole === UserRole.ReleaseManager || this.userRole === UserRole.TestManager;
+  }
+
+  toggleItem(sub: SubChecklist, item: ChecklistItem) {
+    if (!this.canToggle()) {
+      return; // Prevent toggle if user doesn't have permission
+    }
+
+    this.progressService.toggleChecklistItem(item.checklistItemID)
+      .subscribe({
+        next: () => {
+          // Update local counts immediately for responsive UI
+          sub.completedItems = this.completedItemsCount(sub);
+          sub.isCompleted = sub.completedItems === sub.totalItems;
+
+          const totalCompleted = this.item.subChecklists.reduce((acc, s) => acc + (s.completedItems || 0), 0);
+          const totalItems = this.item.subChecklists.reduce((acc, s) => acc + (s.totalItems || 0), 0);
+          this.item.isCompleted = totalCompleted === totalItems;
+
+          this.item.completedSubChecklists = this.item.subChecklists.filter(s => s.isCompleted).length;
+
+          // Emit to parent to refresh from server
+          this.checklistUpdated.emit(this.item);
+        },
+        error: () => console.error('Failed to update item state on server')
+      });
+  }
+
   private syncChecklistSubCompletion() {
     if (!this.item || !Array.isArray(this.item.subChecklists)) return;
     const completedSubs = this.item.subChecklists.filter(s => s.isCompleted).length;
     this.item.completedSubChecklists = completedSubs;
-    // sæt checklist isCompleted hvis alle subChecklists er done
     this.item.isCompleted = completedSubs >= (this.item.totalSubChecklists || this.item.subChecklists.length);
   }
 
-  // Hjælper: return total progress for hele checklisten (baseret på items)
   checklistProgressPercentage(): number {
     if (!this.item) return 0;
-    // beregn total items og completed items fra alle subChecklists
     const total = this.item.subChecklists.reduce((acc, s) => acc + (s.totalItems || 0), 0);
     if (total === 0) return 0;
     const completed = this.item.subChecklists.reduce((acc, s) => acc + (s.completedItems || 0), 0);
