@@ -71,7 +71,7 @@ export class ProgressOverviewComponent {
 
         if (this.checklist.length > 0) {
           this.selectedChecklist = this.checklist[0];
-          this.bundleName = `Bundle Release ${data.bundleReleaseID}`; // bruger det rigtige id
+          this.bundleName = `Bundle Release ${data.bundleReleaseID}`;
         }
       },
       error: () => {
