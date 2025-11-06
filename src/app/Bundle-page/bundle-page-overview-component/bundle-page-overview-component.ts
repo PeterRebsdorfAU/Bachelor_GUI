@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Bundle, BundleRelease } from '../../Models/release-bundle.model';
-import { ReleaseBundleListComponent } from '../release-bundle-list-component/release-bundle-list-component';
+import { BundleListComponent } from '../bundle-list-component/bundle-list-component';
 import { Navbar } from '../../Navbar/navbar';
-import { ReleaseBundleService } from '../release-bundle.service';
+import { BundleAndReleaseBundleService } from '../bundle-and-releaseBundle.service';
 import { RouterOutlet, Router } from '@angular/router';
 import { UserRole } from '../../user-role.enum';
 import { LoginService } from '../../Login/login-service';
 import { MatFabButton } from '@angular/material/button';
-import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
 import { NgIf } from '@angular/common';
@@ -22,7 +22,7 @@ import {MatTooltip} from '@angular/material/tooltip';
   selector: 'app-release-bundle-overview-component',
   standalone: true,
   imports: [
-    ReleaseBundleListComponent,
+    BundleListComponent,
     Navbar,
     RouterOutlet,
     MatCard,
@@ -33,12 +33,12 @@ import {MatTooltip} from '@angular/material/tooltip';
     MatCardContent,
     MatFabButton,
     NgIf,
-    MatTooltip
+    MatCardSubtitle
   ],
-  templateUrl: './release-bundle-overview-component.html',
-  styleUrl: './release-bundle-overview-component.scss'
+  templateUrl: './bundle-page-overview-component.html',
+  styleUrl: './bundle-page-overview-component.scss'
 })
-export class ReleaseBundleOverviewComponent implements OnInit {
+export class BundlePageOverviewComponent implements OnInit {
 
   plannedBundles: Bundle[] = [];
   releasedBundles: Bundle[] = [];
@@ -50,7 +50,7 @@ export class ReleaseBundleOverviewComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private router: Router,
-    private releaseBundleService: ReleaseBundleService,
+    private releaseBundleService: BundleAndReleaseBundleService,
     private createBundleReleaseService: CreateBundleReleaseService,
     private loginService: LoginService
   ) {

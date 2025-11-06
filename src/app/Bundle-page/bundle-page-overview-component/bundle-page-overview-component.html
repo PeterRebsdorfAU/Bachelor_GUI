@@ -6,10 +6,9 @@
   color="accent"
   class="fab-button"
   (click)="onCreateNewReleaseBundle()"
-  matTooltip="Create New Bundle"
-  matTooltipPosition="left"
   aria-label="Create new bundle">
   <mat-icon>add</mat-icon>
+  <span class="fab-label">Create New Bundle</span>
 </button>
 
 <!-- ACTIVE bundles -->
@@ -17,8 +16,11 @@
   <mat-card-header>
     <mat-card-title>
       <mat-icon>schedule</mat-icon>
-      Active Release Bundles
+      Active Bundles
     </mat-card-title>
+    <mat-card-subtitle>
+      Click on a card to view the Release bundles.
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>

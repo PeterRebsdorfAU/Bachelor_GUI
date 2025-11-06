@@ -1,4 +1,4 @@
-// release-bundle.service.ts
+// bundle-and-releaseBundle.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,7 +6,7 @@ import { environment } from '../../Environments/environment.development';
 import { Bundle, BundleRelease } from '../Models/release-bundle.model';
 
 @Injectable({ providedIn: 'root' })
-export class ReleaseBundleService {
+export class BundleAndReleaseBundleService {
 
   private bundlesUrl = environment.apiUrl + '/GetBundles';
   private bundleReleasesUrl = environment.apiUrl + '/GetBundleReleases';
