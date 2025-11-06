@@ -97,4 +97,18 @@ export class ScopePageOverviewComponent implements OnInit {
         }
       });
   }
+
+  onCreateReleaseCandidate(event: { plannedReleaseId: number; releaseCandidate: string }) {
+    this.scopeService.assignReleaseCandidate(event.plannedReleaseId, event.releaseCandidate)
+      .subscribe({
+        next: () => {
+          this.showSuccessMessage('Release candidate created successfully!');
+          this.loadScope();
+        },
+        error: err => {
+          this.showErrorMessage('Failed to create release candidate');
+          console.error(err);
+        }
+      });
+  }
 }

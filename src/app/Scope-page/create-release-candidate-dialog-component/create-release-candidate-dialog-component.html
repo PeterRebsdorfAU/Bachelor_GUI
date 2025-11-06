@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>
+  <mat-icon class="dialog-icon">rocket_launch</mat-icon>
+  Create Release Candidate
+</h2>
+
+<mat-dialog-content>
+  <p class="dialog-description">
+    Creating release candidate for <strong>{{ data.systemName }}</strong>
+  </p>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Release Candidate Version</mat-label>
+    <input
+      matInput
+      [(ngModel)]="releaseCandidate"
+      placeholder="e.g., 1.2.4.3.22"
+      (keyup.enter)="onConfirm()"
+      autofocus>
+    <mat-hint>Enter the version number for this release candidate</mat-hint>
+  </mat-form-field>
+
+  <div *ngIf="data.currentCandidate" class="current-candidate-info">
+    <mat-icon>info</mat-icon>
+    <span>Current: {{ data.currentCandidate }}</span>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onConfirm()"
+    [disabled]="!releaseCandidate.trim()">
+    Create
+  </button>
+</mat-dialog-actions>

@@ -8,6 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { PlannedRelease, STATUS_LABELS } from '../../Models/planned-release';
 import { SystemDeleteFormComponent } from '../system-delete-form-component/system-delete-form-component';
+import {MatDialog} from '@angular/material/dialog';
+import {
+  CreateReleaseCandidateDialogComponent
+} from '../create-release-candidate-dialog-component/create-release-candidate-dialog-component';
+import {MatTooltip} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-system-list',
@@ -20,7 +25,8 @@ import { SystemDeleteFormComponent } from '../system-delete-form-component/syste
     MatSelectModule,
     MatFormFieldModule,
     FormsModule,
-    SystemDeleteFormComponent
+    SystemDeleteFormComponent,
+    MatTooltip
   ],
   templateUrl: './system-list-component.html',
   styleUrl: './system-list-component.scss'
@@ -30,6 +36,9 @@ export class SystemListComponent {
   @Input() bundleId: number | undefined;
   @Output() deleteSystem = new EventEmitter<number>();
   @Output() statusChange = new EventEmitter<{ plannedReleaseId: number; newStatus: number }>();
+  @Output() createReleaseCandidate = new EventEmitter<{ plannedReleaseId: number; releaseCandidate: string }>();
+
+  constructor(private dialog: MatDialog) {}
 
   statusLabels = STATUS_LABELS;
   statusOptions = [
@@ -53,5 +62,26 @@ export class SystemListComponent {
       case 4: return 'status-rd';
       default: return 'status-unknown';
     }
+  }
+
+  onCreateReleaseCandidate(release: PlannedRelease) {
+    const dialogRef = this.dialog.open(CreateReleaseCandidateDialogComponent, {
+      width: '500px',
+      height: '250px',
+      data: {
+        plannedReleaseId: release.plannedReleaseID,
+        systemName: release.system,
+        currentCandidate: release.releaseCandidate
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.createReleaseCandidate.emit({
+          plannedReleaseId: release.plannedReleaseID,
+          releaseCandidate: result
+        });
+      }
+    });
   }
 }

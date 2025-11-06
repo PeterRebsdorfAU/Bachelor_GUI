@@ -68,4 +68,12 @@ export class ScopePageService {
       {}
     );
   }
+
+  /** Tildeler en release candidate til en PlannedRelease */
+  assignReleaseCandidate(plannedReleaseId: number, releaseCandidate: string): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}/AssignReleaseCandidate?plannedReleaseId=${plannedReleaseId}&releaseCandidate=${encodeURIComponent(releaseCandidate)}`,
+      {}
+    );
+  }
 }

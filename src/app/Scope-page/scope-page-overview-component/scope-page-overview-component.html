@@ -12,8 +12,10 @@
     [systems]="scope.plannedReleases"
     [bundleId]="scope.bundleId"
     (deleteSystem)="onDeleteSystem($event)"
-    (statusChange)="onStatusChange($event)">
+    (statusChange)="onStatusChange($event)"
+    (createReleaseCandidate)="onCreateReleaseCandidate($event)">
   </app-system-list>
+
 
   <!-- Add new system -->
   <app-system-add-form

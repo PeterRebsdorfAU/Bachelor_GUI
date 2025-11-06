@@ -38,13 +38,24 @@
           </div>
 
           <!-- Release Candidate -->
-          <div class="detail-row">
+          <div class="detail-row release-candidate-row">
             <mat-icon class="detail-icon">rocket_launch</mat-icon>
-            <div class="detail-content">
+            <div class="detail-content detail-with-action">
               <span class="detail-label">Release Candidate</span>
-              <span class="detail-value">
-                {{ release.releaseCandidate || 'None' }}
-              </span>
+              <div class="candidate-info">
+                <span class="detail-value candidate-value">
+                  {{ release.releaseCandidate || 'Not assigned' }}
+                </span>
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  class="create-candidate-btn"
+                  (click)="onCreateReleaseCandidate(release)"
+                  [matTooltip]="release.releaseCandidate ? 'Update Release Candidate' : 'Create Release Candidate'"
+                  matTooltipPosition="left">
+                  <mat-icon>{{ release.releaseCandidate ? 'edit' : 'add' }}</mat-icon>
+                </button>
+              </div>
             </div>
           </div>
 
