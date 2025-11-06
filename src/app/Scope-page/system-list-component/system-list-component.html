@@ -47,13 +47,12 @@
                   {{ release.releaseCandidate || 'Not assigned' }}
                 </span>
                 <button
-                  mat-mini-fab
+                  mat-raised-button
                   color="primary"
                   class="create-candidate-btn"
-                  (click)="onCreateReleaseCandidate(release)"
-                  [matTooltip]="release.releaseCandidate ? 'Update Release Candidate' : 'Create Release Candidate'"
-                  matTooltipPosition="left">
+                  (click)="onCreateReleaseCandidate(release)">
                   <mat-icon>{{ release.releaseCandidate ? 'edit' : 'add' }}</mat-icon>
+                  <span>{{ release.releaseCandidate ? 'Update' : 'Create' }}</span>
                 </button>
               </div>
             </div>

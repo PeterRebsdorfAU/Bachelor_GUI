@@ -12,7 +12,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {
   CreateReleaseCandidateDialogComponent
 } from '../create-release-candidate-dialog-component/create-release-candidate-dialog-component';
-import {MatTooltip} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-system-list',
@@ -25,8 +24,7 @@ import {MatTooltip} from '@angular/material/tooltip';
     MatSelectModule,
     MatFormFieldModule,
     FormsModule,
-    SystemDeleteFormComponent,
-    MatTooltip
+    SystemDeleteFormComponent
   ],
   templateUrl: './system-list-component.html',
   styleUrl: './system-list-component.scss'
