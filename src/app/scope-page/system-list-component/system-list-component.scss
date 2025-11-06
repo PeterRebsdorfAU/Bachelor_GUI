@@ -40,7 +40,7 @@
 .system-info {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -58,6 +58,45 @@
   border-radius: 12px;
   font-size: 0.85rem;
   font-weight: 500;
+}
+
+.status-badge {
+  padding: 0.375rem 0.875rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.status-rp {
+    background: #fff3cd;
+    color: #856404;
+  }
+
+  &.status-ibd {
+    background: #cfe2ff;
+    color: #084298;
+  }
+
+  &.status-iut {
+    background: #d1ecf1;
+    color: #0c5460;
+  }
+
+  &.status-iat {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  &.status-rd {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  &.status-unknown {
+    background: #e0e0e0;
+    color: #616161;
+  }
 }
 
 .panel-content {
@@ -78,6 +117,10 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+
+  &.status-selector-row {
+    align-items: center;
+  }
 }
 
 .detail-icon {
@@ -91,7 +134,11 @@
 .detail-content {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
+
+  &.full-width {
+    flex: 1;
+  }
 }
 
 .detail-label {
@@ -106,6 +153,20 @@
   font-size: 0.95rem;
   color: #1a1a1a;
   font-weight: 500;
+}
+
+.status-select-field {
+  width: 100%;
+
+  ::ng-deep {
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      padding-bottom: 0;
+    }
+  }
 }
 
 .panel-actions {

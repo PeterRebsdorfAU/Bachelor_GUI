@@ -2,40 +2,85 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 1rem 1.5rem;
   background-color: #2c3e50;
   color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 20px;
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+}
+
+.btn-back {
+  background: transparent;
+  color: white;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    font-size: 1.5rem;
   }
 
-  .nav-link:hover {
-    text-decoration: underline;
+  &:hover {
+    transform: translateX(-2px);
+    opacity: 0.8;
+  }
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
   }
 
-  .logout-button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px 12px;
-    cursor: pointer;
-    border-radius: 4px;
+  &:hover::after {
+    width: 100%;
   }
+}
 
-  .logout-button:hover {
+.btn-logout {
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+
+  &:hover {
     background-color: #c0392b;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
   }
 
-  .back-btn {
-    margin-right: 1rem;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
+  &:active {
+    transform: translateY(0);
   }
 }

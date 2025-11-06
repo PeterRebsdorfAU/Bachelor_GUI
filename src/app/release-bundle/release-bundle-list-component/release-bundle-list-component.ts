@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { ReleaseBundle } from '../../models/release-bundle.model';
+import { Bundle } from '../../models/release-bundle.model';
 import { ReleaseBundleItemComponent } from '../release-bundle-item-component/release-bundle-item-component';
 import {NgForOf, NgIf} from '@angular/common';
 
@@ -11,10 +11,10 @@ import {NgForOf, NgIf} from '@angular/common';
   styleUrl: './release-bundle-list-component.scss'
 })
 export class ReleaseBundleListComponent {
-  @Input() bundles: ReleaseBundle[] = [];
-  @Output() bundleSelected = new EventEmitter<ReleaseBundle>();
+  @Input() bundles: Bundle[] = [];
+  @Output() bundleSelected = new EventEmitter<Bundle>();
 
-  onBundleSelected(bundle: ReleaseBundle) {
+  onBundleSelected(bundle: Bundle) {
     this.bundleSelected.emit(bundle);
   }
 }

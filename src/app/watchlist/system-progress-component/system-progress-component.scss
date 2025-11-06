@@ -1,50 +1,165 @@
-.system-row {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+.system-progress-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
   padding: 1.5rem;
-  margin: 0.75rem 0;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
   transition: all 0.3s ease;
-  border-left: 4px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
-    transform: translateX(4px);
-    border-left-color: #667eea;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
   }
-}
 
-.left {
-  flex: 0 0 200px;
-  padding-left: 0.5rem;
-}
+  .system-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 
-.system-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #1a1a1a;
-}
+    .system-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
 
-.center {
-  flex: 1;
-  min-width: 0;
-}
+      .system-icon {
+        color: #667eea;
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+      }
 
-.right {
-  flex: 0 0 180px;
-  text-align: right;
-  padding-right: 0.5rem;
-}
+      .system-details {
+        h4 {
+          margin: 0;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #2c3e50;
+        }
 
-.arc {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #667eea;
-  padding: 0.5rem 1rem;
-  background: rgba(102, 126, 234, 0.1);
-  border-radius: 8px;
-  display: inline-block;
+        .release-name {
+          margin: 0.25rem 0 0 0;
+          font-size: 0.9rem;
+          color: #6c757d;
+        }
+      }
+    }
+
+    .status-badge {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &.status-rp {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      &.status-ibd {
+        background: #cfe2ff;
+        color: #084298;
+      }
+
+      &.status-iut {
+        background: #d1ecf1;
+        color: #0c5460;
+      }
+
+      &.status-iat {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      &.status-rd {
+        background: #d4edda;
+        color: #155724;
+      }
+    }
+  }
+
+  .progress-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    mat-progress-bar {
+      flex: 1;
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+
+      ::ng-deep .mdc-linear-progress__bar-inner {
+        border-radius: 6px;
+      }
+    }
+
+    .progress-text {
+      font-weight: 600;
+      color: #667eea;
+      min-width: 45px;
+      text-align: right;
+    }
+  }
+
+  .release-candidate-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    margin-top: 1rem;
+
+    .candidate-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffffff;
+      font-weight: 500;
+
+      .candidate-icon {
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+
+    .candidate-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  .no-candidate-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 1rem;
+
+    .no-candidate-icon {
+      color: #6c757d;
+      font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .no-candidate-text {
+      color: #6c757d;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+  }
 }

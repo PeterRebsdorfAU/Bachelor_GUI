@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Create New Release for {{ data.bundleName }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Release Name</mat-label>
+    <input matInput formControlName="releaseName" placeholder="e.g., v1.0.0 or 2.2.2.2" />
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Create Release
+    </button>
+  </div>
+</form>

@@ -5,7 +5,10 @@
   mat-fab
   color="accent"
   class="fab-button"
-  (click)="onCreateNewReleaseBundle()">
+  (click)="onCreateNewReleaseBundle()"
+  matTooltip="Create New Bundle"
+  matTooltipPosition="left"
+  aria-label="Create new bundle">
   <mat-icon>add</mat-icon>
 </button>
 
@@ -14,7 +17,7 @@
   <mat-card-header>
     <mat-card-title>
       <mat-icon>schedule</mat-icon>
-      Active Bundles
+      Active Release Bundles
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
@@ -33,7 +36,7 @@
   <mat-card-header>
     <mat-card-title>
       <mat-icon>done_all</mat-icon>
-      Retired Bundles
+      Released Bundles
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>

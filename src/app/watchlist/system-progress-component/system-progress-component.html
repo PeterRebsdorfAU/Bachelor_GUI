@@ -1,13 +1,38 @@
-<div class="system-row" *ngIf="systemRelease">
-  <div class="left">
-    <div class="system-name">{{ systemRelease.systemName }}</div>
+<div class="system-progress-card">
+  <div class="system-header">
+    <div class="system-info">
+      <mat-icon class="system-icon">computer</mat-icon>
+      <div class="system-details">
+        <h4>{{ systemRelease.systemName }}</h4>
+        <p class="release-name">{{ systemRelease.plannedReleaseName }}</p>
+      </div>
+    </div>
+    <div class="status-badge" [class]="'status-' + systemRelease.statusText.toLowerCase()">
+      {{ systemRelease.statusText }}
+    </div>
   </div>
 
-  <div class="center">
-    <app-progress-bar [steps]="systemSteps" [currentStep]="current" [small]="true"></app-progress-bar>
+  <div class="progress-section">
+    <mat-progress-bar
+      [mode]="'determinate'"
+      [value]="getProgressValue()"
+      [color]="getProgressColor()">
+    </mat-progress-bar>
+    <span class="progress-text">{{ getProgressValue() }}%</span>
   </div>
 
-  <div class="right">
-    <div class="arc" *ngIf="arcText">ARC {{ arcText }}</div>
+  <div class="release-candidate-section" *ngIf="systemRelease.releaseCandidate">
+    <div class="candidate-label">
+      <mat-icon class="candidate-icon">label</mat-icon>
+      <span>Release Candidate:</span>
+    </div>
+    <div class="candidate-value">
+      {{ systemRelease.releaseCandidate }}
+    </div>
+  </div>
+
+  <div class="no-candidate-section" *ngIf="!systemRelease.releaseCandidate">
+    <mat-icon class="no-candidate-icon">info_outline</mat-icon>
+    <span class="no-candidate-text">No release candidate assigned</span>
   </div>
 </div>

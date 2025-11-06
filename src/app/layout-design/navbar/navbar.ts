@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { LoginService } from '../../login/login-service';
-import { Location} from '@angular/common';
-import {NavbarService} from './navbar-service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,19 +15,18 @@ export class Navbar {
   constructor(
     private loginService: LoginService,
     private location: Location,
-    private navBarService: NavbarService
+    private router: Router
   ) {}
 
-  logout() {
+  logout(): void {
     this.loginService.logout();
   }
 
-  goToOverview() {
-    this.navBarService.navigateToOverview();
+  goToOverview(): void {
+    this.router.navigate(['/release-bundles-overview']);
   }
 
-  goBack() {
+  goBack(): void {
     this.location.back();
   }
 }
-

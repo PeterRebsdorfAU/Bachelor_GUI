@@ -1,0 +1,47 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>
+    <mat-icon>folder_open</mat-icon>
+    {{ data.bundle.bundleName }}
+  </h2>
+  <button mat-icon-button (click)="onClose()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content>
+  <div *ngIf="data.releases && data.releases.length > 0; else noReleases" class="releases-list">
+    <div
+      *ngFor="let release of data.releases"
+      class="release-item"
+      (click)="onReleaseSelected(release)">
+      <div class="release-header">
+        <mat-icon>package_2</mat-icon>
+        <h3>{{ release.bundleReleaseName }}</h3>
+      </div>
+      <div class="release-details">
+        <p class="release-id">ID: {{ release.bundleReleaseID }}</p>
+        <p class="release-date">{{ release.dateCreated | date:'medium' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noReleases>
+    <div class="no-releases">
+      <mat-icon>inbox</mat-icon>
+      <p>No releases found for this bundle</p>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    *ngIf="isReleaseManager"
+    mat-raised-button
+    color="primary"
+    (click)="onCreateNewRelease()">
+    <mat-icon>add</mat-icon>
+    Create New Release
+  </button>
+</mat-dialog-actions>

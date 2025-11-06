@@ -25,7 +25,6 @@ export class ScopePageService {
     );
   }
 
-
   /** Tilføjer system til bundleRelease via ID, uden error-fallback */
   addSystemToBundle(bundleId: number, systemName: string, version: string): Observable<BundleScope> {
     const plannedReleaseName = `${systemName} ${version}`;
@@ -59,6 +58,14 @@ export class ScopePageService {
       `${this.apiUrl}/DeletePlannedRelease?plannedReleaseId=${plannedReleaseId}`
     ).pipe(
       switchMap(() => this.getScope(bundleId))
+    );
+  }
+
+  /** Opdaterer status for en PlannedRelease */
+  updatePlannedReleaseStatus(plannedReleaseId: number, newStatus: number): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}/UpdatePlannedReleaseStatus?plannedReleaseId=${plannedReleaseId}&newStatus=${newStatus}`,
+      {}
     );
   }
 }

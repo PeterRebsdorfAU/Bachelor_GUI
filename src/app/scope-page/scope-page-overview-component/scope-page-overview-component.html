@@ -4,14 +4,15 @@
   <h2>Scope page</h2>
   <p>
     See which systems are included in the release bundle.<br>
-    You can add or delete systems from the bundle.
+    You can add or delete systems from the bundle and update their status.
   </p>
 
   <!-- System list -->
   <app-system-list
     [systems]="scope.plannedReleases"
     [bundleId]="scope.bundleId"
-    (deleteSystem)="onDeleteSystem($event)">
+    (deleteSystem)="onDeleteSystem($event)"
+    (statusChange)="onStatusChange($event)">
   </app-system-list>
 
   <!-- Add new system -->

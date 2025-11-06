@@ -1,5 +1,9 @@
 <nav class="navbar">
-  <button class="back-btn" (click)="goBack()">←</button>
-  <a (click)="goToOverview()" class="nav-link">Overview</a>
-  <button (click)="logout()" class="logout-button">Logout</button>
+  <div class="navbar-left">
+    <button class="btn btn-back" (click)="goBack()" aria-label="Go back">
+      <span class="icon">←</span>
+    </button>
+    <a class="nav-link" (click)="goToOverview()">Overview</a>
+  </div>
+  <button class="btn btn-logout" (click)="logout()">Logout</button>
 </nav>

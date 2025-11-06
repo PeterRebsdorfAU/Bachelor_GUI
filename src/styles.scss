@@ -38,3 +38,30 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Add these to your global styles.scss file
+
+.snackbar-success {
+  background-color: #4caf50 !important;
+  color: white !important;
+
+  .mdc-snackbar__label {
+    color: white !important;
+  }
+
+  .mat-mdc-snack-bar-action {
+    color: white !important;
+  }
+}
+
+.snackbar-error {
+  background-color: #f44336 !important;
+  color: white !important;
+
+  .mdc-snackbar__label {
+    color: white !important;
+  }
+
+  .mat-mdc-snack-bar-action {
+    color: white !important;
+  }
+}

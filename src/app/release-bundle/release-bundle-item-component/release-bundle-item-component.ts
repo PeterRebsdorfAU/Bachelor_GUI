@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { ReleaseBundle } from '../../models/release-bundle.model';
+import { Bundle } from '../../models/release-bundle.model';
 
 @Component({
   selector: 'app-release-bundle-item-component',
@@ -9,12 +9,10 @@ import { ReleaseBundle } from '../../models/release-bundle.model';
   styleUrl: './release-bundle-item-component.scss'
 })
 export class ReleaseBundleItemComponent {
-  @Input() bundle!: ReleaseBundle;
-
-  @Output() bundleSelected = new EventEmitter<ReleaseBundle>();
+  @Input() bundle!: Bundle;
+  @Output() bundleSelected = new EventEmitter<Bundle>();
 
   onClick() {
     this.bundleSelected.emit(this.bundle);
   }
-
 }

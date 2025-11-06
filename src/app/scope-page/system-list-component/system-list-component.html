@@ -9,6 +9,9 @@
         <mat-panel-title class="system-title-wrapper">
           <div class="system-info">
             <strong class="system-name">{{ release.system }}</strong>
+            <span class="status-badge" [ngClass]="getStatusClass(release.status)">
+              {{ statusLabels[release.status ?? 0] }}
+            </span>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -40,16 +43,34 @@
             <div class="detail-content">
               <span class="detail-label">Release Candidate</span>
               <span class="detail-value">
-          {{ release.releaseCandidate || 'None' }}
-        </span>
+                {{ release.releaseCandidate || 'None' }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Status Selector -->
+          <div class="detail-row status-selector-row">
+            <mat-icon class="detail-icon">flag</mat-icon>
+            <div class="detail-content full-width">
+              <span class="detail-label">Update Status</span>
+              <mat-form-field appearance="outline" class="status-select-field">
+                <mat-label>Select Status</mat-label>
+                <mat-select
+                  [value]="release.status ?? 0"
+                  (selectionChange)="onStatusChange(release.plannedReleaseID, $event.value)">
+                  <mat-option *ngFor="let option of statusOptions" [value]="option.value">
+                    <span [ngClass]="getStatusClass(option.value)">{{ option.label }}</span>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
         </div>
-      <app-system-delete-form
-          [plannedReleaseId]="bundleId"
+
+        <app-system-delete-form
+          [plannedReleaseId]="release.plannedReleaseID"
           (delete)="deleteSystem.emit($event)">
         </app-system-delete-form>
-
       </div>
     </mat-expansion-panel>
   </mat-accordion>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReleaseBundle } from '../../models/release-bundle.model';
+import { Bundle, BundleRelease } from '../../models/release-bundle.model';
 import { ReleaseBundleListComponent } from '../release-bundle-list-component/release-bundle-list-component';
 import { Navbar } from '../../layout-design/navbar/navbar';
 import { ReleaseBundleService } from '../release-bundle.service';
@@ -12,8 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDivider } from '@angular/material/divider';
 import { NgIf } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateBundleReleaseService } from '../../create-bundle-release/create-bundle-release-service'
-import { AddBundleReleaseDialogComponent } from '../../create-bundle-release/add-bundle-release-dialog-component/add-bundle-release-dialog-component';
+import { CreateBundleReleaseService } from '../../create-bundle-or-release-bundle/create-bundle-release-service';
+import { AddBundleDialogComponent } from '../../create-bundle-or-release-bundle/add-bundle-dialog-component/add-bundle-dialog-component';
+import { BundleReleasesDialogComponent, BundleReleasesDialogResult } from '../bundle-release-overview-dialog-component/bundle-release-dialog-component';
+import { forkJoin } from 'rxjs';
+import {MatTooltip} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-release-bundle-overview-component',
@@ -29,62 +32,110 @@ import { AddBundleReleaseDialogComponent } from '../../create-bundle-release/add
     MatDivider,
     MatCardContent,
     MatFabButton,
-    NgIf
+    NgIf,
+    MatTooltip
   ],
   templateUrl: './release-bundle-overview-component.html',
   styleUrl: './release-bundle-overview-component.scss'
 })
 export class ReleaseBundleOverviewComponent implements OnInit {
 
-  plannedBundles: ReleaseBundle[] = [];
-  releasedBundles: ReleaseBundle[] = [];
+  plannedBundles: Bundle[] = [];
+  releasedBundles: Bundle[] = [];
+  allBundleReleases: BundleRelease[] = [];
 
   userRole: UserRole;
   protected readonly UserRole = UserRole;
 
   constructor(
     private dialog: MatDialog,
-    private bundleService: CreateBundleReleaseService,
     private router: Router,
     private releaseBundleService: ReleaseBundleService,
+    private createBundleReleaseService: CreateBundleReleaseService,
     private loginService: LoginService
   ) {
     this.userRole = loginService.getUser() || UserRole.Guest;
   }
 
   ngOnInit(): void {
-    this.releaseBundleService.getReleaseBundles().subscribe({
-      next: (bundles: ReleaseBundle[]) => {
+    this.loadData();
+  }
+
+  private loadData(): void {
+    forkJoin({
+      bundles: this.releaseBundleService.getBundles(),
+      bundleReleases: this.releaseBundleService.getBundleReleases()
+    }).subscribe({
+      next: ({ bundles, bundleReleases }) => {
+        this.allBundleReleases = bundleReleases;
         this.plannedBundles = this.releaseBundleService.getActiveBundles(bundles);
         this.releasedBundles = this.releaseBundleService.getRetiredBundles(bundles);
       },
       error: () => {
         this.plannedBundles = [];
         this.releasedBundles = [];
+        this.allBundleReleases = [];
       }
     });
   }
 
-  onBundleSelected(bundle: ReleaseBundle) {
-    this.router.navigate(['/progress-overview', bundle.bundleID]);
+  onBundleSelected(bundle: Bundle) {
+    const releases = this.releaseBundleService.getBundleReleasesByBundleName(
+      this.allBundleReleases,
+      bundle.bundleName
+    );
+
+    const dialogRef = this.dialog.open(BundleReleasesDialogComponent, {
+      width: '600px',
+      maxHeight: '80vh',
+      data: {
+        bundle: bundle,
+        releases: releases
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: BundleReleasesDialogResult | undefined) => {
+      if (!result) return;
+
+      if (result.action === 'select' && result.release) {
+        // Navigate to the selected release
+        this.router.navigate(['/progress-overview', result.release.bundleReleaseID]);
+      } else if (result.action === 'create' && result.newReleaseName) {
+        // Create new bundle release
+        this.createBundleReleaseService.addBundleRelease(
+          bundle.bundleID,
+          result.newReleaseName
+        ).subscribe({
+          next: (newRelease) => {
+            console.log('Bundle release created:', newRelease);
+            // Reload data to show the new release
+            this.loadData();
+          },
+          error: (err) => {
+            console.error('Failed to create bundle release:', err);
+          }
+        });
+      }
+    });
   }
 
   onCreateNewReleaseBundle() {
-    const dialogRef = this.dialog.open(AddBundleReleaseDialogComponent, {
-      height: '250px',
+    const dialogRef = this.dialog.open(AddBundleDialogComponent, {
       width: '450px',
     });
 
     dialogRef.afterClosed().subscribe((bundleName: string | undefined) => {
       if (!bundleName) return;
 
-      this.bundleService.addBundle(bundleName).subscribe((res: any) => {
-        const bundleID = res.bundleID;
-        const name = res.bundleName;
-
-        this.router.navigate(['/release-bundles-overview/new'], {
-          queryParams: { bundleID, bundleName: name }
-        });
+      this.createBundleReleaseService.addBundle(bundleName).subscribe({
+        next: (result) => {
+          console.log('Bundle created:', result);
+          // Reload data to show the new bundle
+          this.loadData();
+        },
+        error: (err) => {
+          console.error('Failed to create bundle:', err);
+        }
       });
     });
   }

@@ -1,26 +1,41 @@
 import { Component, Input } from '@angular/core';
-import { ProgressBarComponent } from '../progress-bar-component/progress-bar-component';
-import {NgIf} from '@angular/common';
+import { NgIf } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { PlannedRelease } from '../../models/bundle-release-monitoring.model';
 
 @Component({
   selector: 'app-system-progress-component',
   standalone: true,
-  imports: [ProgressBarComponent, NgIf],
+  imports: [
+    NgIf,
+    MatIconModule,
+    MatProgressBarModule,
+    MatTooltipModule
+  ],
   templateUrl: './system-progress-component.html',
   styleUrls: ['./system-progress-component.scss']
 })
 export class SystemProgressComponent {
-  // Input is each plannedRelease object from API
-  @Input() systemRelease: any;
+  @Input() systemRelease!: PlannedRelease;
 
-  readonly systemSteps = ['RP','TRE','TCE','WPE','R'];
-
-  get current(): number {
-    if (!this.systemRelease) return 0;
-    return (this.systemRelease.status ?? 0);
+  getProgressValue(): number {
+    // Map status to progress percentage
+    const statusMap: { [key: string]: number } = {
+      'RP': 0,    // Release Prepared
+      'IBD': 25,  // In Build/Development
+      'IUT': 50,  // In User Testing
+      'IAT': 75,  // In Acceptance Testing
+      'RD': 100   // Released/Done
+    };
+    return statusMap[this.systemRelease.statusText] || 0;
   }
 
-  get arcText(): string {
-    return this.systemRelease?.releaseCandidate ?? '';
+  getProgressColor(): string {
+    const progress = this.getProgressValue();
+    if (progress === 100) return 'accent';
+    if (progress >= 50) return 'primary';
+    return 'warn';
   }
 }

@@ -25,7 +25,7 @@ export class SystemAddFormComponent {
   @Output() addSystem = new EventEmitter<{ systemName: string; version: string }>();
 
   systemName = '';
-  version = 'v1';
+  version = '';
 
   onSubmit() {
     const name = this.systemName.trim();

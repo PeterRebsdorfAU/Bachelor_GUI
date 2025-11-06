@@ -1,27 +1,35 @@
-// Fjern Router import og navigation-metoderne
+// release-bundle.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
-import { ReleaseBundle } from '../models/release-bundle.model';
+import { Bundle, BundleRelease } from '../models/release-bundle.model';
 
 @Injectable({ providedIn: 'root' })
 export class ReleaseBundleService {
 
-  private apiUrl = environment.apiUrl + '/GetBundles';
+  private bundlesUrl = environment.apiUrl + '/GetBundles';
+  private bundleReleasesUrl = environment.apiUrl + '/GetBundleReleases';
 
   constructor(private http: HttpClient) {}
 
-  getReleaseBundles(): Observable<ReleaseBundle[]> {
-    return this.http.get<ReleaseBundle[]>(this.apiUrl);
+  getBundles(): Observable<Bundle[]> {
+    return this.http.get<Bundle[]>(this.bundlesUrl);
   }
 
-  getActiveBundles(bundles: ReleaseBundle[]): ReleaseBundle[] {
+  getBundleReleases(): Observable<BundleRelease[]> {
+    return this.http.get<BundleRelease[]>(this.bundleReleasesUrl);
+  }
+
+  getActiveBundles(bundles: Bundle[]): Bundle[] {
     return bundles.filter(b => !b.retired);
   }
 
-  getRetiredBundles(bundles: ReleaseBundle[]): ReleaseBundle[] {
+  getRetiredBundles(bundles: Bundle[]): Bundle[] {
     return bundles.filter(b => b.retired);
   }
 
+  getBundleReleasesByBundleName(bundleReleases: BundleRelease[], bundleName: string): BundleRelease[] {
+    return bundleReleases.filter(br => br.bundleName === bundleName);
+  }
 }

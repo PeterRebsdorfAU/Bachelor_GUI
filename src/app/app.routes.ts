@@ -4,9 +4,7 @@ import { ReleaseBundleOverviewComponent } from './release-bundle/release-bundle-
 import { ProgressOverviewComponent } from './progress-page/progress-overview/progress-overview';
 import {ScopePageOverviewComponent} from './scope-page/scope-page-overview-component/scope-page-overview-component';
 import {WatchlistOverviewComponent} from './watchlist/watchlist-overview-component/watchlist-overview-component';
-import {
-  AddBundleReleaseComponent
-} from './create-bundle-release/add-bundle-release-component/add-bundle-release-component';
+
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,7 +12,6 @@ export const routes: Routes = [
     path: 'release-bundles-overview',
     children: [
       { path: '', component: ReleaseBundleOverviewComponent },
-      { path: 'new', component: AddBundleReleaseComponent }
     ]
   },
   { path: 'progress-overview/:bundleId', component: ProgressOverviewComponent },
