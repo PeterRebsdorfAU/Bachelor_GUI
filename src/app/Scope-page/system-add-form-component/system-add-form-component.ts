@@ -22,10 +22,9 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SystemAddFormComponent {
   @Input() bundleName!: number;
-  @Output() addSystem = new EventEmitter<{ systemName: string; version: string }>();
+  @Output() addSystem = new EventEmitter<{ systemName: string;}>();
 
   systemName = '';
-  version = '';
 
   onSubmit() {
     const name = this.systemName.trim();
@@ -33,7 +32,6 @@ export class SystemAddFormComponent {
 
     this.addSystem.emit({
       systemName: name,
-      version: this.version
     });
 
     this.systemName = '';

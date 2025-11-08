@@ -56,8 +56,8 @@ export class ScopePageOverviewComponent implements OnInit {
     });
   }
 
-  onAddSystem(event: { systemName: string; version: string }) {
-    this.scopeService.addSystemToBundle(this.bundleId, event.systemName, event.version)
+  onAddSystem(event: { systemName: string;}) {
+    this.scopeService.addSystemToBundle(this.bundleId, event.systemName)
       .subscribe({
         next: updatedScope => {
           this.scope = updatedScope;

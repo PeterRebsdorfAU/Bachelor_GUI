@@ -22,8 +22,10 @@ export class ProgressOverviewService {
     return this.http.post<void>(`${this.apiUrl}/item/${itemId}/toggle`, {});
   }
 
-  navigateToScopePage(bundleId: number) {
-    this.router.navigate(['/scope-page', bundleId]);
+  navigateToScopePage(bundleId: number, bundleReleaseName?: string | undefined) {
+    this.router.navigate(['/scope-page', bundleId], {
+      queryParams: { bundleReleaseName }
+    });
   }
 
   navigateToWatchlistPage(bundleReleaseID: number) {

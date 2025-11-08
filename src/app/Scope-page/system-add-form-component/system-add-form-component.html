@@ -7,7 +7,7 @@
   <form class="add-form" (ngSubmit)="onSubmit()">
     <div class="form-fields">
       <mat-form-field appearance="outline" class="form-field">
-        <mat-label>System Name</mat-label>
+        <mat-label>Planned Release Name</mat-label>
         <input
           matInput
           [(ngModel)]="systemName"
@@ -16,17 +16,6 @@
           required />
         <mat-icon matPrefix>computer</mat-icon>
       </mat-form-field>
-
-      <mat-form-field appearance="outline" class="form-field">
-        <mat-label>Version</mat-label>
-        <input
-          matInput
-          [(ngModel)]="version"
-          name="version"
-          placeholder="e.g., 1.0.0"
-          required />
-        <mat-icon matPrefix>tag</mat-icon>
-      </mat-form-field>
     </div>
 
     <button
@@ -34,9 +23,9 @@
       color="primary"
       type="submit"
       class="submit-button"
-      [disabled]="!systemName || !version">
+      [disabled]="!systemName">
       <mat-icon>add</mat-icon>
-      Add System
+      Add Planned Release
     </button>
   </form>
 </div>

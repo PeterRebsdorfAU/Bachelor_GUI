@@ -14,13 +14,14 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ActionButtonsComponent {
   @Input() bundleId!: number;
+  @Input() bundleReleaseName!: string | undefined;
   @Input() userRole!: UserRole;
   protected readonly UserRole = UserRole;
 
   constructor(private progressService: ProgressOverviewService) {}
 
   onClickScopePage() {
-    this.progressService.navigateToScopePage(this.bundleId);
+    this.progressService.navigateToScopePage(this.bundleId, this.bundleReleaseName);
   }
 
   onClickWatchListPage() {

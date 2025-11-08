@@ -21,7 +21,6 @@
         <h3>{{ release.bundleReleaseName }}</h3>
       </div>
       <div class="release-details">
-        <p class="release-id">ID: {{ release.bundleReleaseID }}</p>
         <p class="release-date">{{ release.dateCreated | date:'medium' }}</p>
       </div>
     </div>
@@ -42,6 +41,6 @@
     color="primary"
     (click)="onCreateNewRelease()">
     <mat-icon>add</mat-icon>
-    Create New Release
+    Add bundle release to bundle
   </button>
 </mat-dialog-actions>

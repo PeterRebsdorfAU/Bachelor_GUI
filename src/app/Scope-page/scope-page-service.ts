@@ -26,9 +26,7 @@ export class ScopePageService {
   }
 
   /** Tilføjer system til bundleRelease via ID, uden error-fallback */
-  addSystemToBundle(bundleId: number, systemName: string, version: string): Observable<BundleScope> {
-    const plannedReleaseName = `${systemName} ${version}`;
-
+  addSystemToBundle(bundleId: number, systemName: string): Observable<BundleScope> {
     return this.http.post(
       `${this.apiUrl}/System/InsertSystem?systemName=${encodeURIComponent(systemName)}`,
       {}
@@ -36,7 +34,7 @@ export class ScopePageService {
       // 1: Opret planned release
       switchMap((system: any) =>
         this.http.post(
-          `${this.apiUrl}/AddPlannedRelease?systemId=${system.systemID}&plannedReleaseName=${encodeURIComponent(plannedReleaseName)}`,
+          `${this.apiUrl}/AddPlannedRelease?systemId=${system.systemID}&plannedReleaseName=${encodeURIComponent(systemName)}`,
           {}
         )
       ),
