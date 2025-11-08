@@ -1,7 +1,7 @@
 <div class="add-system-container">
   <div class="form-header">
     <mat-icon class="header-icon">add_circle_outline</mat-icon>
-    <h3 class="form-title">Add System to Bundle</h3>
+    <h3 class="form-title">Add planned release to release bundle</h3>
   </div>
 
   <form class="add-form" (ngSubmit)="onSubmit()">
@@ -12,7 +12,7 @@
           matInput
           [(ngModel)]="systemName"
           name="systemName"
-          placeholder="Enter system name"
+          placeholder="Enter planned release name"
           required />
         <mat-icon matPrefix>computer</mat-icon>
       </mat-form-field>
