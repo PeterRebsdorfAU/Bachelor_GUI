@@ -65,7 +65,9 @@ export class ChecklistComponent {
   }
 
   canToggle(): boolean {
-    return this.userRole === UserRole.ReleaseManager || this.userRole === UserRole.Tester;
+    return this.userRole === UserRole.ReleaseManager ||
+      this.userRole === UserRole.Tester ||
+      this.userRole === UserRole.Developer;
   }
 
   toggleItem(sub: SubChecklist, item: ChecklistItem) {
