@@ -38,12 +38,21 @@
 
           <div class="items-list">
             <div *ngFor="let it of sub.items" class="item-row">
-              <mat-checkbox
-                [(ngModel)]="it.isCompleted"
-                (change)="toggleItem(sub, it)"
-                [disabled]="!canToggle()">
-                {{ it.description }}
-              </mat-checkbox>
+              <div class="item-content">
+                <mat-checkbox
+                  [(ngModel)]="it.isCompleted"
+                  (change)="toggleItem(sub, it)"
+                  [disabled]="!canToggle()">
+                  {{ it.description }}
+                </mat-checkbox>
+
+                <div
+                  *ngIf="shouldShowDetailedDescription(it)"
+                  class="detailed-description">
+                  <mat-icon class="info-icon">info</mat-icon>
+                  <span>{{ it.detailedDescription }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </mat-expansion-panel>

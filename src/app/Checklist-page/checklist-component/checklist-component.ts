@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ProgressOverviewService } from '../progress-overview-service';
 import { LoginService } from '../../Login/login-service';
 import { UserRole } from '../../user-role.enum';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-checklist-component',
@@ -19,7 +20,8 @@ import { UserRole } from '../../user-role.enum';
     MatExpansionModule,
     MatProgressBarModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatIcon
   ],
   templateUrl: './checklist-component.html',
   styleUrls: ['./checklist-component.scss']
@@ -63,7 +65,7 @@ export class ChecklistComponent {
   }
 
   canToggle(): boolean {
-    return this.userRole === UserRole.ReleaseManager || this.userRole === UserRole.TestManager;
+    return this.userRole === UserRole.ReleaseManager || this.userRole === UserRole.Tester;
   }
 
   toggleItem(sub: SubChecklist, item: ChecklistItem) {
@@ -104,5 +106,28 @@ export class ChecklistComponent {
     if (total === 0) return 0;
     const completed = this.item.subChecklists.reduce((acc, s) => acc + (s.completedItems || 0), 0);
     return Math.round((completed / total) * 100);
+  }
+
+  shouldShowDetailedDescription(item: ChecklistItem): boolean {
+    // If no detailed description, don't show
+    if (!item.detailedDescription || item.detailedDescription.trim() === '') {
+      return false;
+    }
+
+    // If no role specified on the item, show to everyone
+    if (item.role === null || item.role === undefined || item.role === '') {
+      return true;
+    }
+
+    // If user is not logged in (Guest), don't show
+    if (this.userRole === null || this.userRole === UserRole.Guest) {
+      return false;
+    }
+
+    // Parse the role from the database (could be string or number)
+    const itemRoleNumber = parseInt(item.role, 10);
+
+    // Check if user's role matches the item's role
+    return this.userRole === itemRoleNumber;
   }
 }
