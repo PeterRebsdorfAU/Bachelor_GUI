@@ -35,4 +35,6 @@ export interface ChecklistItem {
   description: string;
   isCompleted: boolean;
   order: number;
+  role?: number;
+  detailedDescription?: string;
 }

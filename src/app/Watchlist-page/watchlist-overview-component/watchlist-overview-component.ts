@@ -6,6 +6,7 @@ import { BundleProgressComponent } from '../bundle-progress-component/bundle-pro
 import { SystemProgressComponent } from '../system-progress-component/system-progress-component';
 import { PlannedBundleReleaseComponent } from '../planned-bundle-release-component/planned-bundle-release-component';
 import { NgFor, NgIf } from '@angular/common';
+import {BundleReleaseMonitoringResponse} from '../../Models/bundle-release-monitoring.model';
 
 @Component({
   selector: 'app-watchlist-overview',
@@ -22,7 +23,7 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrls: ['./watchlist-overview-component.scss']
 })
 export class WatchlistOverviewComponent implements OnInit {
-  data: any | undefined;
+  data: BundleReleaseMonitoringResponse | undefined;
 
   constructor(
     private watchlistService: WatchlistService,
@@ -41,7 +42,6 @@ export class WatchlistOverviewComponent implements OnInit {
       this.watchlistService.getBundleReleaseMonitoring(id).subscribe({
         next: response => {
           this.data = response;
-          console.log('New API data received:', response);
         },
         error: err => console.error('Failed to load bundle release monitoring', err)
       });

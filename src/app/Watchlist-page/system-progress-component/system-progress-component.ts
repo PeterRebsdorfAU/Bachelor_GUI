@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -17,25 +17,31 @@ import { PlannedRelease } from '../../Models/bundle-release-monitoring.model';
   templateUrl: './system-progress-component.html',
   styleUrls: ['./system-progress-component.scss']
 })
-export class SystemProgressComponent {
+export class SystemProgressComponent implements OnInit {
   @Input() systemRelease!: PlannedRelease;
 
-  getProgressValue(): number {
-    // Map status to progress percentage
+  progressValue: number = 0;
+  progressColor: string = 'warn';
+
+  ngOnInit(): void {
+    this.progressValue = this.calculateProgressValue();
+    this.progressColor = this.calculateProgressColor();
+  }
+
+  private calculateProgressValue(): number {
     const statusMap: { [key: string]: number } = {
-      'RP': 0,    // Release Prepared
-      'IBD': 25,  // In Build/Development
-      'IUT': 50,  // In User Testing
-      'IAT': 75,  // In Acceptance Testing
-      'RD': 100   // Released/Done
+      'RP': 0,
+      'TRE': 25,
+      'TCE': 50,
+      'WPE': 75,
+      'RD': 100
     };
     return statusMap[this.systemRelease.statusText] || 0;
   }
 
-  getProgressColor(): string {
-    const progress = this.getProgressValue();
-    if (progress === 100) return 'accent';
-    if (progress >= 50) return 'primary';
+  private calculateProgressColor(): string {
+    if (this.progressValue === 100) return 'accent';
+    if (this.progressValue >= 50) return 'primary';
     return 'warn';
   }
 }
