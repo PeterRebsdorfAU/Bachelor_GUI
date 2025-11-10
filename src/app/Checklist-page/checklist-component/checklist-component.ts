@@ -66,7 +66,7 @@ export class ChecklistComponent {
 
   canToggle(): boolean {
     return this.userRole === UserRole.ReleaseManager ||
-      this.userRole === UserRole.Tester ||
+      this.userRole === UserRole.TestManager ||
       this.userRole === UserRole.Developer;
   }
 
@@ -117,7 +117,7 @@ export class ChecklistComponent {
     }
 
     // If no role specified on the item, show to everyone
-    if (item.role === null || item.role === undefined || item.role === '') {
+    if (item.role === null || item.role === undefined) {
       return true;
     }
 
@@ -127,9 +127,11 @@ export class ChecklistComponent {
     }
 
     // Parse the role from the database (could be string or number)
-    const itemRoleNumber = parseInt(item.role, 10);
+    const itemRoleNumber = typeof item.role === 'number'
+      ? item.role
+      : (typeof item.role === 'string' ? parseInt(item.role, 10) : NaN);
 
     // Check if user's role matches the item's role
-    return this.userRole === itemRoleNumber;
+    return !isNaN(itemRoleNumber) && this.userRole === itemRoleNumber;
   }
 }
