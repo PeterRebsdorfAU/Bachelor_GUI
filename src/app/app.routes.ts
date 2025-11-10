@@ -9,13 +9,13 @@ import {WatchlistOverviewComponent} from './Watchlist-page/watchlist-overview-co
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   {
-    path: 'release-bundles-overview',
+    path: 'bundles-overview',
     children: [
       { path: '', component: BundlePageOverviewComponent },
     ]
   },
-  { path: 'progress-overview/:bundleId', component: ProgressOverviewComponent },
+  { path: 'checklist-overview/:bundleId', component: ProgressOverviewComponent },
   { path: 'scope-page/:bundleId', component: ScopePageOverviewComponent},
   { path: 'watchlist', component: WatchlistOverviewComponent },
-  { path: '**', redirectTo: '' } // fallback til login
+  { path: '**', redirectTo: '' }
 ];

@@ -12,7 +12,7 @@ export class LoginService {
 
   setUser(user: UserRole) {
     this.currentUser = user;
-    this.router.navigate(['/release-bundles-overview']);
+    this.router.navigate(['/bundles-overview']);
   }
 
   getUser(): UserRole | null {

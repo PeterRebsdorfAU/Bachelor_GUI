@@ -99,7 +99,7 @@ export class BundlePageOverviewComponent implements OnInit {
 
       if (result.action === 'select' && result.release) {
         // Navigate to the selected release
-        this.router.navigate(['/progress-overview', result.release.bundleReleaseID]);
+        this.router.navigate(['/checklist-overview', result.release.bundleReleaseID]);
       } else if (result.action === 'create' && result.newReleaseName) {
         // Create new bundle release
         this.createBundleReleaseService.addBundleRelease(
@@ -108,7 +108,6 @@ export class BundlePageOverviewComponent implements OnInit {
         ).subscribe({
           next: (newRelease) => {
             console.log('Bundle release created:', newRelease);
-            // Reload data to show the new release
             this.loadData();
           },
           error: (err) => {

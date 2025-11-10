@@ -14,12 +14,12 @@ export class CreateBundleReleaseService {
 
   constructor(private http: HttpClient) { }
 
-  /** POST: Opret et nyt bundle */
+  // POST: Opret et nyt bundle
   addBundle(bundleName: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/AddBundle?bundleName=${bundleName}`, {});
   }
 
-  /** POST: Opret et nyt bundle release */
+  // POST: Opret et nyt bundle release
   addBundleRelease(bundleID: number, bundleReleaseName: string): Observable<any> {
     return this.http.post<any>(
       `${this.baseUrl}/AddBundleRelease?bundleId=${bundleID}&bundleReleaseName=${bundleReleaseName}`,

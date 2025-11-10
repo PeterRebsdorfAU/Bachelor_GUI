@@ -28,7 +28,6 @@ export class ChecklistComponent {
   @Input() item!: Checklist;
   @Output() checklistUpdated = new EventEmitter<Checklist>();
 
-  // Track expanded panels by subChecklist ID
   expandedPanels = new Set<number>();
 
   userRole: UserRole | null;
