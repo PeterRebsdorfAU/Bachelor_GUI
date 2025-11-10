@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="watchlist" *ngIf="data">
-  <h1>Release Bundle {{ data.bundleName }} Watchlist</h1>
+  <h1>Release Bundle {{ data.bundleReleaseName }} Watchlist</h1>
   <p class="intro">
     This is an overview of the processes in the release bundle.
   </p>
@@ -11,7 +11,7 @@
 
   <!-- Systems -->
   <div class="systems" *ngIf="data.plannedReleases?.length">
-    <h3>Systems</h3>
+    <h3>Planned Releases</h3>
     <app-system-progress-component
       *ngFor="let pr of data.plannedReleases"
       [systemRelease]="pr">

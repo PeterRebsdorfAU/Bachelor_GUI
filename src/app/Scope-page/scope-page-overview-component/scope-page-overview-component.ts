@@ -25,6 +25,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export class ScopePageOverviewComponent implements OnInit {
   bundleId!: number;
   scope?: BundleScope;
+  bundleReleaseName?: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,9 @@ export class ScopePageOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.bundleId = Number(this.route.snapshot.paramMap.get('bundleId'));
+    this.route.queryParams.subscribe(params => {
+      this.bundleReleaseName = params['bundleReleaseName'];
+    });
     this.loadScope();
   }
 
