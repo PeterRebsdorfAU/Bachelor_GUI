@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { Bundle, BundleRelease } from '../../Models/release-bundle.model';
+import { BundleRelease } from '../../Models/release-bundle.model';
 import { NgForOf, NgIf, DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,17 +8,7 @@ import { MatDivider } from '@angular/material/divider';
 import { AddBundleReleaseDialogComponent } from '../../Create-bundle-or-release-bundle/add-bundle-release-dialog-component/add-bundle-release-dialog-component';
 import { LoginService } from '../../Login/login-service';
 import { UserRole } from '../../user-role.enum';
-
-export interface BundleReleasesDialogData {
-  bundle: Bundle;
-  releases: BundleRelease[];
-}
-
-export interface BundleReleasesDialogResult {
-  action: 'select' | 'create';
-  release?: BundleRelease;
-  newReleaseName?: string;
-}
+import {BundleReleasesDialogData, BundleReleasesDialogResult} from '../../Models/bundle-release-dialog-data.model';
 
 @Component({
   selector: 'app-bundle-releases-dialog',

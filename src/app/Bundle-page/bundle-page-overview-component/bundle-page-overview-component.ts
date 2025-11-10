@@ -14,9 +14,9 @@ import { NgIf } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBundleReleaseService } from '../../Create-bundle-or-release-bundle/create-bundle-release-service';
 import { AddBundleDialogComponent } from '../../Create-bundle-or-release-bundle/add-bundle-dialog-component/add-bundle-dialog-component';
-import { BundleReleasesDialogComponent, BundleReleasesDialogResult } from '../bundle-release-overview-dialog-component/bundle-release-dialog-component';
+import { BundleReleasesDialogResult } from '../../Models/bundle-release-dialog-data.model';
+import { BundleReleasesDialogComponent} from '../bundle-release-overview-dialog-component/bundle-release-dialog-component';
 import { forkJoin } from 'rxjs';
-import {MatTooltip} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-release-bundle-overview-component',
