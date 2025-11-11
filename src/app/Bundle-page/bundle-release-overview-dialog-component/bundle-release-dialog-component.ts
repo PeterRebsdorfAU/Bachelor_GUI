@@ -48,6 +48,7 @@ export class BundleReleasesDialogComponent {
 
     const createDialogRef = this.dialog.open(AddBundleReleaseDialogComponent, {
       width: '450px',
+      height: '300px',
       data: {
         bundleID: this.data.bundle.bundleID,
         bundleName: this.data.bundle.bundleName

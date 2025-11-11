@@ -1,3 +1,36 @@
+h2[mat-dialog-title] {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 1.5rem 1.5rem 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 1.5rem;
+
+  .full-width {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+
+    button {
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+    }
+  }
+}
+
 .dialog-header {
   display: flex;
   justify-content: space-between;
@@ -36,12 +69,16 @@ mat-dialog-content {
   padding: 1.5rem;
   max-height: 500px;
   overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .releases-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 }
 
 .release-item {
@@ -115,6 +152,7 @@ mat-dialog-content {
   justify-content: center;
   padding: 3rem 2rem;
   text-align: center;
+  width: 100%;
 
   mat-icon {
     font-size: 64px;

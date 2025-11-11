@@ -23,7 +23,7 @@ export class Navbar {
   }
 
   goToOverview(): void {
-    this.router.navigate(['/release-bundles-overview']);
+    this.router.navigate(['/bundles-overview']);
   }
 
   goBack(): void {

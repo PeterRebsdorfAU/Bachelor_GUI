@@ -121,6 +121,7 @@ export class BundlePageOverviewComponent implements OnInit {
   onCreateNewReleaseBundle() {
     const dialogRef = this.dialog.open(AddBundleDialogComponent, {
       width: '450px',
+      height: '250px'
     });
 
     dialogRef.afterClosed().subscribe((bundleName: string | undefined) => {

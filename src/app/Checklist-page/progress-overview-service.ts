@@ -13,7 +13,6 @@ export class ProgressOverviewService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  // Returner ChecklistResponse (hele payload)
   getChecklists(bundleId: number): Observable<ChecklistResponse> {
     return this.http.get<ChecklistResponse>(`${this.apiUrl}/bundleRelease/${bundleId}/complete`);
   }

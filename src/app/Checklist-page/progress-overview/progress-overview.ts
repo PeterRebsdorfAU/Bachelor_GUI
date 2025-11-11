@@ -68,10 +68,9 @@ export class ProgressOverviewComponent {
         // tag checklists fra response
         this.checklist = data.checklists?.sort((a: { order: number; }, b: { order: number; }) => a.order - b.order) || [];
         this.loading = false;
-
         if (this.checklist.length > 0) {
           this.selectedChecklist = this.checklist[0];
-          this.bundleName = `Bundle Release ${data.bundleReleaseID}`;
+          this.bundleName = data.bundleReleaseName;
         }
       },
       error: () => {

@@ -1,4 +1,3 @@
-// progress-overview.model.ts
 export interface ChecklistResponse {
   bundleReleaseID: number;
   bundleReleaseName: string;

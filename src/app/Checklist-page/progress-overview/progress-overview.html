@@ -2,7 +2,7 @@
 <div class="progress-layout">
   <div class="progress-container">
     <app-progress-header-component
-    [title]="selectedChecklist?.name"
+    [title]="bundleName"
     ></app-progress-header-component>
 
     <div *ngIf="loading">Henter checklisten...</div>
@@ -26,7 +26,7 @@
     <app-action-buttons-component
       *ngIf="userRole !== UserRole.Guest"
       [bundleId]="bundleId"
-      [bundleReleaseName]="selectedChecklist?.name"
+      [bundleReleaseName]="bundleName"
       [userRole]="userRole">
     </app-action-buttons-component>
   </div>
