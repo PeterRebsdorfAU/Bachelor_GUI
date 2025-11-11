@@ -42,10 +42,6 @@ export class BundleReleasesDialogComponent {
   }
 
   onCreateNewRelease() {
-    if (!this.isReleaseManager) {
-      return;
-    }
-
     const createDialogRef = this.dialog.open(AddBundleReleaseDialogComponent, {
       width: '450px',
       height: '300px',
