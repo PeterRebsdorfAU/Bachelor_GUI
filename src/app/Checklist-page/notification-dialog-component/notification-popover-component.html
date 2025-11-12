@@ -1,0 +1,67 @@
+<div class="popover-container" *ngIf="isVisible" [class.expanded]="isExpanded">
+  <div class="popover-header" (click)="toggleExpand()">
+    <div class="header-content">
+      <mat-icon class="notification-icon">notifications_active</mat-icon>
+      <span class="header-text">Send notification?</span>
+    </div>
+    <div class="header-actions">
+      <button mat-icon-button class="expand-btn" (click)="toggleExpand(); $event.stopPropagation()">
+        <mat-icon>{{ isExpanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </button>
+      <button mat-icon-button class="close-btn" (click)="close(); $event.stopPropagation()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="popover-body" *ngIf="isExpanded">
+    <form (ngSubmit)="sendNotification()" #notificationForm="ngForm">
+      <div class="form-group">
+        <label for="senderName">Your name</label>
+        <input
+          type="text"
+          id="senderName"
+          name="senderName"
+          [(ngModel)]="senderName"
+          placeholder="Write your name"
+          required
+          [disabled]="sending"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="recipientEmail">Receivers e-mail</label>
+        <input
+          type="email"
+          id="recipientEmail"
+          name="recipientEmail"
+          [(ngModel)]="recipientEmail"
+          placeholder="Write receiver's e-mail. something@systematic.com"
+          required
+          [disabled]="sending"
+        />
+      </div>
+
+      <div class="success-message" *ngIf="showSuccess">
+        <mat-icon>check_circle</mat-icon>
+        <span>E-mail sent!</span>
+      </div>
+
+      <div class="error-message" *ngIf="showError">
+        <mat-icon>error</mat-icon>
+        <span>Couldn't send email, try again</span>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!notificationForm.form.valid || sending"
+        >
+          {{ sending ? 'sending...' : 'Sent' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

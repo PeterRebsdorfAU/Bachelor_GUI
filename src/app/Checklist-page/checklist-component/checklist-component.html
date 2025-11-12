@@ -38,13 +38,26 @@
 
           <div class="items-list">
             <div *ngFor="let it of sub.items" class="item-row">
-              <div class="item-content">
-                <mat-checkbox
-                  [(ngModel)]="it.isCompleted"
-                  (change)="toggleItem(sub, it)"
-                  [disabled]="!canToggle()">
-                  {{ it.description }}
-                </mat-checkbox>
+              <div class="item-content" [class.has-popover]="isPopoverActiveForItem(it.checklistItemID)">
+                <div class="checkbox-wrapper">
+                  <mat-checkbox
+                    [(ngModel)]="it.isCompleted"
+                    (change)="toggleItem(sub, it)"
+                    [disabled]="!canToggle()">
+                    {{ it.description }}
+                  </mat-checkbox>
+
+                  <!-- Notification Popover -->
+                  <app-notification-popover-component
+                    *ngIf="isPopoverActiveForItem(it.checklistItemID) && pendingNotificationItem"
+                    [isVisible]="showNotificationPopover"
+                    [itemDescription]="pendingNotificationItem.description"
+                    [checklistName]="pendingNotificationItem.checklistName"
+                    [subChecklistName]="pendingNotificationItem.subChecklistName"
+                    [bundleReleaseName]="pendingNotificationItem.bundleReleaseName"
+                    (closed)="onNotificationPopoverClosed()">
+                  </app-notification-popover-component>
+                </div>
 
                 <div
                   *ngIf="shouldShowDetailedDescription(it)"

@@ -10,7 +10,8 @@
   flex-direction: column;
   gap: 2rem;
   position: relative;
-  padding-top: 8rem; // Add space for the buttons at the top
+  padding-top: 8rem;
+  overflow: visible; // IMPORTANT: Allow popover to overflow
 }
 
 .checklist-layout {
@@ -20,6 +21,7 @@
   align-items: flex-start;
   width: 100%;
   min-height: 400px;
+  overflow: visible; // IMPORTANT: Allow popover to overflow
 }
 
 .checklist-details {
@@ -29,4 +31,5 @@
   padding: 0;
   box-shadow: none;
   min-height: auto;
+  overflow: visible; // IMPORTANT: Allow popover to overflow
 }
