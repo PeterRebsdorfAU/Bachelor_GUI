@@ -20,6 +20,7 @@ export class LoginComponent {
   constructor(private loginService: LoginService) {}
 
   chooseUser(user: UserRole) {
+    console.log(`Logging in as ${UserRole[user]}`);
     this.loginService.setUser(user);
   }
 }

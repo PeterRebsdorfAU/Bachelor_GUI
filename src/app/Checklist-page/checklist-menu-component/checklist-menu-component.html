@@ -4,11 +4,10 @@
      (click)="selectItem(item)"
      [class.selected]="item === selectedItem">
 
-    <mat-icon matListIcon>checklist</mat-icon>
+    <mat-icon >checklist</mat-icon>
     <span class="menu-name">{{ item.name }}</span>
     <span class="menu-badge" *ngIf="item.totalSubChecklists !== undefined">
       {{ item.completedSubChecklists }}/{{ item.totalSubChecklists }}
     </span>
-
   </a>
 </mat-nav-list>

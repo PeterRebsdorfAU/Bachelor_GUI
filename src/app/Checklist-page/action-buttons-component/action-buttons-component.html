@@ -1,5 +1,5 @@
-  <div class="button-group" *ngIf="userRole !== UserRole.Guest">
-    <button mat-raised-button color="primary" (click)="onClickScopePage()">
+  <div class="button-group">
+    <button mat-raised-button color="primary" (click)="onClickScopePage()" *ngIf="userRole !== UserRole.Guest && userRole !== UserRole.Developer">
       <mat-icon>search</mat-icon>
       Scope page
     </button>

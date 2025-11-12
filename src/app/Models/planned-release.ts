@@ -1,25 +1,24 @@
 export interface PlannedRelease {
   plannedReleaseID: number;
-  name: string;
   system: string;
+  name: string;
   releaseCandidate: string | null;
-  bundle: string;
-  bundleRelease: string;
-  status?: number; // 0=RP, 1=IBD, 2=IUT, 3=IAT, 4=RD
+  status?: number;
+  statusText?: string;
 }
 
 export enum PlannedReleaseStatus {
-  RP = 0,   // Release Prepared
-  IBD = 1,  // In Build/Development
-  IUT = 2,  // In User Testing
-  IAT = 3,  // In Acceptance Testing
-  RD = 4    // Released/Done
+  ReleasePlanned = 0,
+  InTesting = 1,
+  TestComplete = 2,
+  ReadyForProduction = 3,
+  Released = 4
 }
 
-export const STATUS_LABELS: { [key: number]: string } = {
-  0: 'Release Planned',
-  1: 'In Development',
-  2: 'User Testing',
-  3: 'Acceptance Testing',
-  4: 'Released'
+export const STATUS_LABELS: { [key in PlannedReleaseStatus]: string } = {
+  [PlannedReleaseStatus.ReleasePlanned]: 'Release Planned',
+  [PlannedReleaseStatus.InTesting]: 'In Testing',
+  [PlannedReleaseStatus.TestComplete]: 'Test Complete',
+  [PlannedReleaseStatus.ReadyForProduction]: 'Ready For Production',
+  [PlannedReleaseStatus.Released]: 'Released'
 };

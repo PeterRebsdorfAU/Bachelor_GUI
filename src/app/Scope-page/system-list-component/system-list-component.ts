@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { PlannedRelease, STATUS_LABELS } from '../../Models/planned-release';
+import {PlannedRelease, PlannedReleaseStatus, STATUS_LABELS} from '../../Models/planned-release';
 import { SystemDeleteFormComponent } from '../system-delete-form-component/system-delete-form-component';
 import {MatDialog} from '@angular/material/dialog';
 import {
@@ -35,17 +35,16 @@ export class SystemListComponent {
   @Output() deleteSystem = new EventEmitter<number>();
   @Output() statusChange = new EventEmitter<{ plannedReleaseId: number; newStatus: number }>();
   @Output() createReleaseCandidate = new EventEmitter<{ plannedReleaseId: number; releaseCandidate: string }>();
+  protected readonly PlannedReleaseStatus = PlannedReleaseStatus;
 
   constructor(private dialog: MatDialog) {}
-
-  statusLabels = STATUS_LABELS;
-  statusOptions = [
-    { value: 0, label: 'Release Prepared' },
-    { value: 1, label: 'In Development' },
-    { value: 2, label: 'User Testing' },
-    { value: 3, label: 'Acceptance Testing' },
-    { value: 4, label: 'Released' }
-  ];
+  ngOnInit() {
+    console.log('Systems:', this.systems);
+  }
+  statusOptions = Object.entries(STATUS_LABELS).map(([value, label]) => ({
+    value: Number(value),
+    label
+  }));
 
   onStatusChange(plannedReleaseId: number, newStatus: number) {
     this.statusChange.emit({ plannedReleaseId, newStatus });
@@ -53,11 +52,11 @@ export class SystemListComponent {
 
   getStatusClass(status?: number): string {
     switch(status) {
-      case 0: return 'status-rp';
-      case 1: return 'status-ibd';
-      case 2: return 'status-iut';
-      case 3: return 'status-iat';
-      case 4: return 'status-rd';
+      case PlannedReleaseStatus.ReleasePlanned: return 'status-rp';
+      case PlannedReleaseStatus.InTesting: return 'status-ibd';
+      case PlannedReleaseStatus.TestComplete: return 'status-iut';
+      case PlannedReleaseStatus.ReadyForProduction: return 'status-iat';
+      case PlannedReleaseStatus.Released: return 'status-rd';
       default: return 'status-unknown';
     }
   }
@@ -68,7 +67,7 @@ export class SystemListComponent {
       height: '250px',
       data: {
         plannedReleaseId: release.plannedReleaseID,
-        systemName: release.system,
+        systemName: release.name,
         currentCandidate: release.releaseCandidate
       }
     });
@@ -81,5 +80,16 @@ export class SystemListComponent {
         });
       }
     });
+  }
+
+  getStatusLabel(status: number | null | undefined): string {
+    console.log(status);
+    const statusValue = status ?? PlannedReleaseStatus.ReleasePlanned;
+    return STATUS_LABELS[statusValue as PlannedReleaseStatus] || 'Unknown Status';
+  }
+
+  getStatusValue(status: number | undefined): number {
+    console.log(status);
+    return status ?? PlannedReleaseStatus.ReleasePlanned;
   }
 }

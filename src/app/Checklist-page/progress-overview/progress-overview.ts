@@ -50,7 +50,8 @@ export class ProgressOverviewComponent {
 
     this.progressService.getChecklists(this.bundleId).subscribe({
       next: (data: ChecklistResponse) => {
-        this.checklist = data.checklists?.sort((a, b) => a.order - b.order) || [];
+        this.checklist = data.checklists?.sort(
+          (a, b) => a.order - b.order) || [];
 
         if (currentId) {
           const found = this.checklist.find(c => c.checklistID === currentId);
@@ -65,8 +66,8 @@ export class ProgressOverviewComponent {
   loadChecklist() {
     this.progressService.getChecklists(this.bundleId).subscribe({
       next: (data: ChecklistResponse) => {
-        // tag checklists fra response
-        this.checklist = data.checklists?.sort((a: { order: number; }, b: { order: number; }) => a.order - b.order) || [];
+        this.checklist = data.checklists?.sort(
+          (a: { order: number; }, b: { order: number; }) => a.order - b.order) || [];
         this.loading = false;
         if (this.checklist.length > 0) {
           this.selectedChecklist = this.checklist[0];

@@ -6,6 +6,7 @@ import {Checklist} from '../../Models/checklist.model';
 
 @Component({
   selector: 'app-checklist-menu-component',
+  standalone: true,
   templateUrl: './checklist-menu-component.html',
   imports: [
     MatIcon,

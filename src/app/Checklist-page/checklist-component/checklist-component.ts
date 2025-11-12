@@ -93,12 +93,17 @@ export class ChecklistComponent {
   }
 
   checklistProgressPercentage(): number {
-    if (!this.item) return 0;
+    if (!this.item)
+      return 0;
+
     const total = this.item.subChecklists.reduce(
       (acc, s) => acc + (s.totalItems || 0), 0);
-    if (total === 0) return 0;
+    if (total === 0)
+      return 0;
+
     const completed = this.item.subChecklists.reduce(
       (acc, s) => acc + (s.completedItems || 0), 0);
+
     return Math.round((completed / total) * 100);
   }
 

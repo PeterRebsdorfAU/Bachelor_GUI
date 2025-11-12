@@ -8,10 +8,10 @@
       <mat-expansion-panel-header class="system-header">
         <mat-panel-title class="system-title-wrapper">
           <div class="system-info">
-            <strong class="system-name">{{ release.system }}</strong>
+            <strong class="system-name">{{ release.name }}</strong>
             <span class="status-badge" [ngClass]="getStatusClass(release.status)">
-              {{ statusLabels[release.status ?? 0] }}
-            </span>
+        {{ getStatusLabel(release.status) }}
+      </span>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -19,12 +19,12 @@
       <div class="panel-content">
         <div class="release-details">
 
-          <!-- Planned Release (system navn) -->
+          <!-- Planned Release -->
           <div class="detail-row">
             <mat-icon class="detail-icon">event</mat-icon>
             <div class="detail-content">
               <span class="detail-label">Planned Release</span>
-              <span class="detail-value">{{ release.system }}</span>
+              <span class="detail-value">{{ release.name }}</span>
             </div>
           </div>
 
@@ -57,8 +57,8 @@
               <mat-form-field appearance="outline" class="status-select-field">
                 <mat-label>Select Status</mat-label>
                 <mat-select
-                  [value]="release.status ?? 0"
-                  (selectionChange)="onStatusChange(release.plannedReleaseID, $event.value)">
+                  [(ngModel)]="release.status"
+                  (selectionChange)="onStatusChange(release.plannedReleaseID, release.status!)">
                   <mat-option *ngFor="let option of statusOptions" [value]="option.value">
                     <span [ngClass]="getStatusClass(option.value)">{{ option.label }}</span>
                   </mat-option>
@@ -67,7 +67,6 @@
             </div>
           </div>
         </div>
-
         <app-system-delete-form
           [plannedReleaseId]="release.plannedReleaseID"
           (delete)="deleteSystem.emit($event)">

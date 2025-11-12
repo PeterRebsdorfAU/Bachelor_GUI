@@ -34,7 +34,7 @@ export class SystemProgressComponent implements OnInit {
       'TRE': 25,
       'TCE': 50,
       'WPE': 75,
-      'RD': 100
+      'R': 100
     };
     return statusMap[this.systemRelease.statusText] || 0;
   }
