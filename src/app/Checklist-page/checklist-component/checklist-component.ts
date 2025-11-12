@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { ProgressOverviewService } from '../progress-overview-service';
 import { LoginService } from '../../Login/login-service';
 import { UserRole } from '../../user-role.enum';
-import {MatIcon} from '@angular/material/icon';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
+import { NotificationPopoverComponent } from '../notification-dialog-component/notification-popover-component';
 
 @Component({
   selector: 'app-checklist-component',
@@ -21,16 +22,28 @@ import {MatIcon} from '@angular/material/icon';
     MatProgressBarModule,
     MatCheckboxModule,
     FormsModule,
-    MatIcon
+    MatIconModule,
+    NotificationPopoverComponent
   ],
   templateUrl: './checklist-component.html',
   styleUrls: ['./checklist-component.scss']
 })
 export class ChecklistComponent {
   @Input() item!: Checklist;
+  @Input() bundleReleaseName: string = '';
   @Output() checklistUpdated = new EventEmitter<Checklist>();
 
   expandedPanels = new Set<number>();
+
+  // Notification popover properties
+  showNotificationPopover = false;
+  activeItemId: number | null = null;
+  pendingNotificationItem: {
+    description: string;
+    checklistName: string;
+    subChecklistName: string;
+    bundleReleaseName: string;
+  } | null = null;
 
   userRole: UserRole | null;
   readonly UserRole = UserRole;
@@ -74,6 +87,23 @@ export class ChecklistComponent {
       return; // Prevent toggle if user doesn't have permission
     }
 
+    // IMPORTANT: item.isCompleted has already been toggled by ngModel
+    // So if it's now true, it was just marked as complete
+    const isNowCompleted = item.isCompleted;
+
+    // Show notification popover only when marking as complete
+    if (isNowCompleted) {
+      this.activeItemId = item.checklistItemID;
+      this.pendingNotificationItem = {
+        description: item.description,
+        checklistName: this.item.name,
+        subChecklistName: sub.name,
+        bundleReleaseName: this.bundleReleaseName
+      };
+      this.showNotificationPopover = true;
+    }
+
+    // Update the item on the server
     this.progressService.toggleChecklistItem(item.checklistItemID)
       .subscribe({
         next: () => {
@@ -92,6 +122,16 @@ export class ChecklistComponent {
         },
         error: () => console.error('Failed to update item state on server')
       });
+  }
+
+  onNotificationPopoverClosed() {
+    this.showNotificationPopover = false;
+    this.activeItemId = null;
+    this.pendingNotificationItem = null;
+  }
+
+  isPopoverActiveForItem(itemId: number): boolean {
+    return this.showNotificationPopover && this.activeItemId === itemId;
   }
 
   private syncChecklistSubCompletion() {
