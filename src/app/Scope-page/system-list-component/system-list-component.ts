@@ -53,7 +53,7 @@ export class SystemListComponent {
   getStatusClass(status?: number): string {
     switch(status) {
       case PlannedReleaseStatus.ReleasePlanned: return 'status-rp';
-      case PlannedReleaseStatus.InTesting: return 'status-ibd';
+      case PlannedReleaseStatus.TestReady: return 'status-ibd';
       case PlannedReleaseStatus.TestComplete: return 'status-iut';
       case PlannedReleaseStatus.ReadyForProduction: return 'status-iat';
       case PlannedReleaseStatus.Released: return 'status-rd';

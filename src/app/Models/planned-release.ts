@@ -9,7 +9,7 @@ export interface PlannedRelease {
 
 export enum PlannedReleaseStatus {
   ReleasePlanned = 0,
-  InTesting = 1,
+  TestReady = 1,
   TestComplete = 2,
   ReadyForProduction = 3,
   Released = 4
@@ -17,7 +17,7 @@ export enum PlannedReleaseStatus {
 
 export const STATUS_LABELS: { [key in PlannedReleaseStatus]: string } = {
   [PlannedReleaseStatus.ReleasePlanned]: 'Release Planned',
-  [PlannedReleaseStatus.InTesting]: 'In Testing',
+  [PlannedReleaseStatus.TestReady]: 'Test Ready',
   [PlannedReleaseStatus.TestComplete]: 'Test Complete',
   [PlannedReleaseStatus.ReadyForProduction]: 'Ready For Production',
   [PlannedReleaseStatus.Released]: 'Released'
