@@ -15,7 +15,6 @@ export class ProgressBarComponent {
 
   get labelWidth(): number {
     if (!this.steps || this.steps.length <= 1) return 100;
-    // give each label equal width across the bar
     return 100 / this.steps.length;
   }
 
