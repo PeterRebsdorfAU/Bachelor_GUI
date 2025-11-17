@@ -39,13 +39,11 @@ export class SystemListComponent {
   constructor(private dialog: MatDialog) {}
 
   statusLabels = STATUS_LABELS;
-  statusOptions = [
-    { value: 0, label: 'Release Prepared' },
-    { value: 1, label: 'In Development' },
-    { value: 2, label: 'User Testing' },
-    { value: 3, label: 'Acceptance Testing' },
-    { value: 4, label: 'Released' }
-  ];
+
+  statusOptions = Object.entries(STATUS_LABELS).map(([value, label]) => ({
+    value: Number(value),
+    label: label
+  }));
 
   onStatusChange(plannedReleaseId: number, newStatus: number) {
     this.statusChange.emit({ plannedReleaseId, newStatus });
@@ -54,10 +52,10 @@ export class SystemListComponent {
   getStatusClass(status?: number): string {
     switch(status) {
       case 0: return 'status-rp';
-      case 1: return 'status-ibd';
-      case 2: return 'status-iut';
-      case 3: return 'status-iat';
-      case 4: return 'status-rd';
+      case 1: return 'status-tre';
+      case 2: return 'status-tce';
+      case 3: return 'status-wpe';
+      case 4: return 'status-fin';
       default: return 'status-unknown';
     }
   }
