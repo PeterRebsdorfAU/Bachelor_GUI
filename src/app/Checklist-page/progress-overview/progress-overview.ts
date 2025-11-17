@@ -65,7 +65,6 @@ export class ProgressOverviewComponent {
   loadChecklist() {
     this.progressService.getChecklists(this.bundleId).subscribe({
       next: (data: ChecklistResponse) => {
-        // tag checklists fra response
         this.checklist = data.checklists?.sort((a: { order: number; }, b: { order: number; }) => a.order - b.order) || [];
         this.loading = false;
         if (this.checklist.length > 0) {
