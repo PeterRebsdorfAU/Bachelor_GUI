@@ -38,7 +38,6 @@ export class WatchlistOverviewComponent implements OnInit {
         console.error('No bundleReleaseID provided');
         return;
       }
-
       this.watchlistService.getBundleReleaseMonitoring(id).subscribe({
         next: response => {
           this.data = response;

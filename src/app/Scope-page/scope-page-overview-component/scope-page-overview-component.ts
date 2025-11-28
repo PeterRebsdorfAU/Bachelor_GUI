@@ -93,7 +93,7 @@ export class ScopePageOverviewComponent implements OnInit {
       .subscribe({
         next: () => {
           this.showSuccessMessage('Status updated successfully!');
-          this.loadScope(); // Reload to get updated data
+          this.loadScope();
         },
         error: err => {
           this.showErrorMessage('Failed to update status');

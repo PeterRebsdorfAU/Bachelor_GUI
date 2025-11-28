@@ -1,4 +1,3 @@
-// release-bundle.model.ts
 export interface Bundle {
   bundleID: number;
   bundleName: string;

@@ -8,7 +8,7 @@
     <div class="bundle-name">{{ bundleRelease.bundleReleaseName }}</div>
 
     <div class="bundle-bar">
-      <app-progress-bar [steps]="bundleSteps" [currentStep]="current"></app-progress-bar>
+      <app-progress-bar [steps]="bundleSteps" [currentStep]="bundleRelease.calculatedStatus"></app-progress-bar>
     </div>
   </div>
 </div>

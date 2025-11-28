@@ -13,10 +13,12 @@ export class ProgressOverviewService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  /** Hent checklists for et bundle via ID **/
   getChecklists(bundleId: number): Observable<ChecklistResponse> {
     return this.http.get<ChecklistResponse>(`${this.apiUrl}/bundleRelease/${bundleId}/complete`);
   }
 
+  /** Toggle checklist item completion status **/
   toggleChecklistItem(itemId: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/item/${itemId}/toggle`, {});
   }
