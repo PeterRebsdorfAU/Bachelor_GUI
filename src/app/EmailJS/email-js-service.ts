@@ -9,6 +9,7 @@ export class EmailJsService {
   private readonly TEMPLATE_ID = 'template_xw0fs2w';
   private readonly PUBLIC_KEY = 'Tt6AFaBcOIxidcuDM';
 
+  /** Send email notification for completed checklist item **/
   sendChecklistItemNotification(
     toEmail: string,
     itemDescription: string,

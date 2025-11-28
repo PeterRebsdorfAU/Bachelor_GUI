@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Bundle, BundleRelease } from '../../Models/release-bundle.model';
 import { BundleListComponent } from '../bundle-list-component/bundle-list-component';
 import { Navbar } from '../../Navbar/navbar';
-import { BundleAndReleaseBundleService } from '../bundle-and-releaseBundle.service';
+import { BundleAndReleaseBundleService } from '../bundle-and-releaseBundle-service';
 import { RouterOutlet, Router } from '@angular/router';
 import { UserRole } from '../../user-role.enum';
 import { LoginService } from '../../Login/login-service';

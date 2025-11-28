@@ -8,12 +8,7 @@ import {WatchlistOverviewComponent} from './Watchlist-page/watchlist-overview-co
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
-  {
-    path: 'bundles-overview',
-    children: [
-      { path: '', component: BundlePageOverviewComponent },
-    ]
-  },
+  { path: 'bundles-overview', component: BundlePageOverviewComponent },
   { path: 'checklist-overview/:bundleId', component: ProgressOverviewComponent },
   { path: 'scope-page/:bundleId', component: ScopePageOverviewComponent},
   { path: 'watchlist', component: WatchlistOverviewComponent },

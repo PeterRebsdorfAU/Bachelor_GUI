@@ -12,6 +12,7 @@ export class WatchlistService {
 
   constructor(private http: HttpClient) {}
 
+  /** Hent monitoring data for et bundle release via ID **/
   getBundleReleaseMonitoring(bundleReleaseId: number): Observable<BundleReleaseMonitoringResponse> {
     return this.http.get<BundleReleaseMonitoringResponse>(
       `${this.apiUrl}?bundleReleaseId=${bundleReleaseId}`

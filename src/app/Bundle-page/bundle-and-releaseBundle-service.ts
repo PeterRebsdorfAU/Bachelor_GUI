@@ -12,10 +12,12 @@ export class BundleAndReleaseBundleService {
 
   constructor(private http: HttpClient) {}
 
+  /** GET: Hent alle bundles **/
   getBundles(): Observable<Bundle[]> {
     return this.http.get<Bundle[]>(this.bundlesUrl);
   }
 
+  /** GET: Hent alle bundle releases **/
   getBundleReleases(): Observable<BundleRelease[]> {
     return this.http.get<BundleRelease[]>(this.bundleReleasesUrl);
   }
