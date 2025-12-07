@@ -9,11 +9,17 @@ describe('ReleaseBundleItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ReleaseBundleItemComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ReleaseBundleItemComponent);
     component = fixture.componentInstance;
+
+    component.bundle = {
+      bundleID: 1,
+      bundleName: 'Test bundle',
+      retired: false
+    };
+
     fixture.detectChanges();
   });
 

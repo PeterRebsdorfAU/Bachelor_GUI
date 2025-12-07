@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SystemProgressComponent } from './system-progress-component';
 
 describe('SystemProgressComponent', () => {
@@ -9,11 +8,15 @@ describe('SystemProgressComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SystemProgressComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SystemProgressComponent);
     component = fixture.componentInstance;
+
+    component.systemRelease = {
+      statusText: 'RP'
+    } as any;
+
     fixture.detectChanges();
   });
 

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotificationDialogComponent } from './notification-popover-component';
+import { NotificationPopoverComponent } from './notification-popover-component';
 
 describe('NotificationDialogComponent', () => {
-  let component: NotificationDialogComponent;
-  let fixture: ComponentFixture<NotificationDialogComponent>;
+  let component: NotificationPopoverComponent;
+  let fixture: ComponentFixture<NotificationPopoverComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotificationDialogComponent]
+      imports: [NotificationPopoverComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NotificationDialogComponent);
+    fixture = TestBed.createComponent(NotificationPopoverComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

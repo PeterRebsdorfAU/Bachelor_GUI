@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddBundleReleaseDialogComponent } from './add-bundle-release-dialog-component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('AddBundleReleaseDialogComponent', () => {
   let component: AddBundleReleaseDialogComponent;
@@ -8,9 +8,12 @@ describe('AddBundleReleaseDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddBundleReleaseDialogComponent]
-    })
-    .compileComponents();
+      imports: [AddBundleReleaseDialogComponent],
+      providers: [
+        { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } },
+        { provide: MAT_DIALOG_DATA, useValue: {} }
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddBundleReleaseDialogComponent);
     component = fixture.componentInstance;

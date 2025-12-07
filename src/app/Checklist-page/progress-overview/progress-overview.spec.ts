@@ -1,19 +1,36 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { ProgressOverview } from './progress-overview';
+import { ProgressOverviewComponent } from './progress-overview';
 
-describe('ProgressOverview', () => {
-  let component: ProgressOverview;
-  let fixture: ComponentFixture<ProgressOverview>;
+describe('ProgressOverviewComponent', () => {
+  let component: ProgressOverviewComponent;
+  let fixture: ComponentFixture<ProgressOverviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProgressOverview]
-    })
-    .compileComponents();
+      imports: [
+        ProgressOverviewComponent,
+        HttpClientTestingModule
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: () => '1'
+              }
+            }
+          }
+        }
+      ]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ProgressOverview);
+    fixture = TestBed.createComponent(ProgressOverviewComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

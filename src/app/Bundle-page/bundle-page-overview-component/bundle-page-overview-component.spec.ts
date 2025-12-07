@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BundlePageOverviewComponent } from './bundle-page-overview-component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('BundlePageOverviewComponent', () => {
   let component: BundlePageOverviewComponent;
@@ -8,7 +9,8 @@ describe('BundlePageOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BundlePageOverviewComponent]
+      imports: [BundlePageOverviewComponent,
+      HttpClientTestingModule]
     })
     .compileComponents();
 
