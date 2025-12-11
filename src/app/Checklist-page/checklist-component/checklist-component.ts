@@ -54,15 +54,18 @@ export class ChecklistComponent {
     this.userRole = this.loginService.getUser();
   }
 
+  // Completed items count, to use for percentage
   completedItemsCount(sub: SubChecklist): number {
     return sub.items.filter(i => i.isCompleted).length;
   }
 
+  // Sub checklist percentage
   subChecklistPercentage(sub: SubChecklist): number {
     if (!sub.totalItems || sub.totalItems === 0) return 0;
     return Math.round((this.completedItemsCount(sub) / sub.totalItems) * 100);
   }
 
+  // Toggle panel
   onPanelToggle(sub: SubChecklist, isExpanded: boolean) {
     if (isExpanded) {
       this.expandedPanels.add(sub.subChecklistID);
@@ -71,16 +74,19 @@ export class ChecklistComponent {
     }
   }
 
+  // Keep track if panel is expanded
   isPanelExpanded(sub: SubChecklist): boolean {
     return this.expandedPanels.has(sub.subChecklistID);
   }
 
+  // Check if user can toggle
   canToggle(): boolean {
     return this.userRole === UserRole.ReleaseManager ||
       this.userRole === UserRole.TestManager ||
       this.userRole === UserRole.Developer;
   }
 
+  // Toggle an item in the checklist
   toggleItem(sub: SubChecklist, item: ChecklistItem) {
     if (!this.canToggle()) {
       return;
@@ -116,16 +122,19 @@ export class ChecklistComponent {
       });
   }
 
+  // When notification closes
   onNotificationPopoverClosed() {
     this.showNotificationPopover = false;
     this.activeItemId = null;
     this.pendingNotificationItem = null;
   }
 
+  // If popover is open
   isPopoverActiveForItem(itemId: number): boolean {
     return this.showNotificationPopover && this.activeItemId === itemId;
   }
 
+  // checklist with percentage calculation
   checklistProgressPercentage(): number {
     if (!this.item)
       return 0;
@@ -141,6 +150,7 @@ export class ChecklistComponent {
     return Math.round((completed / total) * 100);
   }
 
+  // Show detailed description on item
   shouldShowDetailedDescription(item: ChecklistItem): boolean {
     if (!item.detailedDescription || item.detailedDescription.trim() === '') {
       return false;

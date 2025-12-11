@@ -38,6 +38,7 @@ export class NotificationPopoverComponent {
     this.closed.emit();
   }
 
+  // Send notification through EmailJS
   async sendNotification() {
     if (!this.recipientEmail || !this.senderName) {
       return;

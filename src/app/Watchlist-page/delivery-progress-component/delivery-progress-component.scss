@@ -5,13 +5,13 @@
   margin: 1rem 0;
 
   .label {
-    width: 200px;     // venstre kolonne fast bredde
+    width: 200px;
     font-weight: bold;
     flex-shrink: 0;
   }
 
   .bar {
-    flex: 1;          // progressbaren udfylder midten
+    flex: 1;
     margin-left: 1rem;
   }
 }

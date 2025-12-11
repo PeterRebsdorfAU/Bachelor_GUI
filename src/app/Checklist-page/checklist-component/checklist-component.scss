@@ -3,7 +3,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   min-height: auto;
-  overflow: visible; // IMPORTANT: Allow popover to overflow
+  overflow: visible;
 
   mat-card {
     width: 100%;
@@ -11,7 +11,7 @@
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
-    overflow: visible; // IMPORTANT: Allow popover to overflow
+    overflow: visible;
 
     mat-card-title {
       font-size: 1.5rem;
@@ -24,7 +24,7 @@
     }
 
     mat-card-content {
-      overflow: visible; // IMPORTANT: Allow popover to overflow
+      overflow: visible;
 
       .checklist-overview {
         display: flex;
@@ -53,7 +53,6 @@
   }
 }
 
-// IMPORTANT: Allow popover to overflow from Material components
 ::ng-deep {
   .mat-expansion-panel {
     overflow: visible !important;
@@ -81,11 +80,10 @@
         position: relative;
         display: flex;
         align-items: center;
-        overflow: visible; // IMPORTANT: Allow popover to show
+        overflow: visible;
       }
 
       &.has-popover {
-        // Ensure the row has enough space for the popover
         position: relative;
         z-index: 10;
       }

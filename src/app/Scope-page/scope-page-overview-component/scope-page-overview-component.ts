@@ -41,11 +41,13 @@ export class ScopePageOverviewComponent implements OnInit {
     this.loadScope();
   }
 
+  // Load the scope through the service
   private loadScope() {
     this.scopeService.getScope(this.bundleId)
       .subscribe(s => this.scope = s);
   }
 
+  // Success og error messages
   showErrorMessage(message: string) {
     this.snackBar.open(message, 'Close', {
       duration: 4000,
@@ -60,6 +62,7 @@ export class ScopePageOverviewComponent implements OnInit {
     });
   }
 
+  // Add system
   onAddSystem(event: { systemName: string;}) {
     this.scopeService.addSystemToBundle(this.bundleId, event.systemName)
       .subscribe({
@@ -74,6 +77,7 @@ export class ScopePageOverviewComponent implements OnInit {
       });
   }
 
+  // Delete system
   onDeleteSystem(plannedReleaseId: number) {
     this.scopeService.removeSystemFromBundle(this.bundleId, plannedReleaseId)
       .subscribe({
@@ -88,6 +92,7 @@ export class ScopePageOverviewComponent implements OnInit {
       });
   }
 
+  // System status changes
   onStatusChange(event: { plannedReleaseId: number; newStatus: number }) {
     this.scopeService.updatePlannedReleaseStatus(event.plannedReleaseId, event.newStatus)
       .subscribe({
@@ -102,6 +107,7 @@ export class ScopePageOverviewComponent implements OnInit {
       });
   }
 
+  // Create a release candidate for a system
   onCreateReleaseCandidate(event: { plannedReleaseId: number; releaseCandidate: string }) {
     this.scopeService.assignReleaseCandidate(event.plannedReleaseId, event.releaseCandidate)
       .subscribe({

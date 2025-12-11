@@ -45,6 +45,7 @@ export class ProgressOverviewComponent {
     this.userRole = loginService.getUser() || UserRole.Guest;
   }
 
+  // When the checklist is updated.
   onChecklistUpdated() {
     const currentId = this.selectedChecklist?.checklistID;
 

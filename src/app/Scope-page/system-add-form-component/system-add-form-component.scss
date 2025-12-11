@@ -7,7 +7,6 @@
   position: relative;
   overflow: hidden;
 
-  // Subtle animated background effect
   &::before {
     content: '';
     position: absolute;
@@ -175,7 +174,6 @@
   }
 }
 
-// Animation for form appearance
 @keyframes slideInUp {
   from {
     opacity: 0;

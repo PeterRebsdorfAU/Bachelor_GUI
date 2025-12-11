@@ -30,7 +30,6 @@
     transition: all 0.3s ease;
   }
 
-  // Background line (inactive)
   &::before {
     content: "";
     position: absolute;
@@ -43,7 +42,6 @@
     border-radius: 3px;
   }
 
-  // Dot marker
   &::after {
     content: '';
     position: absolute;
@@ -59,7 +57,6 @@
     transition: all 0.3s ease;
   }
 
-  // Completed segment line
   &.completed {
     &::before {
       background: linear-gradient(90deg, #667eea, #764ba2);
@@ -77,7 +74,6 @@
     }
   }
 
-  // Active step (current)
   &.active {
     &::after {
       background: white;
@@ -98,12 +94,10 @@
     }
   }
 
-  // First step adjustment
   &:first-child::before {
     left: 50%;
   }
 
-  // Last step adjustment
   &:last-child::before {
     right: 50%;
   }
@@ -118,7 +112,6 @@
   }
 }
 
-// Small variant
 .progress-bar.small {
   margin: 1rem 0;
 
